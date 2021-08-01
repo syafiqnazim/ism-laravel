@@ -26,7 +26,7 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // View::composer("*", MenuComposer::class);
+        View::composer("*", MenuComposer::class);
         View::composer('*', FakerComposer::class);
         // View::composer('*', 'App\Http\View\Composers\DarkModeComposer');
         // View::composer('*', 'App\Http\View\Composers\LoggedInUserComposer');

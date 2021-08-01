@@ -15,67 +15,45 @@ class SideMenu
         return [
             'dashboard' => [
                 'icon' => 'home',
+                'route_name' => 'dashboard',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
                 'title' => 'Dashboard',
-                'sub_menu' => [
-                    'dashboard-overview-1' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'side-menu',
-                        ],
-                        'title' => 'Overview 1'
-                    ],
-                    'dashboard-overview-2' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-2',
-                        'params' => [
-                            'layout' => 'side-menu',
-                        ],
-                        'title' => 'Overview 2'
-                    ],
-                    'dashboard-overview-3' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-3',
-                        'params' => [
-                            'layout' => 'side-menu',
-                        ],
-                        'title' => 'Overview 3'
-                    ]
-                ]
             ],
-            'menu-layout' => [
-                'icon' => 'box',
-                'title' => 'Menu Layout',
-                'sub_menu' => [
-                    'side-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Side Menu'
-                    ],
-                    'simple-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'simple-menu'
-                        ],
-                        'title' => 'Simple Menu'
-                    ],
-                    'top-menu' => [
-                        'icon' => '',
-                        'route_name' => 'dashboard-overview-1',
-                        'params' => [
-                            'layout' => 'top-menu'
-                        ],
-                        'title' => 'Top Menu'
-                    ]
-                ]
-            ],
+            // 'menu-layout' => [
+            //     'icon' => 'box',
+            //     'title' => 'Menu Layout',
+            //     'sub_menu' => [
+            //         'side-menu' => [
+            //             'icon' => '',
+            //             'route_name' => 'dashboard-overview-1',
+            //             'params' => [
+            //                 'layout' => 'side-menu'
+            //             ],
+            //             'title' => 'Side Menu'
+            //         ],
+            //         'simple-menu' => [
+            //             'icon' => '',
+            //             'route_name' => 'dashboard-overview-1',
+            //             'params' => [
+            //                 'layout' => 'simple-menu'
+            //             ],
+            //             'title' => 'Simple Menu'
+            //         ],
+            //         'top-menu' => [
+            //             'icon' => '',
+            //             'route_name' => 'dashboard-overview-1',
+            //             'params' => [
+            //                 'layout' => 'top-menu'
+            //             ],
+            //             'title' => 'Top Menu'
+            //         ]
+            //     ]
+            // ],
             'inbox' => [
                 'icon' => 'inbox',
-                'route_name' => 'inbox',
+                // 'route_name' => 'inbox',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
@@ -83,7 +61,7 @@ class SideMenu
             ],
             'file-manager' => [
                 'icon' => 'hard-drive',
-                'route_name' => 'file-manager',
+                // 'route_name' => 'file-manager',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
@@ -91,7 +69,7 @@ class SideMenu
             ],
             'point-of-sale' => [
                 'icon' => 'credit-card',
-                'route_name' => 'point-of-sale',
+                // 'route_name' => 'point-of-sale',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
@@ -99,7 +77,7 @@ class SideMenu
             ],
             'chat' => [
                 'icon' => 'message-square',
-                'route_name' => 'chat',
+                // 'route_name' => 'chat',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
@@ -107,7 +85,7 @@ class SideMenu
             ],
             'post' => [
                 'icon' => 'file-text',
-                'route_name' => 'post',
+                // 'route_name' => 'post',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
@@ -115,7 +93,7 @@ class SideMenu
             ],
             'calendar' => [
                 'icon' => 'calendar',
-                'route_name' => 'calendar',
+                // 'route_name' => 'calendar',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
@@ -128,7 +106,7 @@ class SideMenu
                 'sub_menu' => [
                     'crud-data-list' => [
                         'icon' => '',
-                        'route_name' => 'crud-data-list',
+                        // 'route_name' => 'crud-data-list',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -136,7 +114,7 @@ class SideMenu
                     ],
                     'crud-form' => [
                         'icon' => '',
-                        'route_name' => 'crud-form',
+                        // 'route_name' => 'crud-form',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -150,7 +128,7 @@ class SideMenu
                 'sub_menu' => [
                     'users-layout-1' => [
                         'icon' => '',
-                        'route_name' => 'users-layout-1',
+                        // 'route_name' => 'users-layout-1',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -158,7 +136,7 @@ class SideMenu
                     ],
                     'users-layout-2' => [
                         'icon' => '',
-                        'route_name' => 'users-layout-2',
+                        // 'route_name' => 'users-layout-2',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -166,7 +144,7 @@ class SideMenu
                     ],
                     'users-layout-3' => [
                         'icon' => '',
-                        'route_name' => 'users-layout-3',
+                        // 'route_name' => 'users-layout-3',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -180,7 +158,7 @@ class SideMenu
                 'sub_menu' => [
                     'profile-overview-1' => [
                         'icon' => '',
-                        'route_name' => 'profile-overview-1',
+                        // 'route_name' => 'profile-overview-1',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -188,7 +166,7 @@ class SideMenu
                     ],
                     'profile-overview-2' => [
                         'icon' => '',
-                        'route_name' => 'profile-overview-2',
+                        // 'route_name' => 'profile-overview-2',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -196,7 +174,7 @@ class SideMenu
                     ],
                     'profile-overview-3' => [
                         'icon' => '',
-                        'route_name' => 'profile-overview-3',
+                        // 'route_name' => 'profile-overview-3',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -214,7 +192,7 @@ class SideMenu
                         'sub_menu' => [
                             'wizard-layout-1' => [
                                 'icon' => '',
-                                'route_name' => 'wizard-layout-1',
+                                // 'route_name' => 'wizard-layout-1',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -222,7 +200,7 @@ class SideMenu
                             ],
                             'wizard-layout-2' => [
                                 'icon' => '',
-                                'route_name' => 'wizard-layout-2',
+                                // 'route_name' => 'wizard-layout-2',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -230,7 +208,7 @@ class SideMenu
                             ],
                             'wizard-layout-3' => [
                                 'icon' => '',
-                                'route_name' => 'wizard-layout-3',
+                                // 'route_name' => 'wizard-layout-3',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -244,7 +222,7 @@ class SideMenu
                         'sub_menu' => [
                             'blog-layout-1' => [
                                 'icon' => '',
-                                'route_name' => 'blog-layout-1',
+                                // 'route_name' => 'blog-layout-1',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -252,7 +230,7 @@ class SideMenu
                             ],
                             'blog-layout-2' => [
                                 'icon' => '',
-                                'route_name' => 'blog-layout-2',
+                                // 'route_name' => 'blog-layout-2',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -260,7 +238,7 @@ class SideMenu
                             ],
                             'blog-layout-3' => [
                                 'icon' => '',
-                                'route_name' => 'blog-layout-3',
+                                // 'route_name' => 'blog-layout-3',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -274,7 +252,7 @@ class SideMenu
                         'sub_menu' => [
                             'pricing-layout-1' => [
                                 'icon' => '',
-                                'route_name' => 'pricing-layout-1',
+                                // 'route_name' => 'pricing-layout-1',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -282,7 +260,7 @@ class SideMenu
                             ],
                             'pricing-layout-2' => [
                                 'icon' => '',
-                                'route_name' => 'pricing-layout-2',
+                                // 'route_name' => 'pricing-layout-2',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -296,7 +274,7 @@ class SideMenu
                         'sub_menu' => [
                             'invoice-layout-1' => [
                                 'icon' => '',
-                                'route_name' => 'invoice-layout-1',
+                                // 'route_name' => 'invoice-layout-1',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -304,7 +282,7 @@ class SideMenu
                             ],
                             'invoice-layout-2' => [
                                 'icon' => '',
-                                'route_name' => 'invoice-layout-2',
+                                // 'route_name' => 'invoice-layout-2',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -318,7 +296,7 @@ class SideMenu
                         'sub_menu' => [
                             'faq-layout-1' => [
                                 'icon' => '',
-                                'route_name' => 'faq-layout-1',
+                                // 'route_name' => 'faq-layout-1',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -326,7 +304,7 @@ class SideMenu
                             ],
                             'faq-layout-2' => [
                                 'icon' => '',
-                                'route_name' => 'faq-layout-2',
+                                // 'route_name' => 'faq-layout-2',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -334,7 +312,7 @@ class SideMenu
                             ],
                             'faq-layout-3' => [
                                 'icon' => '',
-                                'route_name' => 'faq-layout-3',
+                                // 'route_name' => 'faq-layout-3',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -344,7 +322,7 @@ class SideMenu
                     ],
                     'login' => [
                         'icon' => '',
-                        'route_name' => 'login',
+                        // 'route_name' => 'login',
                         'params' => [
                             'layout' => 'login'
                         ],
@@ -352,7 +330,7 @@ class SideMenu
                     ],
                     'register' => [
                         'icon' => '',
-                        'route_name' => 'register',
+                        // 'route_name' => 'register',
                         'params' => [
                             'layout' => 'login'
                         ],
@@ -360,7 +338,7 @@ class SideMenu
                     ],
                     'error-page' => [
                         'icon' => '',
-                        'route_name' => 'error-page',
+                        // 'route_name' => 'error-page',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -368,7 +346,7 @@ class SideMenu
                     ],
                     'update-profile' => [
                         'icon' => '',
-                        'route_name' => 'update-profile',
+                        // 'route_name' => 'update-profile',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -376,7 +354,7 @@ class SideMenu
                     ],
                     'change-password' => [
                         'icon' => '',
-                        'route_name' => 'change-password',
+                        // 'route_name' => 'change-password',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -395,7 +373,7 @@ class SideMenu
                         'sub_menu' => [
                             'regular-table' => [
                                 'icon' => '',
-                                'route_name' => 'regular-table',
+                                // 'route_name' => 'regular-table',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -403,7 +381,7 @@ class SideMenu
                             ],
                             'tabulator' => [
                                 'icon' => '',
-                                'route_name' => 'tabulator',
+                                // 'route_name' => 'tabulator',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -417,7 +395,7 @@ class SideMenu
                         'sub_menu' => [
                             'modal' => [
                                 'icon' => '',
-                                'route_name' => 'modal',
+                                // 'route_name' => 'modal',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -425,7 +403,7 @@ class SideMenu
                             ],
                             'slide-over' => [
                                 'icon' => '',
-                                'route_name' => 'slide-over',
+                                // 'route_name' => 'slide-over',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -433,7 +411,7 @@ class SideMenu
                             ],
                             'notification' => [
                                 'icon' => '',
-                                'route_name' => 'notification',
+                                // 'route_name' => 'notification',
                                 'params' => [
                                     'layout' => 'side-menu'
                                 ],
@@ -443,7 +421,7 @@ class SideMenu
                     ],
                     'accordion' => [
                         'icon' => '',
-                        'route_name' => 'accordion',
+                        // 'route_name' => 'accordion',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -451,7 +429,7 @@ class SideMenu
                     ],
                     'button' => [
                         'icon' => '',
-                        'route_name' => 'button',
+                        // 'route_name' => 'button',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -459,7 +437,7 @@ class SideMenu
                     ],
                     'alert' => [
                         'icon' => '',
-                        'route_name' => 'alert',
+                        // 'route_name' => 'alert',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -467,7 +445,7 @@ class SideMenu
                     ],
                     'progress-bar' => [
                         'icon' => '',
-                        'route_name' => 'progress-bar',
+                        // 'route_name' => 'progress-bar',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -475,7 +453,7 @@ class SideMenu
                     ],
                     'tooltip' => [
                         'icon' => '',
-                        'route_name' => 'tooltip',
+                        // 'route_name' => 'tooltip',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -483,7 +461,7 @@ class SideMenu
                     ],
                     'dropdown' => [
                         'icon' => '',
-                        'route_name' => 'dropdown',
+                        // 'route_name' => 'dropdown',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -491,7 +469,7 @@ class SideMenu
                     ],
                     'typography' => [
                         'icon' => '',
-                        'route_name' => 'typography',
+                        // 'route_name' => 'typography',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -499,7 +477,7 @@ class SideMenu
                     ],
                     'icon' => [
                         'icon' => '',
-                        'route_name' => 'icon',
+                        // 'route_name' => 'icon',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -507,7 +485,7 @@ class SideMenu
                     ],
                     'loading-icon' => [
                         'icon' => '',
-                        'route_name' => 'loading-icon',
+                        // 'route_name' => 'loading-icon',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -521,7 +499,7 @@ class SideMenu
                 'sub_menu' => [
                     'regular-form' => [
                         'icon' => '',
-                        'route_name' => 'regular-form',
+                        // 'route_name' => 'regular-form',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -529,7 +507,7 @@ class SideMenu
                     ],
                     'datepicker' => [
                         'icon' => '',
-                        'route_name' => 'datepicker',
+                        // 'route_name' => 'datepicker',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -537,7 +515,7 @@ class SideMenu
                     ],
                     'tom-select' => [
                         'icon' => '',
-                        'route_name' => 'tom-select',
+                        // 'route_name' => 'tom-select',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -545,7 +523,7 @@ class SideMenu
                     ],
                     'file-upload' => [
                         'icon' => '',
-                        'route_name' => 'file-upload',
+                        // 'route_name' => 'file-upload',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -553,7 +531,7 @@ class SideMenu
                     ],
                     'wysiwyg-editor' => [
                         'icon' => '',
-                        'route_name' => 'wysiwyg-editor',
+                        // 'route_name' => 'wysiwyg-editor',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -561,7 +539,7 @@ class SideMenu
                     ],
                     'validation' => [
                         'icon' => '',
-                        'route_name' => 'validation',
+                        // 'route_name' => 'validation',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -575,7 +553,7 @@ class SideMenu
                 'sub_menu' => [
                     'chart' => [
                         'icon' => '',
-                        'route_name' => 'chart',
+                        // 'route_name' => 'chart',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -583,7 +561,7 @@ class SideMenu
                     ],
                     'slider' => [
                         'icon' => '',
-                        'route_name' => 'slider',
+                        // 'route_name' => 'slider',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
@@ -591,7 +569,7 @@ class SideMenu
                     ],
                     'image-zoom' => [
                         'icon' => '',
-                        'route_name' => 'image-zoom',
+                        // 'route_name' => 'image-zoom',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
