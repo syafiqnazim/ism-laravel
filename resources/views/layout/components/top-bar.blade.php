@@ -3,7 +3,7 @@
     <div class="h-full flex items-center">
         <!-- BEGIN: Logo -->
         <a href="" class="-intro-x hidden md:flex">
-            <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
+            <img alt="Logo" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
             <span class="text-white text-lg ml-3">
                 Ice<span class="font-medium">wall</span>
             </span>

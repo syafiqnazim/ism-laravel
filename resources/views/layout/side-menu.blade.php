@@ -12,8 +12,12 @@
             <!-- BEGIN: Side Menu -->
             <nav class="side-nav">
                 <ul>
+                    {{dd(Auth::user())}}
                     @foreach ($side_menu as $menuKey => $menu)
-                        @if ($menu == 'devider')
+                        {{-- {{dd($menu)}} --}}
+                        @if (isset($menu['label']) && $menu['label'] == 'header')
+                            <div>{{$menu['title']}}</div>
+                        @elseif ($menu == 'devider')
                             <li class="side-nav__devider my-6"></li>
                         @else
                             <li>

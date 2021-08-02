@@ -2,7 +2,7 @@
 <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
         <a href="" class="flex mr-auto">
-            <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
+            <img alt="Logo" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
         </a>
         <a href="javascript:;" id="mobile-menu-toggler">
             <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i>
@@ -10,8 +10,11 @@
     </div>
     <ul class="border-t border-theme-2 py-5 hidden">
         @foreach ($side_menu as $menuKey => $menu)
-            @if ($menu == 'devider')
-                <li class="menu__devider my-6"></li>
+            {{-- {{dd($menu)}} --}}
+            @if (isset($menu['label']) && $menu['label'] == 'header')
+                <div>{{$menu['title']}}</div>
+            @elseif ($menu == 'devider')
+                <li class="side-nav__devider my-6"></li>
             @else
                 <li>
                     <a href="{{ isset($menu['route_name']) ? route($menu['route_name'], $menu['params']) : 'javascript:;' }}" class="{{ $first_level_active_index == $menuKey ? 'menu menu--active' : 'menu' }}">

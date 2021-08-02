@@ -36,7 +36,7 @@
                             <div id="error-password" class="login__input-error w-5/6 text-theme-6 mt-2"></div>
                         </form>
                     </div>
-                    <a href="/register">Belum mendaftar? Pendaftaran.</a>
+                    <a href="/register">Belum mendaftar? Daftar sekarang.</a>
                     <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
                         <button id="btn-login" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Log Masuk</button>
                     </div>

@@ -46,8 +46,13 @@
                             <div id="error-position" class="register__input-error w-5/6 text-theme-6 mt-2"></div>
                             <input id="department" type="text" class="intro-x register__input form-control py-3 px-4 border-gray-300 block mt-4" placeholder="Bahagian">
                             <div id="error-department" class="register__input-error w-5/6 text-theme-6 mt-2"></div>
-                            <input id="user_role" type="text" class="intro-x register__input form-control py-3 px-4 border-gray-300 block mt-4" placeholder="Peranan Pengguna">
-                            <div id="error-user_role" class="register__input-error w-5/6 text-theme-6 mt-2"></div>
+                            <select name="cars" id="cars">
+                                @foreach ($roles as $role)
+                                <option value="{{$role->id}}">{{$role->name}}</option>
+                                @endforeach
+                            </select>
+                            {{-- <input id="user_role" type="text" class="intro-x register__input form-control py-3 px-4 border-gray-300 block mt-4" placeholder="Peranan Pengguna">
+                            <div id="error-user_role" class="register__input-error w-5/6 text-theme-6 mt-2"></div> --}}
                         </form>
                     </div>
                     <a href="/login">Sudah mendaftar? Log masuk.</a>
@@ -125,8 +130,7 @@
                     department,
                     user_role,
                 }).then(res => {
-                    // location.href = '/'
-                    console.log('done')
+                    location.href = '/dashboard'
                 }).catch(err => {
                     cash('#btn-register').html('Daftar')
                     if (err) {
