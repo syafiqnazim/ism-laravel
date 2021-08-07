@@ -28,39 +28,6 @@
                             @endif
                         </div>
                     </a>
-                    @if (isset($menu['sub_menu']))
-                        <ul class="{{ $first_level_active_index == $menuKey ? 'menu__sub-open' : '' }}">
-                            @foreach ($menu['sub_menu'] as $subMenuKey => $subMenu)
-                                <li>
-                                    <a href="{{ isset($subMenu['layout']) ? route('page', ['layout' => $subMenu['layout'], 'theme' => $theme, 'pageName' => $subMenu['page_name']]) : 'javascript:;' }}" class="{{ $second_level_active_index == $subMenuKey ? 'menu menu--active' : 'menu' }}">
-                                        <div class="menu__icon">
-                                            <i data-feather="activity"></i>
-                                        </div>
-                                        <div class="menu__title">
-                                            {{ $subMenu['title'] }}
-                                            @if (isset($subMenu['sub_menu']))
-                                                <i data-feather="chevron-down" class="menu__sub-icon {{ $second_level_active_index == $subMenuKey ? 'transform rotate-180' : '' }}"></i>
-                                            @endif
-                                        </div>
-                                    </a>
-                                    @if (isset($subMenu['sub_menu']))
-                                        <ul class="{{ $second_level_active_index == $subMenuKey ? 'menu__sub-open' : '' }}">
-                                            @foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu)
-                                                <li>
-                                                    <a href="{{ isset($lastSubMenu['route_name']) ? route($lastSubMenu['route_name'], $lastSubMenu['params']) : 'javascript:;' }}" class="{{ $third_level_active_index == $lastSubMenuKey ? 'menu menu--active' : 'menu' }}">
-                                                        <div class="menu__icon">
-                                                            <i data-feather="zap"></i>
-                                                        </div>
-                                                        <div class="menu__title">{{ $lastSubMenu['title'] }}</div>
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endif
                 </li>
             @endif
         @endforeach

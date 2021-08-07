@@ -97,7 +97,7 @@
                     email,
                     password,
                 }).then(res => {
-                    location.href = '/dashboard'
+                    location.href = '/pendaftaran-pengguna'
                 }).catch(err => {
                     cash('#btn-login').html('Daftar')
                     if (err) {

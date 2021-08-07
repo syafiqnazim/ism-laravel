@@ -5,12 +5,12 @@
         <a href="" class="-intro-x hidden md:flex">
             <img alt="Logo" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
             <span class="text-white text-lg ml-3">
-                Ice<span class="font-medium">wall</span>
+                My<span class="font-medium">ISM</span>
             </span>
         </a>
         <!-- END: Logo -->
         <!-- BEGIN: Breadcrumb -->
-        <div class="-intro-x breadcrumb mr-auto">
+        <div class="-intro-x breadcrumb mr-auto text-white">
             <a href="">Application</a>
             <i data-feather="chevron-right" class="breadcrumb__icon"></i>
             <a href="" class="breadcrumb--active">Dashboard</a>

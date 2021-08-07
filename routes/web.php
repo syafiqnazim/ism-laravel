@@ -23,5 +23,5 @@ Route::get("/", function () {
 
 Route::middleware('auth')->group(function() {
     // Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('dashboard', [PageController::class, 'dashboard'])->name('dashboard');
+    Route::get('pendaftaran-pengguna', [PageController::class, 'pendaftaranPengguna'])->name('pendaftaran-pengguna');
 });

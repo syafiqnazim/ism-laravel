@@ -13,9 +13,9 @@ class PageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function pendaftaranPengguna()
     {
-        return view('pages/dashboard', [
+        return view('pages/pendaftaran-pengguna', [
             // Specify the base layout.
             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
             // The default value is 'side-menu'
