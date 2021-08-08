@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
-use App\Http\View\Composers\FakerComposer;
-use App\Faker;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +19,12 @@ Route::get("/", function () {
     return view("welcome");
 });
 
+
 Route::middleware('auth')->group(function() {
     // Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    // Route::post('users', [UserController::class, 'create']);
+    Route::resource('users', UserController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('pendaftaran-pengguna', [PageController::class, 'pendaftaranPengguna'])->name('pendaftaran-pengguna');
+    Route::get('senarai-pengguna', [PageController::class, 'senaraiPengguna'])->name('senarai-pengguna');
+    Route::get('ubah-pengguna/{id}', [PageController::class, 'ubahPengguna'])->name('ubah-pengguna');
 });

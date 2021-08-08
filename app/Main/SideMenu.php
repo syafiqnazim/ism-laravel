@@ -18,12 +18,20 @@ class SideMenu
             'label' => 'header'
             ],
             'pendaftaran-pengguna' => [
-                'icon' => 'user',
+                'icon' => 'user-plus',
                 'route_name' => 'pendaftaran-pengguna',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
+                // 'params' => [
+                //     'layout' => 'side-menu'
+                // ],
                 'title' => 'Pendaftaran Pengguna',
+            ],
+            'senarai-pengguna' => [
+                'icon' => 'users',
+                'route_name' => 'senarai-pengguna',
+                // 'params' => [
+                //     'layout' => 'side-menu'
+                // ],
+                'title' => 'Senarai Pengguna',
             ],
         ];
     }

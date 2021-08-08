@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Faker;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Actions\Fortify\CreateNewUser;
 
 class PageController extends Controller
 {
@@ -21,6 +25,28 @@ class PageController extends Controller
             // The default value is 'side-menu'
 
             'layout' => 'side-menu'
-        ]);
+        ])->with(['roles' => Role::all()]);
+    }
+
+    public function senaraiPengguna()
+    {
+        return view('pages/senarai-pengguna', [
+            // Specify the base layout.
+            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+            // The default value is 'side-menu'
+
+            'layout' => 'side-menu'
+        ])->with(['users' => User::all()]);
+    }
+
+    public function ubahPengguna($id)
+    {
+        return view('pages/ubah-pengguna', [
+            // Specify the base layout.
+            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+            // The default value is 'side-menu'
+
+            'layout' => 'side-menu'
+        ])->with(['user' => User::find($id), 'roles' => Role::all()]);
     }
 }

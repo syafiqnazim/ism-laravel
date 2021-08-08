@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
     public function run()
     {
         $users = [
-            ['name' => 'Pentadbir Sistem', 'position' => 'Testing', 'ic_number' => 'Testing', 'phone_number' => 'Testing', 'department' => 'Testing', 'email' => 'sistem@test.com', 'password' => Hash::make('password'), 'role_id' => 1],
-            ['name' => 'Urusetia Kursus', 'position' => 'Testing', 'ic_number' => 'Testing', 'phone_number' => 'Testing', 'department' => 'Testing', 'email' => 'kursus@test.com', 'password' => Hash::make('password'), 'role_id' => 2],
-            ['name' => 'Pegawai ISM', 'position' => 'Testing', 'ic_number' => 'Testing', 'phone_number' => 'Testing', 'department' => 'Testing', 'email' => 'pegawai@test.com', 'password' => Hash::make('password'), 'role_id' => 3],
-            ['name' => 'Urusetia Tempahan', 'position' => 'Testing', 'ic_number' => 'Testing', 'phone_number' => 'Testing', 'department' => 'Testing', 'email' => 'tempahan@test.com', 'password' => Hash::make('password'), 'role_id' => 4],
-            ['name' => 'Pentadbir Aset', 'position' => 'Testing', 'ic_number' => 'Testing', 'phone_number' => 'Testing', 'department' => 'Testing', 'email' => 'aset@test.com', 'password' => Hash::make('password'), 'role_id' => 5],
+            ['name' => 'Pentadbir Sistem', 'position' => 'Testing', 'ic_number' => '123456121234', 'phone_number' => '0123456789', 'department' => 'Testing', 'email' => 'sistem@test.com', 'password' => Hash::make('password'), 'role_id' => 1],
+            ['name' => 'Urusetia Kursus', 'position' => 'Testing', 'ic_number' => '123456121234', 'phone_number' => '0123456789', 'department' => 'Testing', 'email' => 'kursus@test.com', 'password' => Hash::make('password'), 'role_id' => 2],
+            ['name' => 'Pegawai ISM', 'position' => 'Testing', 'ic_number' => '123456121234', 'phone_number' => '0123456789', 'department' => 'Testing', 'email' => 'pegawai@test.com', 'password' => Hash::make('password'), 'role_id' => 3],
+            ['name' => 'Urusetia Tempahan', 'position' => 'Testing', 'ic_number' => '123456121234', 'phone_number' => '0123456789', 'department' => 'Testing', 'email' => 'tempahan@test.com', 'password' => Hash::make('password'), 'role_id' => 4],
+            ['name' => 'Pentadbir Aset', 'position' => 'Testing', 'ic_number' => '123456121234', 'phone_number' => '0123456789', 'department' => 'Testing', 'email' => 'aset@test.com', 'password' => Hash::make('password'), 'role_id' => 5],
         ];
 
         DB::table('users')->insert($users);

@@ -31,7 +31,6 @@ import "./calendar";
  | Import JS components.
  |
  */
-import "./maps";
 import "./chat";
 import "./show-modal";
 import "./show-slide-over";
@@ -43,3 +42,5 @@ import "./side-menu";
 import "./mobile-menu";
 import "./side-menu-tooltip";
 import "./dark-mode-switcher";
+import "./pendaftaran-pengguna";
+import "./senarai-pengguna";
