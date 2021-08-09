@@ -12,8 +12,13 @@
         <button class="btn btn-primary shadow-md mr-2"><a href="/pendaftaran-pengguna">Tambah Pengguna</a></button>
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-56 relative text-gray-700 dark:text-gray-300">
-                <input type="text" class="form-control w-56 box pr-10 placeholder-theme-8" placeholder="Carian...">
-                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
+                <form>
+                    <input id='carian' type="text" class="form-control w-56 box pr-10 placeholder-theme-8"
+                        placeholder="Carian..." value="{{ $query }}" name="name">
+                    <button type="submit" class="w-4 h-4 absolute mb-auto mt-2 inset-y-0 mr-3 right-0">
+                        <i data-feather="search"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
@@ -33,7 +38,8 @@
                         {{ $user['position'] }}</div>
                 </div>
                 <div class="flex justify-between mt-4 lg:mt-0 lg:w-80">
-                    <button class="btn btn-outline-secondary py-1 px-2">Tukar Maklumat</button>
+                    <a class="btn btn-outline-secondary py-1 px-2" href="/ubah-pengguna/{{ $user['id'] }}">Tukar
+                        Maklumat</a>
                     <button class="btn btn-primary py-1 px-2">Tukar Kata Laluan</button>
                     <button id="{{ $user['id'] }}" class="btn btn-primary py-1 px-2 delete-button">Padam</button>
                 </div>

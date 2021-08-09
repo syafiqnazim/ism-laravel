@@ -28,15 +28,23 @@ class PageController extends Controller
         ])->with(['roles' => Role::all()]);
     }
 
-    public function senaraiPengguna()
+    public function senaraiPengguna(Request $request)
     {
+        // dd($request->query()['name']);
+        $users = User::all();
+        $query = '';
+        if(isset($request->query()['name'])) {
+            $query = $request->query()['name'];
+            $users = User::where('name', 'like', '%'.$query.'%')->get();
+        }
+
         return view('pages/senarai-pengguna', [
             // Specify the base layout.
             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
             // The default value is 'side-menu'
 
             'layout' => 'side-menu'
-        ])->with(['users' => User::all()]);
+        ])->with(['users' => $users, 'query' => $query]);
     }
 
     public function ubahPengguna($id)
@@ -48,5 +56,16 @@ class PageController extends Controller
 
             'layout' => 'side-menu'
         ])->with(['user' => User::find($id), 'roles' => Role::all()]);
+    }
+
+    public function ubahKataLaluan($id)
+    {
+        return view('pages/ubah-kata-laluan', [
+            // Specify the base layout.
+            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+            // The default value is 'side-menu'
+
+            'layout' => 'side-menu'
+        ])->with(['user' => User::find($id)]);
     }
 }

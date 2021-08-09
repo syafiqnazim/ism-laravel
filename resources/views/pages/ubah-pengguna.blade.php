@@ -37,23 +37,6 @@
                         value="{{ $user->email }}">
                 </div>
                 <div class="input-form mt-3">
-                    <label for="register-form-3" class="form-label w-full flex flex-col sm:flex-row">
-                        Kata Laluan <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">*Perlu,
-                            sekurang-kurangnya 6 patah perkataan/digit.</span>
-                    </label>
-                    <input id="password" name="password" type="password" class="form-control" minlength="6" required
-                        data-pristine-required-message="Ruangan ini perlu di isi." value="{{ $user->password }}">
-                </div>
-                <div class="input-form mt-3">
-                    <label for="register-form-3" class="form-label w-full flex flex-col sm:flex-row">
-                        Pengesahan Kata Laluan <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">*Perlu,
-                            sekurang-kurangnya 6 patah perkataan/digit.</span>
-                    </label>
-                    <input id="password_confirmation" name="password_confirmation" type="password" class="form-control"
-                        minlength="6" required data-pristine-required-message="Ruangan ini perlu di isi."
-                        value="{{ $user->password }}">
-                </div>
-                <div class="input-form mt-3">
                     <label for="register-form-4" class="form-label w-full flex flex-col sm:flex-row">
                         Nombor K.P. <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-gray-600">*Perlu,
                             sekurang-kurangnya 12 digit.</span>

@@ -61,7 +61,6 @@ class UserController extends Controller
             "phone_number" => $request->phone_number,
             "department" => $request->department,
             "role_id" => $request->user_role,
-            "password" => Hash::make($request->password),
         ]);
 
         return back();
@@ -77,5 +76,13 @@ class UserController extends Controller
     {
         if ($request->user()->id == $id) return response( ["error" => "Could Not delete yourself"], 403);
         return User::find($id)->delete();
+    }
+
+    public function changePassword(Request $request, $id)
+    {
+        // dd($request);
+        User::find($id)->update(["password" => Hash::make($request->password)]);
+
+        return redirect('/senarai-pengguna');
     }
 }
