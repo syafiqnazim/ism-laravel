@@ -25,28 +25,44 @@
     <!-- END: Top Header -->
 
     <!-- BEGIN: Users Layout -->
-    @foreach ($users as $user)
-    <div class="intro-y col-span-12 md:col-span-6">
-        <div class="box">
-            <div class="flex flex-col lg:flex-row items-center p-5">
-                <div class="w-24 h-24 lg:w-12 lg:h-12 image-fit lg:mr-1">
-                    <img alt="image" class="rounded-full" src="https://ui-avatars.com/api/?name={{$user['name']}}">
-                </div>
-                <div class="lg:ml-2 lg:mr-auto text-center lg:text-left mt-3 lg:mt-0">
-                    <a href="" class="font-medium">{{ $user['name'] }}</a>
-                    <div class="text-gray-600 text-xs mt-0.5"><span class="text-black">Jawatan :</span>
-                        {{ $user['position'] }}</div>
-                </div>
-                <div class="flex justify-between mt-4 lg:mt-0 lg:w-80">
-                    <a class="btn btn-outline-secondary py-1 px-2" href="/ubah-pengguna/{{ $user['id'] }}">Tukar
-                        Maklumat</a>
-                    <button class="btn btn-primary py-1 px-2">Tukar Kata Laluan</button>
-                    <button id="{{ $user['id'] }}" class="btn btn-primary py-1 px-2 delete-button">Padam</button>
-                </div>
-            </div>
-        </div>
+
+    <div class="col-span-12">
+        <table class="table-fixed w-full">
+            <thead>
+                <tr class="bg-gray-300">
+                    <th class="w-1/12 py-3 border-2 border-gray-400">#</th>
+                    <th class="w-2/12 py-3 border-2 border-gray-400">Nama</th>
+                    <th class="w-1/12 py-3 border-2 border-gray-400">No. Kad Pengenalan</th>
+                    <th class="w-2/12 py-3 border-2 border-gray-400">Nama Bahagian</th>
+                    <th class="w-2/12 py-3 border-2 border-gray-400">Nama Unit</th>
+                    <th class="w-1/12 py-3 border-2 border-gray-400">Peranan</th>
+                    <th class="w-3/12 py-3 border-2 border-gray-400">Tindakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($users as $user)
+                <tr class={{$user['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $user['id'] }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $user['name'] }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $user['ic_number'] }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $user['department'] }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">-</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $user['position'] }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400 flex justify-around">
+                        <a class="btn btn-primary py-1 px-2" href="/ubah-pengguna/{{ $user['id'] }}">
+                            Tukar Maklumat
+                        </a>
+                        <a class="btn btn-primary-soft py-1 px-2" href="/ubah-kata-laluan/{{ $user['id'] }}">
+                            Tukar Kata Laluan
+                        </a>
+                        <button id="{{ $user['id'] }}" class="btn btn-danger py-1 px-2 delete-button">Padam</button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-    @endforeach
+
     <!-- BEGIN: Users Layout -->
 </div>
 </div>

@@ -90,7 +90,11 @@
                 </div>
                 <div class="intro-y mt-2 xl:mt-8 text-center xl:text-left flex justify-center">
                     <button id="btn-register" type="submit"
-                        class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Daftar</button>
+                        class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Simpan
+                    </button>
+                    <button id="btn-register" type="submit"
+                        class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Daftar
+                    </button>
                 </div>
             </form>
         </div>
