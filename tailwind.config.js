@@ -2,6 +2,7 @@ const primaryColors = require("@left4code/tw-starter/dist/js/colors");
 
 module.exports = {
     // mode: "jit",
+    important: true,
     purge: [
         "./src/**/*.{php,html,js,jsx,ts,tsx,vue}",
         "./public/**/*.{php,html,js,jsx,ts,tsx,vue}",

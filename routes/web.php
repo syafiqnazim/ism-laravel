@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KursusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
@@ -21,12 +22,16 @@ Route::get("/", function () {
 
 
 Route::middleware('auth')->group(function() {
-    // Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-    // Route::post('users', [UserController::class, 'create']);
+    // UserController
     Route::resource('users', UserController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::post('change-password/{id}', [UserController::class, 'changePassword'])->name('change-password');
     Route::get('pendaftaran-pengguna', [PageController::class, 'pendaftaranPengguna'])->name('pendaftaran-pengguna');
     Route::get('senarai-pengguna', [PageController::class, 'senaraiPengguna'])->name('senarai-pengguna');
     Route::get('ubah-pengguna/{id}', [PageController::class, 'ubahPengguna'])->name('ubah-pengguna');
     Route::get('ubah-kata-laluan/{id}', [PageController::class, 'ubahKataLaluan'])->name('ubah-kata-laluan');
+
+    // KursusController
+    Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::get('pendaftaran-kursus', [PageController::class, 'pendaftaranKursus'])->name('pendaftaran-kursus');
+    Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
 });

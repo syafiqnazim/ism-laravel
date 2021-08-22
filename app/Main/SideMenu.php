@@ -20,18 +20,26 @@ class SideMenu
             'pendaftaran-pengguna' => [
                 'icon' => 'user-plus',
                 'route_name' => 'pendaftaran-pengguna',
-                // 'params' => [
-                //     'layout' => 'side-menu'
-                // ],
                 'title' => 'Pendaftaran Pengguna',
             ],
             'senarai-pengguna' => [
                 'icon' => 'users',
                 'route_name' => 'senarai-pengguna',
-                // 'params' => [
-                //     'layout' => 'side-menu'
-                // ],
                 'title' => 'Senarai Pengguna',
+            ],
+            [
+                'title' => 'Pengurusan Kursus',
+                'label' => 'header'
+            ],
+            'pendaftaran-kursus' => [
+                'icon' => 'file-text',
+                'route_name' => 'pendaftaran-kursus',
+                'title' => 'Pendaftaran Kursus',
+            ],
+            'penjadualan-kursus' => [
+                'icon' => 'calendar',
+                'route_name' => 'penjadualan-kursus',
+                'title' => 'Penjadualan Kursus',
             ],
         ];
     }

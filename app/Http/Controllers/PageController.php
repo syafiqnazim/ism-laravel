@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Kursus;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Actions\Fortify\CreateNewUser;
 
 class PageController extends Controller
 {
@@ -19,13 +18,7 @@ class PageController extends Controller
      */
     public function pendaftaranPengguna()
     {
-        return view('pages/pendaftaran-pengguna', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            'layout' => 'side-menu'
-        ])->with(['roles' => Role::all()]);
+        return view('pages/pendaftaran-pengguna')->with(['roles' => Role::all()]);
     }
 
     public function senaraiPengguna(Request $request)
@@ -38,34 +31,33 @@ class PageController extends Controller
             $users = User::where('name', 'like', '%'.$query.'%')->get();
         }
 
-        return view('pages/senarai-pengguna', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            'layout' => 'side-menu'
-        ])->with(['users' => $users, 'query' => $query]);
+        return view('pages/senarai-pengguna')->with(['users' => $users, 'query' => $query]);
     }
 
     public function ubahPengguna($id)
     {
-        return view('pages/ubah-pengguna', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            'layout' => 'side-menu'
-        ])->with(['user' => User::find($id), 'roles' => Role::all()]);
+        return view('pages/ubah-pengguna')->with(['user' => User::find($id), 'roles' => Role::all()]);
     }
 
     public function ubahKataLaluan($id)
     {
-        return view('pages/ubah-kata-laluan', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
+        return view('pages/ubah-kata-laluan')->with(['user' => User::find($id)]);
+    }
 
-            'layout' => 'side-menu'
-        ])->with(['user' => User::find($id)]);
+    public function pendaftaranKursus(Request $request)
+    {
+        $kursuses = Kursus::all();
+        $query = '';
+        if(isset($request->query()['nama_kursus'])) {
+            $query = $request->query()['nama_kursus'];
+            $kursuses = Kursus::where('nama_kursus', 'like', '%'.$query.'%')->get();
+        }
+
+        return view('pages/kursus/pendaftaran-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+    }
+
+    public function penjadualanKursus()
+    {
+        return view('pages/kursus/penjadualan-kursus');
     }
 }
