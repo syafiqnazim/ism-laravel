@@ -41,31 +41,34 @@ import listPlugin from "@fullcalendar/list";
             dayMaxEvents: true,
             events: [
                 {
-                    title: "Vue Vixens Day",
+                    title: "Kursus Pengurusan Kewangan",
                     start: "2021-01-05",
                     end: "2021-01-08",
+                    color: "red",
                 },
                 {
-                    title: "VueConfUS",
+                    title: "Kursus Pembangunan Ihsan",
                     start: "2021-01-11",
                     end: "2021-01-15",
+                    color: "green",
                 },
                 {
-                    title: "VueJS Amsterdam",
+                    title: "Kursus Sukarelawan",
                     start: "2021-01-17",
                     end: "2021-01-21",
                 },
                 {
-                    title: "Vue Fes Japan 2019",
+                    title: "Kursus Kewanitaan",
                     start: "2021-01-21",
                     end: "2021-01-24",
                 },
                 {
-                    title: "Laracon 2021",
+                    title: "Program Hari Keluarga",
                     start: "2021-01-24",
                     end: "2021-01-27",
                 },
             ],
+            // eventColor: "red",
             drop: function (info) {
                 if (
                     cash("#checkbox-events").length &&

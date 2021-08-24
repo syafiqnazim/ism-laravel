@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-<title>Senarai Pengguna | MyISM</title>
+<title>Senarai Kursus | MyISM</title>
 @endsection
 
 @section('subcontent')
@@ -117,9 +117,10 @@
                                 </label>
                                 <select id="kluster" class="w-full form-select box border-gray-300">
                                     <option value="0">Pilih Satu</option>
-                                    <option value="1">Finance Units</option>
-                                    <option value="2">Research & Development</option>
-                                    <option value="3">Volunteerism & Social Entrepreneurship</option>
+                                    <option value="1">Pembangunan Kerja Sosial</option>
+                                    <option value="2">Pembangunan Rundingan Sosial</option>
+                                    <option value="3">Repositori & Dokumentasi</option>
+                                    <option value="4">Penyelidikan & Pembangunan</option>
                                 </select>
                             </div>
                             <div class="grid-cols-1 input-form">

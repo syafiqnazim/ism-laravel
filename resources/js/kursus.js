@@ -133,4 +133,16 @@ import Pristine from "pristinejs";
             }).showToast();
         }
     });
+
+    cash(".pilih-tarikh").on("click", async function (e) {
+        let id = cash(e.currentTarget).attr("id");
+
+        console.log(`id`, id);
+
+        let value1 = cash("#modal-datepicker-1").val();
+        let value2 = cash("#modal-datepicker-2").val();
+
+        console.log(`value1`, value1);
+        console.log(`value2`, value2);
+    });
 })(cash);

@@ -56,8 +56,15 @@ class PageController extends Controller
         return view('pages/kursus/pendaftaran-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
     }
 
-    public function penjadualanKursus()
+    public function penjadualanKursus(Request $request)
     {
-        return view('pages/kursus/penjadualan-kursus');
+        $kursuses = Kursus::all();
+        $query = '';
+        if(isset($request->query()['nama_kursus'])) {
+            $query = $request->query()['nama_kursus'];
+            $kursuses = Kursus::where('nama_kursus', 'like', '%'.$query.'%')->get();
+        }
+
+        return view('pages/kursus/penjadualan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
     }
 }
