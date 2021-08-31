@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Kursus;
+use App\Models\Penceramah;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -26,9 +27,9 @@ class PageController extends Controller
         // dd($request->query()['name']);
         $users = User::all();
         $query = '';
-        if(isset($request->query()['name'])) {
+        if (isset($request->query()['name'])) {
             $query = $request->query()['name'];
-            $users = User::where('name', 'like', '%'.$query.'%')->get();
+            $users = User::where('name', 'like', '%' . $query . '%')->get();
         }
 
         return view('pages/senarai-pengguna')->with(['users' => $users, 'query' => $query]);
@@ -48,9 +49,9 @@ class PageController extends Controller
     {
         $kursuses = Kursus::all();
         $query = '';
-        if(isset($request->query()['nama_kursus'])) {
+        if (isset($request->query()['nama_kursus'])) {
             $query = $request->query()['nama_kursus'];
-            $kursuses = Kursus::where('nama_kursus', 'like', '%'.$query.'%')->get();
+            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
         }
 
         return view('pages/kursus/pendaftaran-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
@@ -60,11 +61,23 @@ class PageController extends Controller
     {
         $kursuses = Kursus::all();
         $query = '';
-        if(isset($request->query()['nama_kursus'])) {
+        if (isset($request->query()['nama_kursus'])) {
             $query = $request->query()['nama_kursus'];
-            $kursuses = Kursus::where('nama_kursus', 'like', '%'.$query.'%')->get();
+            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
         }
 
         return view('pages/kursus/penjadualan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+    }
+
+    public function profilPenceramah(Request $request)
+    {
+        $penceramah = Penceramah::all();
+        $query = '';
+        if (isset($request->query()['name'])) {
+            $query = $request->query()['name'];
+            $penceramah = Penceramah::where('name', 'like', '%' . $query . '%')->get();
+        }
+
+        return view('pages/kursus/profil-penceramah')->with(['roles' => Role::all(), 'penceramahs' => $penceramah, 'query' => $query]);
     }
 }

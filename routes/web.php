@@ -34,4 +34,5 @@ Route::middleware('auth')->group(function() {
     Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('pendaftaran-kursus', [PageController::class, 'pendaftaranKursus'])->name('pendaftaran-kursus');
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
+    Route::get('profil-penceramah', [PageController::class, 'profilPenceramah'])->name('profil-penceramah');
 });

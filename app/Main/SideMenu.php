@@ -41,6 +41,11 @@ class SideMenu
                 'route_name' => 'penjadualan-kursus',
                 'title' => 'Penjadualan Kursus',
             ],
+            'profil-penceramah' => [
+                'icon' => 'smile',
+                'route_name' => 'profil-penceramah',
+                'title' => 'Profil Penceramah',
+            ],
         ];
     }
 }
