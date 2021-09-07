@@ -14,8 +14,8 @@ class SideMenu
     {
         return [
             [
-            'title' => 'Pengurusan Pengguna',
-            'label' => 'header'
+                'title' => 'Pengurusan Pengguna',
+                'label' => 'header'
             ],
             'pendaftaran-pengguna' => [
                 'icon' => 'user-plus',
@@ -45,6 +45,25 @@ class SideMenu
                 'icon' => 'smile',
                 'route_name' => 'profil-penceramah',
                 'title' => 'Profil Penceramah',
+            ],
+            'laporan-kursus' => [
+                'icon' => 'folder',
+                'route_name' => 'laporan-kursus',
+                'title' => 'Laporan Kursus',
+            ],
+            [
+                'title' => 'Pengurusan Asrama',
+                'label' => 'header'
+            ],
+            'tempahan-dalaman' => [
+                'icon' => 'calendar',
+                'route_name' => 'tempahan-dalaman',
+                'title' => 'Tempahan Dalaman',
+            ],
+            'pengurusan-asrama' => [
+                'icon' => 'home',
+                'route_name' => 'pengurusan-asrama',
+                'title' => 'Pengurusan Asrama',
             ],
         ];
     }

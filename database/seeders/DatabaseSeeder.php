@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             KursusSeeder::class,
-            PenceramahSeeder::class
+            PenceramahSeeder::class,
+            AsramaSeeder::class,
         ]);
     }
 }

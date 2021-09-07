@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AsramaController;
 use App\Http\Controllers\KursusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
@@ -21,7 +22,7 @@ Route::get("/", function () {
 });
 
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     // UserController
     Route::resource('users', UserController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::post('change-password/{id}', [UserController::class, 'changePassword'])->name('change-password');
@@ -35,4 +36,10 @@ Route::middleware('auth')->group(function() {
     Route::get('pendaftaran-kursus', [PageController::class, 'pendaftaranKursus'])->name('pendaftaran-kursus');
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
     Route::get('profil-penceramah', [PageController::class, 'profilPenceramah'])->name('profil-penceramah');
+    Route::get('laporan-kursus', [PageController::class, 'laporanKursus'])->name('laporan-kursus');
+
+    // AsramaController
+    Route::resource('asrama', AsramaController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::get('tempahan-dalaman', [AsramaController::class, 'tempahanDalaman'])->name('tempahan-dalaman');
+    Route::get('pengurusan-asrama', [AsramaController::class, 'pengurusanAsrama'])->name('pengurusan-asrama');
 });
