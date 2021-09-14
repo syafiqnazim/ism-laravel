@@ -65,6 +65,29 @@ class SideMenu
                 'route_name' => 'pengurusan-asrama',
                 'title' => 'Pengurusan Asrama',
             ],
+            'tempahan-khusus' => [
+                'icon' => 'calendar',
+                'route_name' => 'tempahan-khusus',
+                'title' => 'Tempahan Khusus',
+            ],
+            [
+                'title' => 'Unit Penyelenggaraan',
+                'label' => 'header'
+            ],
+            'senarai-tugasan' => [
+                'icon' => 'tool',
+                'route_name' => 'senarai-tugasan',
+                'title' => 'Senarai Tugasan',
+            ],
+            [
+                'title' => 'Ketua Unit Penyelenggaraan',
+                'label' => 'header'
+            ],
+            'penugasan-penyelenggara' => [
+                'icon' => 'user',
+                'route_name' => 'penugasan-penyelenggara',
+                'title' => 'Penugasan Penyelenggara',
+            ],
         ];
     }
 }

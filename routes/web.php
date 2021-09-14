@@ -4,6 +4,7 @@ use App\Http\Controllers\AsramaController;
 use App\Http\Controllers\KursusController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PenyelenggaraanController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -42,4 +43,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('asrama', AsramaController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('tempahan-dalaman', [AsramaController::class, 'tempahanDalaman'])->name('tempahan-dalaman');
     Route::get('pengurusan-asrama', [AsramaController::class, 'pengurusanAsrama'])->name('pengurusan-asrama');
+    Route::get('tempahan-khusus', [AsramaController::class, 'tempahanKhusus'])->name('tempahan-khusus');
+
+    // PenyelenggaranController
+    Route::resource('penyelenggaraan', PenyelenggaraanController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::get('senarai-tugasan', [PenyelenggaraanController::class, 'senaraiTugasan'])->name('senarai-tugasan');
+    Route::get('penugasan-penyelenggara', [PenyelenggaraanController::class, 'penugasanPenyelenggara'])->name('penugasan-penyelenggara');
 });

@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
-use App\Models\User;
+use App\Models\Penyelenggaraan;
 use App\Models\Kursus;
 use App\Models\Asrama;
 use Illuminate\Http\Request;
 
-class AsramaController extends Controller
+class PenyelenggaraanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -87,39 +87,27 @@ class AsramaController extends Controller
         //
     }
 
-    public function tempahanDalaman(Request $request)
+    public function senaraiTugasan(Request $request)
     {
-        $kursuses = Kursus::all();
+        $penyelenggaraans = Penyelenggaraan::all();
         $query = '';
-        if (isset($request->query()['nama_kursus'])) {
-            $query = $request->query()['nama_kursus'];
-            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
+        if (isset($request->query()['jenis_kerosakan'])) {
+            $query = $request->query()['jenis_kerosakan'];
+            $penyelenggaraans = Penyelenggaraan::where('jenis_kerosakan', 'like', '%' . $query . '%')->get();
         }
 
-        return view('pages/asrama/tempahan-dalaman')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+        return view('pages/penyelenggaraan/senarai-tugasan')->with(['roles' => Role::all(), 'penyelenggaraans' => $penyelenggaraans, 'query' => $query]);
     }
 
-    public function pengurusanAsrama(Request $request)
+    public function penugasanPenyelenggara(Request $request)
     {
-        $asrama = Asrama::all();
+        $penyelenggaraans = Penyelenggaraan::all();
         $query = '';
-        if (isset($request->query()['kod_asrama'])) {
-            $query = $request->query()['kod_asrama'];
-            $asrama = Asrama::where('kod_asrama', 'like', '%' . $query . '%')->get();
+        if (isset($request->query()['jenis_kerosakan'])) {
+            $query = $request->query()['jenis_kerosakan'];
+            $penyelenggaraans = Penyelenggaraan::where('jenis_kerosakan', 'like', '%' . $query . '%')->get();
         }
 
-        return view('pages/asrama/pengurusan-asrama')->with(['roles' => Role::all(), 'asramas' => $asrama, 'query' => $query]);
-    }
-
-    public function tempahanKhusus(Request $request)
-    {
-        $asrama = Asrama::all();
-        $query = '';
-        if (isset($request->query()['kod_asrama'])) {
-            $query = $request->query()['kod_asrama'];
-            $asrama = Asrama::where('kod_asrama', 'like', '%' . $query . '%')->get();
-        }
-
-        return view('pages/asrama/tempahan-khusus')->with(['roles' => Role::all(), 'asramas' => $asrama, 'query' => $query]);
+        return view('pages/penyelenggaraan/penugasan-penyelenggara')->with(['roles' => Role::all(), 'penyelenggaraans' => $penyelenggaraans, 'query' => $query]);
     }
 }

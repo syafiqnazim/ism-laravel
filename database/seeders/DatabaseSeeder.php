@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Penceramah;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +19,7 @@ class DatabaseSeeder extends Seeder
             KursusSeeder::class,
             PenceramahSeeder::class,
             AsramaSeeder::class,
+            PenyelenggaraanSeeder::class,
         ]);
     }
 }

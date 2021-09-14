@@ -5,7 +5,7 @@
 @endsection
 
 @section('subcontent')
-<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Pengurusan Asrama</h2>
+<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Tempahan Khusus</h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <!-- BEGIN: Top Header -->
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2 justify-between">
@@ -35,25 +35,46 @@
             <thead>
                 <tr class="bg-gray-300">
                     <th class="w-1/12 py-3 border-2 border-gray-400">#</th>
-                    <th class="w-3/12 py-3 border-2 border-gray-400">Kod Asrama</th>
-                    <th class="w-2/12 py-3 border-2 border-gray-400">Kapasiti</th>
-                    <th class="w-2/12 py-3 border-2 border-gray-400">Status</th>
-                    <th class="w-2/12 py-3 border-2 border-gray-400">Tindakan</th>
+                    <th class="w-3/12 py-3 border-2 border-gray-400">Butiran Pemohon</th>
+                    <th class="w-2/12 py-3 border-2 border-gray-400">Bilik</th>
+                    <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh Mula</th>
+                    <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh Tamat</th>
+                    <th class="w-1/12 py-3 border-2 border-gray-400">Daftar</th>
+                    <th class="w-1/12 py-3 border-2 border-gray-400">
+                        <i data-feather="trash-2" class="font-bold"></i>
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($asramas as $asrama)
                 <tr class={{$asrama['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['id'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400"> {{ $asrama['kod_asrama'] }} </td>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['kapasiti'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400"><i data-feather="check"
-                            class="text-green-700 font-bold"></i></td>
-                    <td class="text-center py-3 border-2 border-gray-400 flex justify-around">
-                        <a class="btn btn-primary py-1 px-2" href="/ubah-pengguna/{{ $asrama['id'] }}">
-                            Tukar Maklumat
-                        </a>
-                        <button id="{{ $asrama['id'] }}" class="btn btn-danger py-1 px-2 delete-button">Padam</button>
+                    <td class="text-left py-3 border-2 border-gray-400">
+                        <div class="col-span-12 flex">
+                            <i data-feather="user" class="w-3/12"></i>
+                            <p class="w-9/12">Juzaili Bin Ahmad Sabri</p>
+                        </div>
+                        <div class="col-span-12 flex">
+                            <i data-feather="phone" class="w-3/12"></i>
+                            <p class="w-9/12">0192669420</p>
+                        </div>
+                        <div class="col-span-12 flex">
+                            <i data-feather="mail" class="w-3/12"></i>
+                            <p class="w-9/12">juzaili.sabri@gmail.com</p>
+                        </div>
+                        <div class="col-span-12 flex">
+                            <i data-feather="credit-card" class="w-3/12"></i>
+                            <p class="w-9/12">880820295421</p>
+                        </div>
+                    </td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['kod_asrama'] }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['tarikh_mula'] }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['tarikh_tamat'] }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        <button class="btn btn-success px-10">IN</button>
+                    </td>
+                    <td class="w-2/12 py-3 border-2 border-gray-400 text-center">
+                        <button class="btn btn-danger"><i data-feather="trash-2" class="font-bold"></i></button>
                     </td>
                 </tr>
                 @endforeach

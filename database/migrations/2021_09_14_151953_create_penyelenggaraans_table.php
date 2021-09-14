@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAsramaTable extends Migration
+class CreatePenyelenggaraansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateAsramaTable extends Migration
      */
     public function up()
     {
-        Schema::create('asramas', function (Blueprint $table) {
+        Schema::create('penyelenggaraans', function (Blueprint $table) {
             $table->id();
-            $table->string('kod_asrama');
-            $table->string('kapasiti');
+            $table->string('jenis_kerosakan');
+            $table->string('keterangan_kerosakan');
+            $table->string('penyelenggara');
+            $table->string('tarikh_aduan');
+            $table->string('tarikh_selesai');
             $table->string('status');
-            $table->string('tarikh_mula');
-            $table->string('tarikh_tamat');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ class CreateAsramaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asramas');
+        Schema::dropIfExists('penyelenggaraans');
     }
 }

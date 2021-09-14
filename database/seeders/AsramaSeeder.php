@@ -20,26 +20,36 @@ class AsramaSeeder extends Seeder
                 'kod_asrama' => 'Bilik A001',
                 'kapasiti' => '2',
                 'status' => 'available',
+                'tarikh_mula' => Faker::fakeDates(),
+                'tarikh_tamat' => Faker::fakeDates(),
             ],
             [
                 'kod_asrama' => 'Bilik A002',
                 'kapasiti' => '2',
                 'status' => 'available',
+                'tarikh_mula' => Faker::fakeDates(),
+                'tarikh_tamat' => Faker::fakeDates(),
             ],
             [
                 'kod_asrama' => 'Bilik A003',
                 'kapasiti' => '2',
                 'status' => 'available',
+                'tarikh_mula' => Faker::fakeDates(),
+                'tarikh_tamat' => Faker::fakeDates(),
             ],
             [
                 'kod_asrama' => 'Bilik A004',
                 'kapasiti' => '2',
                 'status' => 'available',
+                'tarikh_mula' => Faker::fakeDates(),
+                'tarikh_tamat' => Faker::fakeDates(),
             ],
             [
                 'kod_asrama' => 'Bilik A005',
                 'kapasiti' => '2',
                 'status' => 'available',
+                'tarikh_mula' => Faker::fakeDates(),
+                'tarikh_tamat' => Faker::fakeDates(),
             ],
         ];
 
