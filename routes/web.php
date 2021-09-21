@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PenyelenggaraanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TempahanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('penyelenggaraan', PenyelenggaraanController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('senarai-tugasan', [PenyelenggaraanController::class, 'senaraiTugasan'])->name('senarai-tugasan');
     Route::get('penugasan-penyelenggara', [PenyelenggaraanController::class, 'penugasanPenyelenggara'])->name('penugasan-penyelenggara');
+
+    // TempahanController
+    Route::resource('tempahan', TempahanController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::get('bilik-latihan', [TempahanController::class, 'bilikLatihan'])->name('bilik-latihan');
+    Route::get('kenderaan', [TempahanController::class, 'kenderaan'])->name('kenderaan');
+    Route::get('tempahan-1mtc', [TempahanController::class, 'tempahan1mtc'])->name('tempahan-1mtc');
 });

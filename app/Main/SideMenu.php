@@ -52,7 +52,7 @@ class SideMenu
                 'title' => 'Laporan Kursus',
             ],
             [
-                'title' => 'Pengurusan Asrama',
+                'title' => 'Pengurusan Aset',
                 'label' => 'header'
             ],
             'tempahan-dalaman' => [
@@ -70,23 +70,34 @@ class SideMenu
                 'route_name' => 'tempahan-khusus',
                 'title' => 'Tempahan Khusus',
             ],
-            [
-                'title' => 'Unit Penyelenggaraan',
-                'label' => 'header'
-            ],
             'senarai-tugasan' => [
                 'icon' => 'tool',
                 'route_name' => 'senarai-tugasan',
                 'title' => 'Senarai Tugasan',
             ],
-            [
-                'title' => 'Ketua Unit Penyelenggaraan',
-                'label' => 'header'
-            ],
             'penugasan-penyelenggara' => [
                 'icon' => 'user',
                 'route_name' => 'penugasan-penyelenggara',
                 'title' => 'Penugasan Penyelenggara',
+            ],
+            [
+                'title' => 'Pengurusan Tempahan',
+                'label' => 'header'
+            ],
+            'bilik-latihan' => [
+                'icon' => 'user',
+                'route_name' => 'bilik-latihan',
+                'title' => 'Bilik Latihan',
+            ],
+            'kenderaan' => [
+                'icon' => 'user',
+                'route_name' => 'kenderaan',
+                'title' => 'Kenderaan',
+            ],
+            'tempahan-1mtc' => [
+                'icon' => 'user',
+                'route_name' => 'tempahan-1mtc',
+                'title' => 'Tempahan 1MTC',
             ],
         ];
     }
