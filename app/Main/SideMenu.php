@@ -99,6 +99,24 @@ class SideMenu
                 'route_name' => 'tempahan-1mtc',
                 'title' => 'Tempahan 1MTC',
             ],
+            [
+                'title' => 'Kewangan',
+                'label' => 'header'
+            ],
+            'kutipan' => [
+                'icon' => 'dollar-sign',
+                'route_name' => 'kutipan',
+                'title' => 'Kutipan',
+            ],
+            [
+                'title' => 'Aduan',
+                'label' => 'header'
+            ],
+            'aduan' => [
+                'icon' => 'flag',
+                'route_name' => 'aduan',
+                'title' => 'Aduan',
+            ],
         ];
     }
 }

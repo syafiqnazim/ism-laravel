@@ -7,6 +7,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PenyelenggaraanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TempahanController;
+use App\Http\Controllers\KewanganController;
+use App\Http\Controllers\AduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,4 +58,12 @@ Route::middleware('auth')->group(function () {
     Route::get('bilik-latihan', [TempahanController::class, 'bilikLatihan'])->name('bilik-latihan');
     Route::get('kenderaan', [TempahanController::class, 'kenderaan'])->name('kenderaan');
     Route::get('tempahan-1mtc', [TempahanController::class, 'tempahan1mtc'])->name('tempahan-1mtc');
+
+    // KewanganController
+    Route::resource('kewangan', KewanganController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::get('kutipan', [KewanganController::class, 'kutipan'])->name('kutipan');
+
+    // AduanController
+    Route::resource('aduan', AduanController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::get('aduan', [AduanController::class, 'aduan'])->name('aduan');
 });
