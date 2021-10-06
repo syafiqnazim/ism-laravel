@@ -19,7 +19,7 @@ class KursusSeeder extends Seeder
             [
                 'nama_kursus' => 'Kursus Pengurusan Kewangan',
                 'kapasiti' => '40',
-                'kluster' => 'Finance Units',
+                'kluster' => '2',
                 'peruntukan' => '300',
                 'bilik' => 'Bilik Kuliah 1, ISM',
                 'tarikh_mula' => Faker::fakeDates(),
@@ -29,7 +29,7 @@ class KursusSeeder extends Seeder
             [
                 'nama_kursus' => 'Kursus Pembangunan Ihsan',
                 'kapasiti' => '30',
-                'kluster' => 'Research & Development',
+                'kluster' => '3',
                 'peruntukan' => '200',
                 'bilik' => 'Bilik Kuliah 1, ISM',
                 'tarikh_mula' => Faker::fakeDates(),
@@ -39,7 +39,7 @@ class KursusSeeder extends Seeder
             [
                 'nama_kursus' => 'Kursus Sukarelawan',
                 'kapasiti' => '40',
-                'kluster' => 'Volunteerism & Social Entrepreneurship',
+                'kluster' => '4',
                 'peruntukan' => '1000',
                 'bilik' => 'Bilik Kuliah 1, ISM',
                 'tarikh_mula' => Faker::fakeDates(),
@@ -49,7 +49,7 @@ class KursusSeeder extends Seeder
             [
                 'nama_kursus' => 'Kursus Kewanitaan',
                 'kapasiti' => '40',
-                'kluster' => 'Capacity & Gender Development',
+                'kluster' => '2',
                 'peruntukan' => '300',
                 'bilik' => 'Bilik Kuliah 1, ISM',
                 'tarikh_mula' => Faker::fakeDates(),
@@ -59,7 +59,7 @@ class KursusSeeder extends Seeder
             [
                 'nama_kursus' => 'Program Hari Keluarga',
                 'kapasiti' => '200',
-                'kluster' => 'Administration & Human Resource Units',
+                'kluster' => '3',
                 'peruntukan' => '5000',
                 'bilik' => 'Bilik Kuliah 1, ISM',
                 'tarikh_mula' => Faker::fakeDates(),

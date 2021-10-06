@@ -18,8 +18,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-         // dd($request->name);
-         return User::create([
+        // dd($request->name);
+        return User::create([
             "name" => $request->name,
             "email" => $request->email,
             "position" => $request->position,
@@ -53,15 +53,15 @@ class UserController extends Controller
     {
         // dd($request);
         User::where('id', $id)
-        ->update([
-            "name" => $request->name,
-            "email" => $request->email,
-            "position" => $request->position,
-            "ic_number" => $request->ic_number,
-            "phone_number" => $request->phone_number,
-            "department" => $request->department,
-            "role_id" => $request->user_role,
-        ]);
+            ->update([
+                "name" => $request->name,
+                "email" => $request->email,
+                "position" => $request->position,
+                "ic_number" => $request->ic_number,
+                "phone_number" => $request->phone_number,
+                "department" => $request->department,
+                "role_id" => $request->user_role,
+            ]);
 
         return back();
     }
@@ -74,7 +74,7 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        if ($request->user()->id == $id) return response( ["error" => "Could Not delete yourself"], 403);
+        if ($request->user()->id == $id) return response(["error" => "Could Not delete yourself"], 403);
         return User::find($id)->delete();
     }
 

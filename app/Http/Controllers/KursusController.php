@@ -8,26 +8,6 @@ use App\Models\Kursus;
 class KursusController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -35,12 +15,17 @@ class KursusController extends Controller
      */
     public function store(Request $request)
     {
-        return Kursus::create([
-            "nama_kursus" => $request->nama_kursus,
-            "kapasiti" => $request->kapasiti,
-            "kluster" => $request->kluster,
-            "peruntukan" => $request->peruntukan,
-        ]);
+
+        try {
+            return Kursus::create([
+                "nama_kursus" => $request->nama_kursus,
+                "kapasiti" => $request->kapasiti,
+                "kluster" => $request->kluster,
+                "peruntukan" => $request->peruntukan,
+            ]);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 
     /**
@@ -55,17 +40,6 @@ class KursusController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -74,7 +48,16 @@ class KursusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        Kursus::where('id', $id)
+            ->update([
+                "nama_kursus" => $request->nama_kursus,
+                "kapasiti" => $request->kapasiti,
+                "kluster" => $request->kluster,
+                "peruntukan" => $request->peruntukan,
+            ]);
+
+        return back();
     }
 
     /**

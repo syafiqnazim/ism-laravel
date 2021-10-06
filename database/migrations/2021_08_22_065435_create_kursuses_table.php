@@ -19,10 +19,10 @@ class CreateKursusesTable extends Migration
             $table->string('kapasiti');
             $table->string('kluster');
             $table->string('peruntukan');
-            $table->string('bilik');
-            $table->string('tarikh_mula');
-            $table->string('tarikh_akhir');
-            $table->string('bil_keperluan_asrama');
+            $table->string('bilik')->nullable();
+            $table->string('tarikh_mula')->nullable();
+            $table->string('tarikh_akhir')->nullable();
+            $table->string('bil_keperluan_asrama')->nullable();
             $table->timestamps();
         });
     }

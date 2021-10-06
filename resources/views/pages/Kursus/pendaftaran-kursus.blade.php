@@ -43,19 +43,174 @@
             <tbody>
                 @foreach ($kursuses as $kursus)
                 <tr class={{$kursus['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['id'] }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $loop->index + 1 }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['nama_kursus'] }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['kapasiti'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400 flex justify-around">
-                        <a class="btn btn-primary py-1 px-2" href="/ubah-pengguna/{{ $kursus['id'] }}">
-                            Lihat
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        <a title="Lihat" class="btn btn-primary p-1" href="javascript:;" data-toggle="modal"
+                            data-target="#view-kursus-baru-{{ $loop->index }}">
+                            <i data-feather="eye" class="w-3 h-3 text-white"></i>
                         </a>
-                        <a class="btn btn-success py-1 px-2" href="/ubah-kata-laluan/{{ $kursus['id'] }}">
-                            Objektif
+                        <a title="Edit" class="btn btn-success p-1" href="javascript:;" data-toggle="modal"
+                            data-target="#edit-kursus-baru-{{ $loop->index }}">
+                            <i data-feather="edit" class="w-3 h-3 text-white"></i>
                         </a>
-                        <button id="{{ $kursus['id'] }}" class="btn btn-danger py-1 px-2 delete-kursus">Padam</button>
+                        {{-- <a title="Buka" class="btn btn-warning p-1">
+                            <i data-feather="calendar" class="w-3 h-3 text-white"></i>
+                        </a> --}}
+                        <a title="Delete" class="btn btn-danger p-1 delete-kursus" id="{{ $kursus['id'] }}">
+                            <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
+                        </a>
                     </td>
                 </tr>
+                <!-- BEGIN: Edit Kursus Modal -->
+                <div id="edit-kursus-baru-{{ $loop->index }}" class="modal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog w-1/2 mt-36">
+                        <div class="modal-content">
+                            <form action="{{url('kursus/'. $kursus->id)}}" method="post">
+                                @csrf
+                                <input name="_method" type="hidden" value="PUT">
+                                <div class="modal-body p-0">
+                                    <div class="p-5 text-center">
+                                        <h5 class="intro-x font-bold text-2xl xl:text-3xl text-center mb-6">
+                                            Tukar Maklumat Kursus</h5>
+                                        <div class="grid grid-cols-2 gap-2 mb-6">
+                                            <div class="grid-cols-1 input-form">
+                                                <label for="register-form-1"
+                                                    class="form-label w-full flex flex-col sm:flex-row">
+                                                    Nama Kursus
+                                                </label>
+                                                <input id="edit_nama_kursus" name="nama_kursus" type="text"
+                                                    class="form-control" required
+                                                    data-pristine-required-message="Ruangan ini perlu di isi."
+                                                    value="{{ $kursus['nama_kursus'] }}">
+                                            </div>
+                                            <div class="grid-cols-1 input-form">
+                                                <label for="register-form-1"
+                                                    class="form-label w-full flex flex-col sm:flex-row">
+                                                    Kapasiti
+                                                </label>
+                                                <input id="edit_kapasiti" name="kapasiti" type="text"
+                                                    class="form-control" required
+                                                    data-pristine-required-message="Ruangan ini perlu di isi."
+                                                    value="{{ $kursus['kapasiti'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2 mb-6">
+                                            <div class="grid-cols-1 input-form">
+                                                <label for="register-form-1"
+                                                    class="form-label w-full flex flex-col sm:flex-row">
+                                                    Kluster
+                                                </label>
+                                                <select id="edit_kluster" class="w-full form-select box border-gray-300"
+                                                    name="kluster">
+                                                    <option value="0"
+                                                        {{ $kursus['kluster'] == null ? 'selected' : '' }}>Pilih Satu
+                                                    </option>
+                                                    <option value="1" {{ $kursus['kluster'] == "1" ? 'selected' : '' }}>
+                                                        Pembangunan Kerja Sosial
+                                                    </option>
+                                                    <option value="2" {{ $kursus['kluster'] == "2" ? 'selected' : '' }}>
+                                                        Pembangunan Rundingan Sosial
+                                                    </option>
+                                                    <option value="3" {{ $kursus['kluster'] == "3" ? 'selected' : '' }}>
+                                                        Repositori & Dokumentasi
+                                                    </option>
+                                                    <option value="4" {{ $kursus['kluster'] == "4" ? 'selected' : '' }}>
+                                                        Penyelidikan & Pembangunan
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="grid-cols-1 input-form">
+                                                <label for="register-form-1"
+                                                    class="form-label w-full flex flex-col sm:flex-row">
+                                                    Peruntukan (RM)
+                                                </label>
+                                                <input id="edit_peruntukan" name="peruntukan" type="number"
+                                                    class="form-control" required
+                                                    data-pristine-required-message="Ruangan ini perlu di isi."
+                                                    value="{{ $kursus['peruntukan'] }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="px-5 pb-8 text-center">
+                                        <button id="edit-kursus" type="submit" class="btn btn-primary mr-1">
+                                            Tukar Maklumat
+                                        </button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Edit Kursus Modal -->
+
+                <!-- BEGIN: View Kursus Modal -->
+                <div id="view-kursus-baru-{{ $loop->index }}" class="modal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog w-1/2 mt-36">
+                        <div class="modal-content">
+                            <form>
+                                <div class="modal-body p-0">
+                                    <div class="p-5 text-center">
+                                        <h5 class="intro-x font-bold text-2xl xl:text-3xl text-center mb-6">
+                                            Lihat Kursus
+                                        </h5>
+                                        <div class="grid grid-cols-2 gap-2 mb-6">
+                                            <div class="grid-cols-1 input-form">
+                                                <label for="register-form-1"
+                                                    class="form-label w-full flex flex-col sm:flex-row">
+                                                    Nama Kursus
+                                                </label>
+                                                <input type="text" class="form-control" readonly
+                                                    value="{{ $kursus['nama_kursus'] }}">
+                                            </div>
+                                            <div class="grid-cols-1 input-form">
+                                                <label for="register-form-1"
+                                                    class="form-label w-full flex flex-col sm:flex-row">
+                                                    Kapasiti
+                                                </label>
+                                                <input type="text" class="form-control" readonly
+                                                    value="{{ $kursus['kapasiti'] }}">
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2 mb-6">
+                                            <div class="grid-cols-1 input-form">
+                                                <label for="register-form-1"
+                                                    class="form-label w-full flex flex-col sm:flex-row">
+                                                    Kluster
+                                                </label>
+                                                <select class="w-full form-select box border-gray-300" disabled="true">
+                                                    <option value="0"
+                                                        {{ $kursus['kluster'] == null ? 'selected' : '' }}>Pilih Satu
+                                                    </option>
+                                                    <option value="1" {{ $kursus['kluster'] == "1" ? 'selected' : '' }}>
+                                                        Pembangunan Kerja Sosial
+                                                    </option>
+                                                    <option value="2" {{ $kursus['kluster'] == "2" ? 'selected' : '' }}>
+                                                        Pembangunan Rundingan Sosial
+                                                    </option>
+                                                    <option value="3" {{ $kursus['kluster'] == "3" ? 'selected' : '' }}>
+                                                        Repositori & Dokumentasi
+                                                    </option>
+                                                    <option value="4" {{ $kursus['kluster'] == "4" ? 'selected' : '' }}>
+                                                        Penyelidikan & Pembangunan
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="grid-cols-1 input-form">
+                                                <label for="register-form-1"
+                                                    class="form-label w-full flex flex-col sm:flex-row">
+                                                    Peruntukan (RM)
+                                                </label>
+                                                <input type="number" class="form-control" readonly
+                                                    value="{{ $kursus['peruntukan'] }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: View Kursus Modal -->
                 @endforeach
             </tbody>
         </table>
@@ -68,10 +223,10 @@
 <div id="success-notification-content" class="toastify-content hidden flex">
     <i class="text-theme-10" data-feather="check-circle"></i>
     <div class="ml-4 mr-4">
-        <div class="font-medium">Registration success!</div>
-        <div class="text-gray-600 mt-1">
+        <div class="font-medium">Berjaya!</div>
+        {{-- <div class="text-gray-600 mt-1">
             Please check your e-mail for further info!
-        </div>
+        </div> --}}
     </div>
 </div>
 <!-- END: Success Notification Content -->
@@ -79,10 +234,10 @@
 <div id="failed-notification-content" class="toastify-content hidden flex">
     <i class="text-theme-24" data-feather="x-circle"></i>
     <div class="ml-4 mr-4">
-        <div class="font-medium">Registration failed!</div>
-        <div class="text-gray-600 mt-1">
+        <div class="font-medium">Gagal!</div>
+        {{-- <div class="text-gray-600 mt-1">
             Please check the fileld form.
-        </div>
+        </div> --}}
     </div>
 </div>
 <!-- END: Failed Notification Content -->
@@ -99,6 +254,7 @@
                                 <label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
                                     Nama Kursus
                                 </label>
+                                {{-- {{dd($kursus['nama_kursus'])}} --}}
                                 <input id="nama_kursus" type="text" class="form-control" required
                                     data-pristine-required-message="Ruangan ini perlu di isi.">
                             </div>
