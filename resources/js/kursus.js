@@ -30,6 +30,7 @@ import Pristine from "pristinejs";
             }).showToast();
 
             cash("#tambah-kursus").html("Tambah Kursus");
+            return;
         }
 
         // Post form

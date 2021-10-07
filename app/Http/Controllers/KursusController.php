@@ -15,14 +15,16 @@ class KursusController extends Controller
      */
     public function store(Request $request)
     {
-
+        // validation
         try {
-            return Kursus::create([
+            Kursus::create([
                 "nama_kursus" => $request->nama_kursus,
                 "kapasiti" => $request->kapasiti,
                 "kluster" => $request->kluster,
                 "peruntukan" => $request->peruntukan,
             ]);
+
+            return back();
         } catch (\Throwable $th) {
             dd($th);
         }
