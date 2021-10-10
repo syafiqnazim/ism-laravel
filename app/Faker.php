@@ -68,8 +68,18 @@ class Faker
 
     public static function fakeDates()
     {
-        $dates = date("j F Y", mt_rand(1586584776897, 1672333200000) / 1000);
+        $min_epoch = strtotime('1 Oct 2021');
+        $max_epoch = strtotime('30 Oct 2021');
+
+        $rand_epoch = rand($min_epoch, $max_epoch);
+        $dates = date("Y-m-d", $rand_epoch);
         return $dates;
+    }
+
+    public static function fakeColor()
+    {
+        $colors = collect(['red', 'blue', 'green', 'magenta', 'brown', 'darkgoldenrod', 'darkorchid', 'darkorange', 'tomato']);
+        return $colors->random();
     }
 
     public static function fakeTimes()

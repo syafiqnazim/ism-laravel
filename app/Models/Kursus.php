@@ -18,5 +18,6 @@ class Kursus extends Model
         "tarikh_mula",
         "tarikh_akhir",
         "bil_keperluan_asrama",
+        "warna",
     ];
 }

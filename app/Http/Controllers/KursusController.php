@@ -8,6 +8,17 @@ use App\Models\Kursus;
 class KursusController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return Kursus::all();
+    }
+
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,15 +61,21 @@ class KursusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
-        Kursus::where('id', $id)
-            ->update([
-                "nama_kursus" => $request->nama_kursus,
-                "kapasiti" => $request->kapasiti,
-                "kluster" => $request->kluster,
-                "peruntukan" => $request->peruntukan,
-            ]);
-
+        if ($request->tarikh_mula) {
+            Kursus::where('id', $id)
+                ->update([
+                    "tarikh_mula" => date("Y-m-d", strtotime($request->tarikh_mula)),
+                    "tarikh_akhir" => date("Y-m-d", strtotime($request->tarikh_akhir . ' +1 day')),
+                ]);
+        } else {
+            Kursus::where('id', $id)
+                ->update([
+                    "nama_kursus" => $request->nama_kursus,
+                    "kapasiti" => $request->kapasiti,
+                    "kluster" => $request->kluster,
+                    "peruntukan" => $request->peruntukan,
+                ]);
+        };
         return back();
     }
 

@@ -6,6 +6,7 @@ import listPlugin from "@fullcalendar/list";
 
 (function (cash) {
     if (cash("#calendar").length) {
+        console.log("dalam calendar");
         if (cash("#calendar-events").length) {
             new Draggable(cash("#calendar-events")[0], {
                 itemSelector: ".event",

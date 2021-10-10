@@ -2,8 +2,14 @@ import Toastify from "toastify-js";
 import axios from "axios";
 import cash from "cash-dom";
 import Pristine from "pristinejs";
+import { Calendar } from "@fullcalendar/core";
+import interactionPlugin from "@fullcalendar/interaction";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
+import momentPlugin from "@fullcalendar/moment";
 
-(function (cash) {
+(async function (cash) {
     "use strict";
 
     async function tambahKursus(pristine) {
@@ -135,15 +141,60 @@ import Pristine from "pristinejs";
         }
     });
 
-    cash(".pilih-tarikh").on("click", async function (e) {
-        let id = cash(e.currentTarget).attr("id");
+    // CALENDAR PART
 
-        console.log(`id`, id);
+    let calendarData;
+    async function getKursus() {
+        const response = await axios.get(`kursus`);
+        calendarData = response.data.map((d) => {
+            return {
+                title: d.nama_kursus,
+                start: d.tarikh_mula,
+                end: d.tarikh_akhir + 1,
+                color: d.warna,
+            };
+        });
+    }
 
-        let value1 = cash("#modal-datepicker-1").val();
-        let value2 = cash("#modal-datepicker-2").val();
+    await getKursus();
 
-        console.log(`value1`, value1);
-        console.log(`value2`, value2);
-    });
+    if (cash("#calendar-kursus").length) {
+        let calendar = new Calendar(cash("#calendar-kursus")[0], {
+            eventClick: function (info) {
+                var eventObj = info.event;
+                alert("Clicked " + eventObj.title);
+            },
+            plugins: [
+                interactionPlugin,
+                dayGridPlugin,
+                timeGridPlugin,
+                listPlugin,
+                momentPlugin,
+            ],
+            titleFormat: "D MMM YYYY",
+            droppable: false,
+            headerToolbar: {
+                left: "prev,next today",
+                center: "title",
+                right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+            },
+            navLinks: true,
+            editable: false,
+            dayMaxEvents: true,
+            events: calendarData,
+            drop: function (info) {
+                if (
+                    cash("#checkbox-events").length &&
+                    cash("#checkbox-events")[0].checked
+                ) {
+                    cash(info.draggedEl).parent().remove();
+
+                    if (cash("#calendar-events").children().length == 1) {
+                        cash("#calendar-no-events").removeClass("hidden");
+                    }
+                }
+            },
+        });
+        calendar.render();
+    }
 })(cash);

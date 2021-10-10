@@ -29,10 +29,10 @@
                     <tbody>
                         @foreach ($kursuses as $kursus)
                         <tr class={{$kursus['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
-                            <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['id'] }}</td>
+                            <td class="text-center py-3 border-2 border-gray-400">{{ $loop->index + 1 }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['nama_kursus'] }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['kapasiti'] }}</td>
-                            <td class="text-center py-3 border-2 border-gray-400 flex justify-around">
+                            <td class="text-center py-3 border-2 border-gray-400">
                                 {{-- <a class="btn btn-primary py-1 px-2" href="/ubah-pengguna/{{ $kursus['id'] }}">
                                 Lihat
                                 </a>
@@ -42,12 +42,13 @@
                                 <button id="{{ $kursus['id'] }}" class="btn btn-danger py-1 px-2 delete-kursus">
                                     Padam
                                 </button> --}}
-                                <a href="javascript:;" data-toggle="modal" data-target="#datepicker-modal-preview"
-                                    class="btn btn-primary pilih-tarikh" id="{{ $kursus->id }}">
+                                <a href="javascript:;" data-toggle="modal"
+                                    data-target="#datepicker-modal-{{ $loop->index }}" class="btn btn-primary">
                                     Pilih Tarikh
                                 </a>
                             </td>
                         </tr>
+                        @include('../pages/Kursus/datepicker-modal', [$loop->index, $kursus])
                         @endforeach
                     </tbody>
                 </table>
@@ -58,7 +59,7 @@
     <!-- BEGIN: Calendar Content -->
     <div class="col-span-12 xl:col-span-6">
         <div class="box p-5">
-            <div class="full-calendar" id="calendar"></div>
+            <div class="full-calendar" id="calendar-kursus"></div>
         </div>
     </div>
     <!-- END: Calendar Content -->
@@ -89,5 +90,4 @@
 </div>
 <!-- END: Failed Notification Content -->
 
-@include('../pages/Kursus/datepicker-modal')
 @endsection

@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('ubah-kata-laluan/{id}', [PageController::class, 'ubahKataLaluan'])->name('ubah-kata-laluan');
 
     // KursusController
-    Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy', 'index']]);
     Route::get('pendaftaran-kursus', [PageController::class, 'pendaftaranKursus'])->name('pendaftaran-kursus');
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
     Route::get('profil-penceramah', [PageController::class, 'profilPenceramah'])->name('profil-penceramah');

@@ -6,16 +6,17 @@ import Litepicker from "litepicker";
 
     // Litepicker
     cash(".datepicker").each(function () {
+        let date = new Date();
         let options = {
             autoApply: false,
             singleMode: false,
             numberOfColumns: 2,
             numberOfMonths: 2,
             showWeekNumbers: true,
-            format: "D MMM, YYYY",
+            format: "DD MMM YYYY",
             dropdowns: {
                 minYear: 1990,
-                maxYear: null,
+                maxYear: date.getFullYear() + 1,
                 months: true,
                 years: true,
             },

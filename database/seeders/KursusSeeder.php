@@ -25,6 +25,7 @@ class KursusSeeder extends Seeder
                 'tarikh_mula' => Faker::fakeDates(),
                 'tarikh_akhir' => Faker::fakeDates(),
                 'bil_keperluan_asrama' => '1/21',
+                'warna' => Faker::fakeColor(),
             ],
             [
                 'nama_kursus' => 'Kursus Pembangunan Ihsan',
@@ -35,6 +36,7 @@ class KursusSeeder extends Seeder
                 'tarikh_mula' => Faker::fakeDates(),
                 'tarikh_akhir' => Faker::fakeDates(),
                 'bil_keperluan_asrama' => '1/21',
+                'warna' => Faker::fakeColor(),
             ],
             [
                 'nama_kursus' => 'Kursus Sukarelawan',
@@ -45,6 +47,7 @@ class KursusSeeder extends Seeder
                 'tarikh_mula' => Faker::fakeDates(),
                 'tarikh_akhir' => Faker::fakeDates(),
                 'bil_keperluan_asrama' => '1/21',
+                'warna' => Faker::fakeColor(),
             ],
             [
                 'nama_kursus' => 'Kursus Kewanitaan',
@@ -55,6 +58,7 @@ class KursusSeeder extends Seeder
                 'tarikh_mula' => Faker::fakeDates(),
                 'tarikh_akhir' => Faker::fakeDates(),
                 'bil_keperluan_asrama' => '1/21',
+                'warna' => Faker::fakeColor(),
             ],
             [
                 'nama_kursus' => 'Program Hari Keluarga',
@@ -65,6 +69,7 @@ class KursusSeeder extends Seeder
                 'tarikh_mula' => Faker::fakeDates(),
                 'tarikh_akhir' => Faker::fakeDates(),
                 'bil_keperluan_asrama' => '1/21',
+                'warna' => Faker::fakeColor(),
             ],
         ];
 
