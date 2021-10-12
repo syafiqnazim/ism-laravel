@@ -9,6 +9,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TempahanController;
 use App\Http\Controllers\KewanganController;
 use App\Http\Controllers\AduanController;
+use App\Http\Controllers\TempahanKenderaanController;
+use App\Http\Controllers\SenaraiKenderaanController;
+use App\Http\Controllers\SenaraiPemanduController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,4 +69,13 @@ Route::middleware('auth')->group(function () {
     // AduanController
     Route::resource('aduan', AduanController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('aduan', [AduanController::class, 'aduan'])->name('aduan');
+
+    // TempahanKenderaanController
+    Route::resource('tempahan-kenderaan', TempahanKenderaanController::class, ['only' => ['store', 'update', 'destroy']]);
+
+    // SenaraiKenderaanController
+    Route::resource('senarai-kenderaan', SenaraiKenderaanController::class, ['only' => ['store', 'update', 'destroy']]);
+
+    // SenaraiPemanduController
+    Route::resource('senarai-pemandu', SenaraiPemanduController::class, ['only' => ['store', 'update', 'destroy']]);
 });

@@ -48,6 +48,7 @@
                                 </a>
                             </td>
                         </tr>
+                        @include('../pages/Kursus/datepicker-modal', [$loop->index, $kursus])
                         @endforeach
                     </tbody>
                 </table>
@@ -89,5 +90,4 @@
 </div>
 <!-- END: Failed Notification Content -->
 
-@include('../pages/Kursus/datepicker-modal')
 @endsection

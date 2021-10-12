@@ -43,3 +43,4 @@ import "./side-menu-tooltip";
 import "./pendaftaran-pengguna";
 import "./senarai-pengguna";
 import "./kursus";
+import "./kenderaan";

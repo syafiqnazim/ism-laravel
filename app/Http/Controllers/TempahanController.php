@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tempahan;
-use App\Models\Penyelenggaraan;
 use App\Models\Kursus;
+use App\Models\TempahanKenderaan;
 use App\Models\Role;
+use App\Models\SenaraiKenderaan;
+use App\Models\SenaraiPemandu;
 use Illuminate\Http\Request;
 
 class TempahanController extends Controller
@@ -100,14 +102,38 @@ class TempahanController extends Controller
 
     public function kenderaan(Request $request)
     {
-        $kursuses = Kursus::all();
-        $query = '';
-        if (isset($request->query()['nama_kursus'])) {
-            $query = $request->query()['nama_kursus'];
-            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
+        $tempahan_kenderaans = TempahanKenderaan::all();
+        $query_tempahan_kenderaan = '';
+        if (isset($request->query()['nama_penempah'])) {
+            $query_tempahan_kenderaan = $request->query()['nama_penempah'];
+            $tempahan_kenderaans = TempahanKenderaan::where('nama_penempah', 'like', '%' . $query_tempahan_kenderaan . '%')->get();
         }
 
-        return view('pages/tempahan/kenderaan')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+        $senarai_kenderaans = SenaraiKenderaan::all();
+        $query_senarai_kenderaan = '';
+        if (isset($request->query()['no_pendaftaran'])) {
+            $query_tempahan_kenderaan = $request->query()['no_pendaftaran'];
+            $senarai_kenderaans = SenaraiKenderaan::where('no_pendaftaran', 'like', '%' . $query_senarai_kenderaan . '%')->get();
+        }
+
+        $senarai_pemandus = SenaraiPemandu::all();
+        $query_senarai_pemandu = '';
+        if (isset($request->query()['nama_pemandu'])) {
+            $query_senarai_pemandu = $request->query()['nama_pemandu'];
+            $senarai_pemandus = SenaraiPemandu::where('nama_pemandu', 'like', '%' . $query_senarai_pemandu . '%')->get();
+        }
+
+        $kursuses = Kursus::all();
+
+        return view('pages/tempahan/kenderaan')->with([
+            'roles' => Role::all(),
+            'tempahan_kenderaans' => $tempahan_kenderaans,
+            'senarai_kenderaans' => $senarai_kenderaans,
+            'senarai_pemandus' => $senarai_pemandus,
+            'query_tempahan_kenderaan' => $query_tempahan_kenderaan,
+            'query_senarai_kenderaan' => $query_senarai_kenderaan,
+            'query_senarai_pemandu' => $query_senarai_pemandu
+        ]);
     }
 
     public function tempahan1mtc(Request $request)

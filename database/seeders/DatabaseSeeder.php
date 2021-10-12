@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             PenceramahSeeder::class,
             AsramaSeeder::class,
             PenyelenggaraanSeeder::class,
+            TempahanKenderaanSeeder::class,
+            SenaraiPemanduSeeder::class,
+            SenaraiKenderaanSeeder::class,
         ]);
     }
 }

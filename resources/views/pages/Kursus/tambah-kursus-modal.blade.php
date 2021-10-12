@@ -51,6 +51,7 @@
                             Tambah Kursus
                         </button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
