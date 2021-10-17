@@ -44,3 +44,4 @@ import "./pendaftaran-pengguna";
 import "./senarai-pengguna";
 import "./kursus";
 import "./kenderaan";
+import "./penceramah";

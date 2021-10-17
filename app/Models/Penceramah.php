@@ -33,5 +33,7 @@ class Penceramah extends Model
         'experience',
         'professional_member',
         'distribution',
+        'academic_qualification',
+        'business_qualification',
     ];
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TempahanController;
 use App\Http\Controllers\KewanganController;
 use App\Http\Controllers\AduanController;
+use App\Http\Controllers\PenceramahController;
 use App\Http\Controllers\TempahanKenderaanController;
 use App\Http\Controllers\SenaraiKenderaanController;
 use App\Http\Controllers\SenaraiPemanduController;
@@ -42,7 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy', 'index']]);
     Route::get('pendaftaran-kursus', [PageController::class, 'pendaftaranKursus'])->name('pendaftaran-kursus');
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
-    Route::get('profil-penceramah', [PageController::class, 'profilPenceramah'])->name('profil-penceramah');
     Route::get('laporan-kursus', [PageController::class, 'laporanKursus'])->name('laporan-kursus');
 
     // AsramaController
@@ -78,4 +78,8 @@ Route::middleware('auth')->group(function () {
 
     // SenaraiPemanduController
     Route::resource('senarai-pemandu', SenaraiPemanduController::class, ['only' => ['store', 'update', 'destroy']]);
+
+    // PenceramahController
+    Route::resource('penceramah', PenceramahController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::get('profil-penceramah', [PenceramahController::class, 'profilPenceramah'])->name('profil-penceramah');
 });

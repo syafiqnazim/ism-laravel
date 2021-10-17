@@ -69,18 +69,6 @@ class PageController extends Controller
         return view('pages/kursus/penjadualan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
     }
 
-    public function profilPenceramah(Request $request)
-    {
-        $penceramah = Penceramah::all();
-        $query = '';
-        if (isset($request->query()['name'])) {
-            $query = $request->query()['name'];
-            $penceramah = Penceramah::where('name', 'like', '%' . $query . '%')->get();
-        }
-
-        return view('pages/kursus/profil-penceramah')->with(['roles' => Role::all(), 'penceramahs' => $penceramah, 'query' => $query]);
-    }
-
     public function laporanKursus(Request $request)
     {
         $kursuses = Kursus::all();
