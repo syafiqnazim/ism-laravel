@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             TempahanKenderaanSeeder::class,
             SenaraiPemanduSeeder::class,
             SenaraiKenderaanSeeder::class,
+            PengurusanIctSeeder::class,
         ]);
     }
 }

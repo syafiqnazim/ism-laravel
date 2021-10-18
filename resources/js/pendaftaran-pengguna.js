@@ -85,7 +85,6 @@ import Pristine from "pristinejs";
         pristine.addValidator(
             cash(this).find('input[id="password_confirmation"]')[0],
             function (value) {
-                console.log(`value`, value);
                 if (value.length || value === password) {
                     return true;
                 }

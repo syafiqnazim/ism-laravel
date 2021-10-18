@@ -8,6 +8,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import momentPlugin from "@fullcalendar/moment";
+import dayjs from "dayjs";
 
 (async function (cash) {
     "use strict";
@@ -147,11 +148,13 @@ import momentPlugin from "@fullcalendar/moment";
     async function getKursus() {
         const response = await axios.get(`kursus`);
         calendarData = response.data.map((d) => {
+            const today = dayjs(new Date());
+            const tarikh_akhir = dayjs(d.tarikh_akhir);
             return {
                 title: d.nama_kursus,
                 start: d.tarikh_mula,
-                end: d.tarikh_akhir + 1,
-                color: d.warna,
+                end: d.tarikh_akhir,
+                color: tarikh_akhir.isBefore(today) ? "gray" : "blue",
             };
         });
     }

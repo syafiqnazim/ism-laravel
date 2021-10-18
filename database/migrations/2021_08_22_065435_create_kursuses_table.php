@@ -23,7 +23,6 @@ class CreateKursusesTable extends Migration
             $table->string('tarikh_mula')->nullable();
             $table->string('tarikh_akhir')->nullable();
             $table->string('bil_keperluan_asrama')->nullable();
-            $table->string('warna')->nullable();
             $table->timestamps();
         });
     }

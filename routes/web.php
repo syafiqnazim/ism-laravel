@@ -10,6 +10,7 @@ use App\Http\Controllers\TempahanController;
 use App\Http\Controllers\KewanganController;
 use App\Http\Controllers\AduanController;
 use App\Http\Controllers\PenceramahController;
+use App\Http\Controllers\PengurusanIctController;
 use App\Http\Controllers\TempahanKenderaanController;
 use App\Http\Controllers\SenaraiKenderaanController;
 use App\Http\Controllers\SenaraiPemanduController;
@@ -82,4 +83,8 @@ Route::middleware('auth')->group(function () {
     // PenceramahController
     Route::resource('penceramah', PenceramahController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('profil-penceramah', [PenceramahController::class, 'profilPenceramah'])->name('profil-penceramah');
+
+    // PengurusanICTController
+    Route::resource('pengurusanict', PengurusanIctController::class, ['only' => ['store', 'update', 'destroy', 'index']]);
+    Route::get('pengurusan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('pengurusan-ict');
 });

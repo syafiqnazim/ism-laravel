@@ -70,6 +70,11 @@ class SideMenu
                 'route_name' => 'tempahan-khusus',
                 'title' => 'Tempahan Khusus',
             ],
+            'pengurusan-ict' => [
+                'icon' => 'monitor',
+                'route_name' => 'pengurusan-ict',
+                'title' => 'Pengurusan ICT',
+            ],
             'senarai-tugasan' => [
                 'icon' => 'tool',
                 'route_name' => 'senarai-tugasan',

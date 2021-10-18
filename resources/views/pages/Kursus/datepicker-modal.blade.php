@@ -21,7 +21,7 @@
                         <label for="modal-datepicker-1" class="form-label">Dari</label>
                         @if($kursus->tarikh_mula)
                         <input id="modal-datepicker-1" class="datepicker form-control" data-single-mode="true"
-                            name="tarikh_mula" value="{{ $kursus->tarikh_mula }}">
+                            name="tarikh_mula" value="{{ date(" j M Y", strtotime($kursus->tarikh_mula)) }}">
                         @else
                         <input id="modal-datepicker-1" class="datepicker form-control" data-single-mode="true"
                             name="tarikh_mula">
@@ -32,7 +32,8 @@
                         <label for="modal-datepicker-2" class="form-label">Sehingga</label>
                         @if($kursus->tarikh_akhir)
                         <input id="modal-datepicker-1" class="datepicker form-control" data-single-mode="true"
-                            name="tarikh_akhir" value="{{ $kursus->tarikh_akhir }}">
+                            name="tarikh_akhir" value="{{ date(" j M Y", strtotime($kursus->tarikh_akhir
+                        . ' -1 day')) }}">
                         @else
                         <input id="modal-datepicker-1" class="datepicker form-control" data-single-mode="true"
                             name="tarikh_akhir">
