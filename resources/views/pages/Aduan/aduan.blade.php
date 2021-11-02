@@ -5,7 +5,7 @@
 @endsection
 
 @section('subcontent')
-<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Tempahan 1MTC</h2>
+<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Aduan</h2>
 <div class="grid grid-cols-12 gap-5 mt-5">
     <!-- BEGIN: Calendar Side Menu -->
     <div class="col-span-12">
@@ -44,14 +44,17 @@
             </tr>
         </thead>
         <tbody>
+            @foreach ($kursuses as $kursus)
             <tr>
-                <td class="text-center py-3 border-2 border-gray-400">1</td>
+                <td class="text-center py-3 border-2 border-gray-400">{{ $loop->index + 1 }}</td>
                 <td class="text-center py-3 border-2 border-gray-400">Elektrikal</td>
                 <td class="text-center py-3 border-2 border-gray-400">Suis lampu tidak menyala</td>
                 <td class="text-center py-3 border-2 border-gray-400">Hussein Zulkifli</td>
                 <td class="text-center py-3 border-2 border-gray-400">28-9-2021</td>
                 <td class="text-center py-3 border-2 border-gray-400">Dalam Proses</td>
             </tr>
+            @include('../pages/Kursus/datepicker-modal', [$loop->index, $kursus])
+            @endforeach
         </tbody>
     </table>
 </div>
@@ -81,5 +84,5 @@
 </div>
 <!-- END: Failed Notification Content -->
 
-@include('../pages/Kursus/datepicker-modal')
+
 @endsection

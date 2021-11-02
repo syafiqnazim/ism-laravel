@@ -46,3 +46,5 @@ import "./kursus";
 import "./kenderaan";
 import "./penceramah";
 import "./peralatanICT";
+import "./submodulKursus";
+import "./objektifKursus";

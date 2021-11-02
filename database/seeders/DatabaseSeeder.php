@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             SenaraiPemanduSeeder::class,
             SenaraiKenderaanSeeder::class,
             PengurusanIctSeeder::class,
+            ObjektifKursusSeeder::class,
+            SubmodulKursusSeeder::class,
         ]);
     }
 }

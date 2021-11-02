@@ -9,11 +9,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TempahanController;
 use App\Http\Controllers\KewanganController;
 use App\Http\Controllers\AduanController;
+use App\Http\Controllers\ObjektifKursusController;
 use App\Http\Controllers\PenceramahController;
 use App\Http\Controllers\PengurusanIctController;
 use App\Http\Controllers\TempahanKenderaanController;
 use App\Http\Controllers\SenaraiKenderaanController;
 use App\Http\Controllers\SenaraiPemanduController;
+use App\Http\Controllers\SubmodulKursusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,9 @@ Route::get("/", function () {
 
 
 Route::middleware('auth')->group(function () {
+    // Papan Pemuka
+    Route::get('papan-pemuka', [PageController::class, 'papanPemuka'])->name('papan-pemuka');
+
     // UserController
     Route::resource('users', UserController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::post('change-password/{id}', [UserController::class, 'changePassword'])->name('change-password');
@@ -79,6 +84,12 @@ Route::middleware('auth')->group(function () {
 
     // SenaraiPemanduController
     Route::resource('senarai-pemandu', SenaraiPemanduController::class, ['only' => ['store', 'update', 'destroy']]);
+
+    // SubmodulKursusController
+    Route::resource('submodul-kursus', SubmodulKursusController::class, ['only' => ['store', 'update', 'destroy']]);
+
+    // ObjektifKursusController
+    Route::resource('objektif-kursus', ObjektifKursusController::class, ['only' => ['store', 'update', 'destroy']]);
 
     // PenceramahController
     Route::resource('penceramah', PenceramahController::class, ['only' => ['store', 'update', 'destroy']]);

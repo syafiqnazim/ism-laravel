@@ -47,7 +47,7 @@
             </thead>
             <tbody>
                 @foreach ($penyelenggaraans as $penyelenggaraan)
-                <tr class={{$penyelenggaraan['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
+                <tr class={{$penyelenggaraan['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $penyelenggaraan['id'] }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $penyelenggaraan['jenis_kerosakan'] }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $penyelenggaraan['keterangan_kerosakan'] }}
@@ -95,5 +95,5 @@
 </div>
 <!-- END: Failed Notification Content -->
 
-@include('../pages/Kursus/penceramah-modal')
+{{-- @include('../pages/Kursus/penceramah-modal') --}}
 @endsection

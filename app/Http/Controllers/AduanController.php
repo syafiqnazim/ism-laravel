@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aduan;
+use App\Models\Kursus;
 use Illuminate\Http\Request;
 
 class AduanController extends Controller
@@ -85,6 +86,7 @@ class AduanController extends Controller
 
     public function aduan(Request $request)
     {
-        return view('pages/aduan/aduan');
+        $kursuses = Kursus::all();
+        return view('pages/aduan/aduan')->with(['kursuses' => $kursuses]);
     }
 }

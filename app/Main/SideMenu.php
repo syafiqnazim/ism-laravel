@@ -14,6 +14,17 @@ class SideMenu
     {
         return [
             [
+                // LABEL: HEADER
+                'title' => 'Menu',
+                'label' => 'header'
+            ],
+            'papan-pemuka' => [
+                'icon' => 'home',
+                'route_name' => 'papan-pemuka',
+                'title' => 'Papan Pemuka',
+            ],
+            [
+                // LABEL: HEADER
                 'title' => 'Pengurusan Pengguna',
                 'label' => 'header'
             ],
@@ -28,6 +39,7 @@ class SideMenu
                 'title' => 'Senarai Pengguna',
             ],
             [
+                // LABEL: HEADER
                 'title' => 'Pengurusan Kursus',
                 'label' => 'header'
             ],
@@ -52,7 +64,8 @@ class SideMenu
                 'title' => 'Laporan Kursus',
             ],
             [
-                'title' => 'Pengurusan Aset',
+                // LABEL: HEADER
+                'title' => 'Pengurusan Asrama',
                 'label' => 'header'
             ],
             'tempahan-dalaman' => [
@@ -70,6 +83,11 @@ class SideMenu
                 'route_name' => 'tempahan-khusus',
                 'title' => 'Tempahan Khusus',
             ],
+            [
+                // LABEL: HEADER
+                'title' => 'Pengurusan Aset',
+                'label' => 'header'
+            ],
             'pengurusan-ict' => [
                 'icon' => 'monitor',
                 'route_name' => 'pengurusan-ict',
@@ -86,6 +104,7 @@ class SideMenu
                 'title' => 'Penugasan Penyelenggara',
             ],
             [
+                // LABEL: HEADER
                 'title' => 'Pengurusan Tempahan',
                 'label' => 'header'
             ],
@@ -105,6 +124,7 @@ class SideMenu
                 'title' => 'Tempahan 1MTC',
             ],
             [
+                // LABEL: HEADER
                 'title' => 'Kewangan',
                 'label' => 'header'
             ],
@@ -114,6 +134,7 @@ class SideMenu
                 'title' => 'Kutipan',
             ],
             [
+                // LABEL: HEADER
                 'title' => 'Aduan',
                 'label' => 'header'
             ],

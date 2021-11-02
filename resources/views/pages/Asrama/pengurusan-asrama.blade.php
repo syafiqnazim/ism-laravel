@@ -43,17 +43,27 @@
             </thead>
             <tbody>
                 @foreach ($asramas as $asrama)
-                <tr class={{$asrama['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
+                <tr class={{$asrama['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['id'] }}</td>
                     <td class="text-center py-3 border-2 border-gray-400"> {{ $asrama['kod_asrama'] }} </td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['kapasiti'] }}</td>
                     <td class="text-center py-3 border-2 border-gray-400"><i data-feather="check"
                             class="text-green-700 font-bold"></i></td>
-                    <td class="text-center py-3 border-2 border-gray-400 flex justify-around">
-                        <a class="btn btn-primary py-1 px-2" href="/ubah-pengguna/{{ $asrama['id'] }}">
-                            Tukar Maklumat
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        <a title="Lihat" class="btn btn-primary p-1" href="javascript:;" data-toggle="modal"
+                            data-target="#view-penceramah-{{ $loop->index }}">
+                            <i data-feather="eye" class="w-3 h-3 text-white"></i>
                         </a>
-                        <button id="{{ $asrama['id'] }}" class="btn btn-danger py-1 px-2 delete-button">Padam</button>
+                        <a title="Edit" class="btn btn-success p-1" href="javascript:;" data-toggle="modal"
+                            data-target="#edit-penceramah-{{ $loop->index }}">
+                            <i data-feather="edit" class="w-3 h-3 text-white"></i>
+                        </a>
+                        {{-- <a title="Buka" class="btn btn-warning p-1">
+                            <i data-feather="calendar" class="w-3 h-3 text-white"></i>
+                        </a> --}}
+                        <a title="Delete" class="btn btn-danger p-1 delete-penceramah" id="{{ $asrama['id'] }}">
+                            <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach
@@ -87,5 +97,5 @@
 </div>
 <!-- END: Failed Notification Content -->
 
-@include('../pages/Kursus/penceramah-modal')
+{{-- @include('../pages/Kursus/penceramah-modal') --}}
 @endsection

@@ -31,10 +31,16 @@
                                 <select id="kluster" class="w-full form-select box border-gray-300" required
                                     name="kluster">
                                     <option value="">Pilih Satu</option>
-                                    <option value="1">Pembangunan Kerja Sosial</option>
-                                    <option value="2">Pembangunan Rundingan Sosial</option>
-                                    <option value="3">Repositori & Dokumentasi</option>
-                                    <option value="4">Penyelidikan & Pembangunan</option>
+                                    <option value="1">Professional Development</option>
+                                    <option value="2">Social Development</option>
+                                    <option value="3">Volunteerism & Social Entrepreneurship</option>
+                                    <option value="4">Capacity & Gender Development</option>
+                                    <option value="5">Research & Development</option>
+                                    <option value="6">Administration and Human Resources Units</option>
+                                    <option value="7">Finance Units</option>
+                                    <option value="8">Domestic and Maintenance Units</option>
+                                    <option value="9">Library and Documentation Centre</option>
+                                    <option value="10">Information Technology Units</option>
                                 </select>
                             </div>
                             <div class="grid-cols-1 input-form">
