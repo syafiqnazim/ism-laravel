@@ -18,6 +18,7 @@ class SubmodulKursusController extends Controller
         try {
             SubmodulKursus::create([
                 "nama_submodul" => $request->nama_submodul,
+                "kursus_id" => $request->kursus_id,
             ]);
 
             return back();
@@ -39,6 +40,7 @@ class SubmodulKursusController extends Controller
         SubmodulKursus::where('id', $id)
             ->update([
                 "nama_submodul" => $request->nama_submodul,
+                "kursus_id" => $request->kursus_id,
             ]);
 
         return back();

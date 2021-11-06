@@ -36,6 +36,7 @@
                 </thead>
                 <tbody>
                     @foreach ($submodul_kursuses as $submodul_kursus)
+                    {{-- {{dd($submodul_kursus)}} --}}
                     <tr class={{$loop->index % 2!=0 ? 'bg-gray-300' : 'bg-none' }}>
                         <td class="text-center py-3 border-2 border-gray-400">{{ $loop->index + 1 }}</td>
                         {{-- <td class="text-center py-3 border-2 border-gray-400">

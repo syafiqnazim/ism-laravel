@@ -57,6 +57,13 @@ class PageController extends Controller
         $submodul_kursuses = SubmodulKursus::all();
         $objektif_kursuses = ObjektifKursus::all();
         $kursuses = Kursus::all();
+        $all_query = array();
+
+        if (isset($request->query()['kursus_id'])) {
+            array_push($all_query, $request->query()['kursus_id']);
+            $submodul_kursuses = SubmodulKursus::where('kursus_id', $request->query()['kursus_id'])->get();
+            $objektif_kursuses = ObjektifKursus::where('kursus_id', $request->query()['kursus_id'])->get();
+        };
 
         $query = '';
         if (isset($request->query()['nama_kursus'])) {
@@ -66,6 +73,8 @@ class PageController extends Controller
 
         $objektif_kursuses_query = '';
         if (isset($request->query()['objektif_kursus'])) {
+            dd($_GET);
+            array_push($_GET, $request->query()['objektif_kursus']);
             $objektif_kursuses_query = $request->query()['objektif_kursus'];
             $objektif_kursuses = ObjektifKursus::where('objektif_kursus', 'like', '%' . $objektif_kursuses_query . '%')->get();
         }

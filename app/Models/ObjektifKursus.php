@@ -10,6 +10,7 @@ class ObjektifKursus extends Model
     use HasFactory;
 
     protected $fillable = [
-        'objektif_kursus'
+        'objektif_kursus',
+        'kursus_id'
     ];
 }

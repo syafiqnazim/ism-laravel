@@ -16,19 +16,24 @@ class SubmodulKursusSeeder extends Seeder
     {
         $submodul = [
             [
-                'nama_submodul' => 'Kewangan',
+                'nama_submodul' => 'Kewangan 1',
+                'kursus_id' => '1',
             ],
             [
-                'nama_submodul' => 'Perakaunan',
+                'nama_submodul' => 'Perakaunan 2',
+                'kursus_id' => '2',
             ],
             [
-                'nama_submodul' => 'Jati Diri',
+                'nama_submodul' => 'Jati Diri 3',
+                'kursus_id' => '3',
             ],
             [
-                'nama_submodul' => 'Sukan & Rekreasi',
+                'nama_submodul' => 'Sukan & Rekreasi 4',
+                'kursus_id' => '4',
             ],
             [
-                'nama_submodul' => 'Matematik',
+                'nama_submodul' => 'Matematik 5',
+                'kursus_id' => '5',
             ],
         ];
 

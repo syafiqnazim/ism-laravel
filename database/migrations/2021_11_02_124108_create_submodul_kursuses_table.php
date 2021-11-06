@@ -16,6 +16,7 @@ class CreateSubmodulKursusesTable extends Migration
         Schema::create('submodul_kursuses', function (Blueprint $table) {
             $table->id();
             $table->string('nama_submodul');
+            $table->string('kursus_id');
             $table->timestamps();
         });
     }

@@ -16,6 +16,7 @@ class CreateObjektifKursusesTable extends Migration
         Schema::create('objektif_kursuses', function (Blueprint $table) {
             $table->id();
             $table->string('objektif_kursus');
+            $table->string('kursus_id');
             $table->timestamps();
         });
     }

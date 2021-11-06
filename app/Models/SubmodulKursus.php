@@ -10,6 +10,7 @@ class SubmodulKursus extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_submodul'
+        'nama_submodul',
+        'kursus_id'
     ];
 }

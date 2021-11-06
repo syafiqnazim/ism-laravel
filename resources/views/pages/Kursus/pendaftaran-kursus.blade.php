@@ -47,20 +47,22 @@
                             <td class="text-center py-3 border-2 border-gray-400">{{ $loop->index + 1 }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['nama_kursus'] }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['kapasiti'] }}</td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <a id='view-kursus-{{ $kursus[' id'] }}' title="Lihat" class="btn btn-primary p-1"
-                                    href="javascript:;" data-toggle="modal"
-                                    data-target="#view-kursus-baru-{{ $loop->index }}">
-                                    <i data-feather="eye" class="w-3 h-3 text-white"></i>
-                                </a>
-                                <a title="Edit" class="btn btn-success p-1" href="javascript:;" data-toggle="modal"
+                            <td class="text-center py-3 border-2 border-gray-400 flex items-center justify-center">
+                                <form class="mx-1">
+                                    <input type="hidden" value="{{ $kursus->id }}" name="kursus_id" />
+                                    <button title="Lihat" class="btn btn-primary p-1" type="submit">
+                                        <i data-feather="eye" class="w-3 h-3 text-white"></i>
+                                    </button>
+                                </form>
+                                <a title="Edit" class="btn btn-success p-1 mx-1" href="javascript:;" data-toggle="modal"
                                     data-target="#edit-kursus-baru-{{ $loop->index }}">
                                     <i data-feather="edit" class="w-3 h-3 text-white"></i>
                                 </a>
                                 {{-- <a title="Buka" class="btn btn-warning p-1">
                                     <i data-feather="calendar" class="w-3 h-3 text-white"></i>
                                 </a> --}}
-                                <a title="Delete" class="btn btn-danger p-1 delete-kursus" id="{{ $kursus['id'] }}">
+                                <a title="Delete" class="btn btn-danger p-1 delete-kursus mx-1"
+                                    id="{{ $kursus['id'] }}">
                                     <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
                                 </a>
                             </td>

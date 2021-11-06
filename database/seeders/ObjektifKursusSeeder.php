@@ -16,19 +16,24 @@ class ObjektifKursusSeeder extends Seeder
     {
         $objektif_kursus = [
             [
-                'objektif_kursus' => 'Memupuk Kesedaran',
+                'objektif_kursus' => 'Memupuk Kesedaran 1',
+                'kursus_id' => '1',
             ],
             [
-                'objektif_kursus' => 'Bijak Berbelanja',
+                'objektif_kursus' => 'Bijak Berbelanja 2',
+                'kursus_id' => '2',
             ],
             [
-                'objektif_kursus' => 'Sihat Badan',
+                'objektif_kursus' => 'Sihat Badan 3',
+                'kursus_id' => '3',
             ],
             [
-                'objektif_kursus' => 'Teguh Jati Diri',
+                'objektif_kursus' => 'Teguh Jati Diri 4',
+                'kursus_id' => '4',
             ],
             [
-                'objektif_kursus' => 'Bebas Hutang',
+                'objektif_kursus' => 'Bebas Hutang 5',
+                'kursus_id' => '5',
             ],
         ];
 

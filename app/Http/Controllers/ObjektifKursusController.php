@@ -18,6 +18,7 @@ class ObjektifKursusController extends Controller
         try {
             ObjektifKursus::create([
                 "objektif_kursus" => $request->objektif_kursus,
+                "kursus_id" => $request->kursus_id,
             ]);
 
             return back();
@@ -39,6 +40,7 @@ class ObjektifKursusController extends Controller
         ObjektifKursus::where('id', $id)
             ->update([
                 "objektif_kursus" => $request->objektif_kursus,
+                "kursus_id" => $request->kursus_id,
             ]);
 
         return back();
