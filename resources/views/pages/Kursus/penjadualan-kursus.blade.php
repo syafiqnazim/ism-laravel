@@ -11,9 +11,29 @@
     <div class="col-span-12 xl:col-span-6">
         <div class="box p-5 intro-y">
             <!-- BEGIN: Show Modal Toggle -->
-            <div class="text-center">
-                <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Senarai Kursus</h2>
+            <div class="text-center flex justify-between items-center mt-5">
+                <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center">Senarai Kursus</h2>
+                <a class="btn btn-primary shadow-md" href="javascript:;" data-toggle="modal"
+                    data-target="#tambah-penjadualan-kursus-baru">
+                    Tambah Kursus
+                </a>
             </div>
+            <form class="mt-5">
+                <select id="kluster" class="w-full form-select box border-gray-300" required name="kluster"
+                    onchange="this.form.submit()" value="{{ $query }}">
+                    <option value="">Pilih Satu</option>
+                    <option value="1">Professional Development</option>
+                    <option value="2">Social Development</option>
+                    <option value="3">Volunteerism & Social Entrepreneurship</option>
+                    <option value="4">Capacity & Gender Development</option>
+                    <option value="5">Research & Development</option>
+                    <option value="6">Administration and Human Resources Units</option>
+                    <option value="7">Finance Units</option>
+                    <option value="8">Domestic and Maintenance Units</option>
+                    <option value="9">Library and Documentation Centre</option>
+                    <option value="10">Information Technology Units</option>
+                </select>
+            </form>
             <!-- END: Show Modal Toggle -->
             <div class="border-t border-b border-gray-200 mt-6 mb-5 py-3" id="calendar-events">
                 {{-- @include('../pages/Kursus/datepicker-modal') --}}
@@ -28,13 +48,13 @@
                     </thead>
                     <tbody>
                         @foreach ($kursuses as $kursus)
-                        <tr class={{$kursus['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
+                        <tr class={{$kursus['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $loop->index + 1 }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['nama_kursus'] }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['kapasiti'] }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">
                                 {{-- <a class="btn btn-primary py-1 px-2" href="/ubah-pengguna/{{ $kursus['id'] }}">
-                                Lihat
+                                    Lihat
                                 </a>
                                 <a class="btn btn-success py-1 px-2" href="/ubah-kata-laluan/{{ $kursus['id'] }}">
                                     Objektif
@@ -90,4 +110,5 @@
 </div>
 <!-- END: Failed Notification Content -->
 
+@include('../pages/Kursus/tambah-penjadualan-kursus-modal', [$kursuses, $query])
 @endsection

@@ -5,14 +5,15 @@
 @endsection
 
 @section('subcontent')
-<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Tempahan Khusus</h2>
+<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Tempahan Kursus</h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <!-- BEGIN: Top Header -->
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2 justify-between">
         <button class="btn btn-primary shadow-md mr-2">
-            <a href="javascript:;" data-toggle="modal" data-target="#tambah-penceramah-baru">
+            {{-- <a href="javascript:;" data-toggle="modal" data-target="#tambah-penceramah-baru">
                 Tambah Tempahan
-            </a>
+            </a> --}}
+            <a>Tambah Tempahan</a>
         </button>
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-56 relative text-gray-700 dark:text-gray-300">
@@ -47,7 +48,7 @@
             </thead>
             <tbody>
                 @foreach ($asramas as $asrama)
-                <tr class={{$asrama['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
+                <tr class={{$asrama['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['id'] }}</td>
                     <td class="text-left py-3 border-2 border-gray-400">
                         <div class="col-span-12 flex">
@@ -108,5 +109,5 @@
 </div>
 <!-- END: Failed Notification Content -->
 
-@include('../pages/Kursus/penceramah-modal')
+{{-- @include('../pages/Kursus/penceramah-modal') --}}
 @endsection

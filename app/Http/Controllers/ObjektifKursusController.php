@@ -36,7 +36,6 @@ class ObjektifKursusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
         ObjektifKursus::where('id', $id)
             ->update([
                 "objektif_kursus" => $request->objektif_kursus,

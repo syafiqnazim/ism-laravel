@@ -122,13 +122,6 @@ class PageController extends Controller
 
     public function ratingKursus(Request $request)
     {
-        $kursuses = Kursus::all();
-        $query = '';
-        if (isset($request->query()['nama_kursus'])) {
-            $query = $request->query()['nama_kursus'];
-            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
-        }
-
-        return view('pages/kursus/laporan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+        return view('pages/error/construction-page');
     }
 }

@@ -70,13 +70,13 @@ class SideMenu
             ],
             'kredit-penceramah' => [
                 'icon' => 'smile',
-                'route_name' => 'profil-penceramah',
-                'title' => 'Profil Penceramah',
+                'route_name' => 'kredit-penceramah',
+                'title' => 'Kredit Penceramah',
             ],
             'rating-penceramah' => [
                 'icon' => 'smile',
-                'route_name' => 'profil-penceramah',
-                'title' => 'Profil Penceramah',
+                'route_name' => 'rating-penceramah',
+                'title' => 'Rating Penceramah',
             ],
             [
                 // LABEL: HEADER PENGURUSAN TEMPAHAN
@@ -88,11 +88,11 @@ class SideMenu
                 'route_name' => 'tempahan-kursus',
                 'title' => 'Tempahan Kursus',
             ],
-            'tempahan-fasiliti' => [
-                'icon' => 'calendar',
-                'route_name' => 'tempahan-fasiliti',
-                'title' => 'Tempahan Fasiliti',
-            ],
+            // 'tempahan-fasiliti' => [
+            //     'icon' => 'calendar',
+            //     'route_name' => 'tempahan-fasiliti',
+            //     'title' => 'Tempahan Fasiliti',
+            // ],
             'kenderaan' => [
                 'icon' => 'user',
                 'route_name' => 'kenderaan',

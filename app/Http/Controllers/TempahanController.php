@@ -169,7 +169,7 @@ class TempahanController extends Controller
             $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
         }
 
-        return view('pages/tempahan/tempahan-1mtc')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+        return view('pages/tempahan/tempahan-asrama')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
     }
 
     public function tempahanPeralatanIct(Request $request)

@@ -74,7 +74,7 @@ Route::middleware('auth')->group(function () {
     Route::get('tempahan-1mtc', [TempahanController::class, 'tempahan1mtc'])->name('tempahan-1mtc');
     Route::get('tempahan-fasiliti', [TempahanController::class, 'tempahanFasiliti'])->name('tempahan-fasiliti');
     Route::get('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asrama');
-    Route::get('tempahan-peralatan-ict', [TempahanController::class, 'tempahanPeralatanIct'])->name('tempahan-peralatan-ict');
+    Route::get('tempahan-peralatan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('tempahan-peralatan-ict');
 
     // KewanganController
     Route::resource('kewangan', KewanganController::class, ['only' => ['store', 'update', 'destroy']]);
@@ -107,6 +107,8 @@ Route::middleware('auth')->group(function () {
     // PenceramahController
     Route::resource('penceramah', PenceramahController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('profil-penceramah', [PenceramahController::class, 'profilPenceramah'])->name('profil-penceramah');
+    Route::get('rating-penceramah', [PenceramahController::class, 'ratingPenceramah'])->name('rating-penceramah');
+    Route::get('kredit-penceramah', [PenceramahController::class, 'kreditPenceramah'])->name('kredit-penceramah');
 
     // PengurusanICTController
     Route::resource('pengurusanict', PengurusanIctController::class, ['only' => ['store', 'update', 'destroy', 'index']]);

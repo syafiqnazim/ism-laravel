@@ -41,21 +41,23 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
-                <tr class={{$user['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
+                <tr class={{$user['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $user['id'] }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $user['name'] }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $user['ic_number'] }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $user['department'] }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">-</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $user['position'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400 flex justify-around">
-                        <a class="btn btn-primary py-1 px-2" href="/ubah-pengguna/{{ $user['id'] }}">
-                            Tukar Maklumat
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        <a class="btn btn-primary p-1 mx-1" href="/ubah-pengguna/{{ $user['id'] }}">
+                            <i data-feather="eye" class="w-3 h-3 text-white"></i>
                         </a>
-                        <a class="btn btn-primary-soft py-1 px-2" href="/ubah-kata-laluan/{{ $user['id'] }}">
-                            Tukar Kata Laluan
+                        <a title="Edit" class="btn btn-success p-1 mx-1" href="/ubah-kata-laluan/{{ $user['id'] }}">
+                            <i data-feather="edit" class="w-3 h-3 text-white"></i>
                         </a>
-                        <button id="{{ $user['id'] }}" class="btn btn-danger py-1 px-2 delete-button">Padam</button>
+                        <a title="Delete" class="btn btn-danger p-1 delete-kursus mx-1" id="{{ $user['id'] }}">
+                            <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
+                        </a>
                     </td>
                 </tr>
                 @endforeach

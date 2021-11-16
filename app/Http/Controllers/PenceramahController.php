@@ -36,6 +36,16 @@ class PenceramahController extends Controller
         return view('pages/penceramah/profil-penceramah')->with(['penceramahs' => $penceramah, 'query' => $query]);
     }
 
+    public function kreditPenceramah(Request $request)
+    {
+        return view('pages/error/construction-page');
+    }
+
+    public function ratingPenceramah(Request $request)
+    {
+        return view('pages/error/construction-page');
+    }
+
 
     /**
      * Store a newly created resource in storage.

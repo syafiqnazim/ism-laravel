@@ -55,7 +55,7 @@
                             <td class="text-center py-3 border-2 border-gray-400 flex items-center justify-center">
                                 <form class="mx-1">
                                     <input type="hidden" value="{{ $kursus->id }}" name="kursus_id" />
-                                    <button title="Lihat" class="btn btn-primary p-1" type="submit">
+                                    <button title="Tambah Submodul" class="btn btn-primary p-1" type="submit">
                                         <i data-feather="eye" class="w-3 h-3 text-white"></i>
                                     </button>
                                 </form>
@@ -102,7 +102,7 @@
 </div>
 <!-- END: Failed Notification Content -->
 
-@include('../pages/Kursus/Objektif/tambah-objektif-modal')
 @include('../pages/Kursus/Submodul/tambah-submodul-modal')
 @include('../pages/Kursus/Objektif/tambah-objektif-modal')
+@include('../pages/Kursus/tambah-kursus-modal')
 @endsection

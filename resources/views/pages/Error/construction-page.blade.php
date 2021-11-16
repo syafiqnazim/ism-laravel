@@ -8,9 +8,9 @@
 <div class="container">
     <!-- BEGIN: Error Page -->
     <div class="flex items-center justify-center h-screen text-center">
-        <div>
-            <img src="https://www.seekpng.com/png/detail/66-668689_page-under-construction-icon.png"
-                alt="under construction" srcset="">
+        <div class="w-6/12 h-6/12">
+            <img src="https://www.seekpng.com/png/detail/10-105423_under-construction-warning-sign-png-clipart-under-construction.png"
+                alt="under construction">
             <div class="intro-x text-xl lg:text-3xl font-medium mt-5">Oops. This page still under construction</div>
         </div>
     </div>

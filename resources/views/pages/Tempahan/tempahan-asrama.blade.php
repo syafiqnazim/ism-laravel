@@ -5,14 +5,14 @@
 @endsection
 
 @section('subcontent')
-<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Tempahan 1MTC</h2>
+<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Tempahan Asrama</h2>
 <div class="grid grid-cols-12 gap-5 mt-5">
     <!-- BEGIN: Calendar Side Menu -->
     <div class="col-span-12 xl:col-span-6">
         <div class="box p-5 intro-y">
             <!-- BEGIN: Show Modal Toggle -->
             <div class="text-center">
-                <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Senarai Tempahan 1MTC</h2>
+                <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Senarai Tempahan Asrama</h2>
             </div>
             <!-- END: Show Modal Toggle -->
             <div class="border-t border-b border-gray-200 mt-6 mb-5 py-3" id="calendar-events">
@@ -37,8 +37,11 @@
                             <td class="text-center py-3 border-2 border-gray-400">26-01-2021</td>
                             <td class="text-center py-3 border-2 border-gray-400">28-01-2021</td>
                             <td class="text-center py-3 border-2 border-gray-400 flex justify-around">
-                                <a href="javascript:;" data-toggle="modal" data-target="#datepicker-modal-preview"
+                                {{-- <a href="javascript:;" data-toggle="modal" data-target="#datepicker-modal-preview"
                                     class="btn btn-primary pilih-tarikh" id="{{ $kursus->id }}">
+                                    Daftar
+                                </a> --}}
+                                <a class="btn btn-primary pilih-tarikh" id="{{ $kursus->id }}">
                                     Daftar
                                 </a>
                             </td>
