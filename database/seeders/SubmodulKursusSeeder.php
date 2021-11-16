@@ -20,6 +20,10 @@ class SubmodulKursusSeeder extends Seeder
                 'kursus_id' => '1',
             ],
             [
+                'nama_submodul' => 'Testing 1',
+                'kursus_id' => '1',
+            ],
+            [
                 'nama_submodul' => 'Perakaunan 2',
                 'kursus_id' => '2',
             ],

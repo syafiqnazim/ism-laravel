@@ -20,7 +20,12 @@
                     <div class="w-56 relative text-gray-700 dark:text-gray-300">
                         <form>
                             <input id='carian' type="text" class="form-control w-56 box pr-10 placeholder-theme-8"
-                                placeholder="Carian..." value="{{ $query }}" name="nama_kursus">
+                                placeholder="Carian..." value="{{ $nama_kursus_query }}" name="nama_kursus">
+                            <input id='carian' type="hidden" class="form-control w-56 box pr-10 placeholder-theme-8"
+                                placeholder="Carian..." value="{{ $submodul_kursuses_query }}" name="nama_submodul">
+                            <input id='carian' type="hidden" class="form-control w-56 box pr-10 placeholder-theme-8"
+                                placeholder="Carian..." value="{{ $objektif_kursuses_query }}" name="objektif_kursus">
+                            <input type="hidden" value="{{ app('request')->input('kursus_id') }}" name="kursus_id" />
                             <button type="submit" class="w-4 h-4 absolute mb-auto mt-2 inset-y-0 mr-3 right-0">
                                 <i data-feather="search"></i>
                             </button>

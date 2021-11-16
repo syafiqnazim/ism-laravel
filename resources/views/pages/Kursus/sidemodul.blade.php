@@ -1,4 +1,4 @@
-<div class="col-span-12 xl:col-span-6">
+<div class="col-span-12 xl:col-span-6 @if(!app('request')->input('kursus_id') )hidden @endif">
     <!-- BEGIN: Submodul -->
     <p class="text-2xl font-bold text-center bg-white py-2 rounded">Submodul</p>
     <div class="grid grid-cols-12 gap-6 mt-5">
@@ -14,6 +14,11 @@
                     <form>
                         <input id='carian' type="text" class="form-control w-56 box pr-10 placeholder-theme-8"
                             placeholder="Carian..." value="{{ $submodul_kursuses_query }}" name="nama_submodul">
+                        <input id='carian' type="hidden" class="form-control w-56 box pr-10 placeholder-theme-8"
+                            placeholder="Carian..." value="{{ $nama_kursus_query }}" name="nama_kursus">
+                        <input id='carian' type="hidden" class="form-control w-56 box pr-10 placeholder-theme-8"
+                            placeholder="Carian..." value="{{ $objektif_kursuses_query }}" name="objektif_kursus">
+                        <input type="hidden" value="{{ app('request')->input('kursus_id') }}" name="kursus_id" />
                         <button type="submit" class="w-4 h-4 absolute mb-auto mt-2 inset-y-0 mr-3 right-0">
                             <i data-feather="search"></i>
                         </button>
@@ -79,6 +84,11 @@
                     <form>
                         <input id='carian' type="text" class="form-control w-56 box pr-10 placeholder-theme-8"
                             placeholder="Carian..." value="{{ $objektif_kursuses_query }}" name="objektif_kursus">
+                        <input id='carian' type="hidden" class="form-control w-56 box pr-10 placeholder-theme-8"
+                            placeholder="Carian..." value="{{ $nama_kursus_query }}" name="nama_kursus">
+                        <input id='carian' type="hidden" class="form-control w-56 box pr-10 placeholder-theme-8"
+                            placeholder="Carian..." value="{{ $submodul_kursuses_query }}" name="nama_submodul">
+                        <input type="hidden" value="{{ app('request')->input('kursus_id') }}" name="kursus_id" />
                         <button type="submit" class="w-4 h-4 absolute mb-auto mt-2 inset-y-0 mr-3 right-0">
                             <i data-feather="search"></i>
                         </button>

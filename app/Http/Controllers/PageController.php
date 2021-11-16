@@ -65,15 +65,15 @@ class PageController extends Controller
             $objektif_kursuses = ObjektifKursus::where('kursus_id', $request->query()['kursus_id'])->get();
         };
 
-        $query = '';
+        $nama_kursus_query = '';
         if (isset($request->query()['nama_kursus'])) {
-            $query = $request->query()['nama_kursus'];
-            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
+            $nama_kursus_query = $request->query()['nama_kursus'];
+            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $nama_kursus_query . '%')->get();
         }
 
         $objektif_kursuses_query = '';
         if (isset($request->query()['objektif_kursus'])) {
-            dd($_GET);
+            // dd($_GET);
             array_push($_GET, $request->query()['objektif_kursus']);
             $objektif_kursuses_query = $request->query()['objektif_kursus'];
             $objektif_kursuses = ObjektifKursus::where('objektif_kursus', 'like', '%' . $objektif_kursuses_query . '%')->get();
@@ -90,7 +90,7 @@ class PageController extends Controller
             'kursuses' => $kursuses,
             'submodul_kursuses' => $submodul_kursuses,
             'objektif_kursuses' => $objektif_kursuses,
-            'query' => $query,
+            'nama_kursus_query' => $nama_kursus_query,
             'objektif_kursuses_query' => $objektif_kursuses_query,
             'submodul_kursuses_query' => $submodul_kursuses_query
         ]);
@@ -109,6 +109,18 @@ class PageController extends Controller
     }
 
     public function laporanKursus(Request $request)
+    {
+        $kursuses = Kursus::all();
+        $query = '';
+        if (isset($request->query()['nama_kursus'])) {
+            $query = $request->query()['nama_kursus'];
+            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
+        }
+
+        return view('pages/kursus/laporan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+    }
+
+    public function ratingKursus(Request $request)
     {
         $kursuses = Kursus::all();
         $query = '';

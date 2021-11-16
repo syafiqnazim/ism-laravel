@@ -13,6 +13,7 @@
                             </label>
                             <input id="nama_submodul" name="nama_submodul" type="text" class="form-control" required
                                 data-pristine-required-message="Ruangan ini perlu di isi.">
+                            <input type="hidden" value="{{ app('request')->input('kursus_id') }}" name="kursus_id" />
                         </div>
                     </div>
                     <div class="px-5 pb-8 text-center">

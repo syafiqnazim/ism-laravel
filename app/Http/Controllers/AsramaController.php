@@ -99,7 +99,7 @@ class AsramaController extends Controller
         return view('pages/asrama/tempahan-dalaman')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
     }
 
-    public function pengurusanAsrama(Request $request)
+    public function pengurusanBilik(Request $request)
     {
         $asrama = Asrama::all();
         $query = '';
@@ -111,7 +111,7 @@ class AsramaController extends Controller
         return view('pages/asrama/pengurusan-asrama')->with(['roles' => Role::all(), 'asramas' => $asrama, 'query' => $query]);
     }
 
-    public function tempahanKhusus(Request $request)
+    public function tempahanKursus(Request $request)
     {
         $asrama = Asrama::all();
         $query = '';
@@ -121,5 +121,10 @@ class AsramaController extends Controller
         }
 
         return view('pages/asrama/tempahan-khusus')->with(['roles' => Role::all(), 'asramas' => $asrama, 'query' => $query]);
+    }
+
+    public function jadualBilik(Request $request)
+    {
+        return view('pages/error/construction-page');
     }
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\TempahanKenderaanController;
 use App\Http\Controllers\SenaraiKenderaanController;
 use App\Http\Controllers\SenaraiPemanduController;
 use App\Http\Controllers\SubmodulKursusController;
+use App\Http\Controllers\PengurusanSijilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,12 +51,14 @@ Route::middleware('auth')->group(function () {
     Route::get('pendaftaran-kursus', [PageController::class, 'pendaftaranKursus'])->name('pendaftaran-kursus');
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
     Route::get('laporan-kursus', [PageController::class, 'laporanKursus'])->name('laporan-kursus');
+    Route::get('rating-kursus', [PageController::class, 'ratingKursus'])->name('rating-kursus');
 
     // AsramaController
     Route::resource('asrama', AsramaController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('tempahan-dalaman', [AsramaController::class, 'tempahanDalaman'])->name('tempahan-dalaman');
-    Route::get('pengurusan-asrama', [AsramaController::class, 'pengurusanAsrama'])->name('pengurusan-asrama');
-    Route::get('tempahan-khusus', [AsramaController::class, 'tempahanKhusus'])->name('tempahan-khusus');
+    Route::get('pengurusan-bilik', [AsramaController::class, 'pengurusanBilik'])->name('pengurusan-bilik');
+    Route::get('tempahan-kursus', [AsramaController::class, 'tempahankursus'])->name('tempahan-kursus');
+    Route::get('jadual-bilik', [AsramaController::class, 'jadualBilik'])->name('jadual-bilik');
 
     // PenyelenggaranController
     Route::resource('penyelenggaraan', PenyelenggaraanController::class, ['only' => ['store', 'update', 'destroy']]);
@@ -66,11 +69,21 @@ Route::middleware('auth')->group(function () {
     Route::resource('tempahan', TempahanController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('bilik-latihan', [TempahanController::class, 'bilikLatihan'])->name('bilik-latihan');
     Route::get('kenderaan', [TempahanController::class, 'kenderaan'])->name('kenderaan');
+    Route::get('pengurusan-kenderaan', [TempahanController::class, 'kenderaan'])->name('pengurusan-kenderaan');
+    Route::get('jadual-kenderaan', [TempahanController::class, 'kenderaan'])->name('jadual-kenderaan');
     Route::get('tempahan-1mtc', [TempahanController::class, 'tempahan1mtc'])->name('tempahan-1mtc');
+    Route::get('tempahan-fasiliti', [TempahanController::class, 'tempahanFasiliti'])->name('tempahan-fasiliti');
+    Route::get('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asrama');
+    Route::get('tempahan-peralatan-ict', [TempahanController::class, 'tempahanPeralatanIct'])->name('tempahan-peralatan-ict');
 
     // KewanganController
     Route::resource('kewangan', KewanganController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('kutipan', [KewanganController::class, 'kutipan'])->name('kutipan');
+    Route::get('laporan-bayaran-kursus', [KewanganController::class, 'laporanBayaranKursus'])->name('laporan-bayaran-kursus');
+    Route::get('laporan-bayaran-penceramah', [KewanganController::class, 'laporanBayaranPenceramah'])->name('laporan-bayaran-penceramah');
+
+    // TODO
+    Route::get('tetapan-sistem', [KewanganController::class, 'laporanBayaranPenceramah'])->name('tetapan-sistem');
 
     // AduanController
     Route::resource('aduan', AduanController::class, ['only' => ['store', 'update', 'destroy']]);
@@ -98,4 +111,9 @@ Route::middleware('auth')->group(function () {
     // PengurusanICTController
     Route::resource('pengurusanict', PengurusanIctController::class, ['only' => ['store', 'update', 'destroy', 'index']]);
     Route::get('pengurusan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('pengurusan-ict');
+
+    // PengurusanSijilController
+    Route::resource('pengurusan-sijil', PengurusanSijilController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::get('pengurusan-maklumat-sijil', [PengurusanSijilController::class, 'pengurusanMaklumatSijil'])->name('pengurusan-maklumat-sijil');
+    Route::get('cetak-sijil', [PengurusanSijilController::class, 'cetakSijil'])->name('cetak-sijil');
 });

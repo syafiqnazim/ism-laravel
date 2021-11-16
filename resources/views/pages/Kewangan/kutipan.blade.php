@@ -31,7 +31,7 @@
                     </thead>
                     <tbody>
                         @foreach ($kursuses as $kursus)
-                        <tr class={{$kursus['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
+                        <tr class={{$kursus['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['id'] }}</td>
                             <td class="text-left pl-5 py-3 border-2 border-gray-400">
                                 <a href="#" class="text-blue-700 font-bold">{{ $kursus['nama_kursus'] }}</a>
@@ -98,5 +98,5 @@
 </div>
 <!-- END: Failed Notification Content -->
 
-@include('../pages/Kursus/datepicker-modal')
+{{-- @include('../pages/Kursus/datepicker-modal') --}}
 @endsection

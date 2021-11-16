@@ -147,4 +147,40 @@ class TempahanController extends Controller
 
         return view('pages/tempahan/tempahan-1mtc')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
     }
+
+    public function tempahanFasiliti(Request $request)
+    {
+        $kursuses = Kursus::all();
+        $query = '';
+        if (isset($request->query()['nama_kursus'])) {
+            $query = $request->query()['nama_kursus'];
+            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
+        }
+
+        return view('pages/tempahan/tempahan-1mtc')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+    }
+
+    public function tempahanAsrama(Request $request)
+    {
+        $kursuses = Kursus::all();
+        $query = '';
+        if (isset($request->query()['nama_kursus'])) {
+            $query = $request->query()['nama_kursus'];
+            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
+        }
+
+        return view('pages/tempahan/tempahan-1mtc')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+    }
+
+    public function tempahanPeralatanIct(Request $request)
+    {
+        $kursuses = Kursus::all();
+        $query = '';
+        if (isset($request->query()['nama_kursus'])) {
+            $query = $request->query()['nama_kursus'];
+            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
+        }
+
+        return view('pages/tempahan/tempahan-1mtc')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+    }
 }
