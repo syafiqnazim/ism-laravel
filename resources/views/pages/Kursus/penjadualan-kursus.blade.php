@@ -11,13 +11,14 @@
     <div class="col-span-12 xl:col-span-6">
         <div class="box p-5 intro-y">
             <!-- BEGIN: Show Modal Toggle -->
-            <div class="text-center flex justify-between items-center mt-5">
+            {{-- <div class="text-center flex justify-between items-center mt-5"> --}}
                 <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center">Senarai Kursus</h2>
-                <a class="btn btn-primary shadow-md" href="javascript:;" data-toggle="modal"
+                {{-- <a class="btn btn-primary shadow-md" href="javascript:;" data-toggle="modal"
                     data-target="#tambah-penjadualan-kursus-baru">
                     Tambah Kursus
-                </a>
-            </div>
+                </a> --}}
+                {{--
+            </div> --}}
             <form class="mt-5">
                 <select id="kluster" class="w-full form-select box border-gray-300" required name="kluster"
                     onchange="this.form.submit()" value="{{ $query }}">

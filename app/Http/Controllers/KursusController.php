@@ -27,7 +27,7 @@ class KursusController extends Controller
     public function store(Request $request)
     {
         // validation
-        dd($request);
+        // dd($request);
         try {
             Kursus::create([
                 "nama_kursus" => $request->nama_kursus,
@@ -51,15 +51,16 @@ class KursusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->yuran) {
-            dd($request);
-            Kursus::where('id', $id)
-                ->update([
-                    "yuran" => $request->yuran,
-                    "peperiksaan" => $request->peperiksaan,
-                    "asrama" => $request->asrama,
-                ]);
-        } else if ($request->tarikh_mula) {
+        // if ($request->yuran) {
+        //     dd($request);
+        //     Kursus::where('id', $id)
+        //         ->update([
+        //             "yuran" => $request->yuran,
+        //             "peperiksaan" => $request->peperiksaan,
+        //             "asrama" => $request->asrama,
+        //         ]);
+        // } else 
+        if ($request->tarikh_mula) {
             Kursus::where('id', $id)
                 ->update([
                     "tarikh_mula" => date("Y-m-d", strtotime($request->tarikh_mula)),

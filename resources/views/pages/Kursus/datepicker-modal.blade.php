@@ -46,7 +46,9 @@
                             <label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
                                 Yuran
                             </label>
-                            <input id="peruntukan" name="peruntukan" type="number" class="form-control" required
+                            {{-- <input id="peruntukan" name="peruntukan" type="number" class="form-control" required
+                                data-pristine-required-message="Ruangan ini perlu di isi."> --}}
+                            <input type="number" class="form-control" required
                                 data-pristine-required-message="Ruangan ini perlu di isi.">
                         </div>
                         <div class="grid-cols-1 input-form">
@@ -56,22 +58,27 @@
                             <div class="mr-10">Peperiksaan : </div>
                             <div class="flex items-center justify-around w-3/12">
                                 <div class="flex items-center">
-                                    <input type="radio" id="ya" name="peperiksaan" value="ya" class="mr-2">
+                                    {{-- <input type="radio" id="ya" name="peperiksaan" value="ya" class="mr-2"> --}}
+                                    <input type="radio" class="mr-2">
                                     <label for="ya">Ya</label><br>
                                 </div>
                                 <div class="flex items-center">
-                                    <input type="radio" id="tidak" name="peperiksaan" value="tidak" class="mr-2">
+                                    {{-- <input type="radio" id="tidak" name="peperiksaan" value="tidak" class="mr-2">
+                                    --}}
+                                    <input type="radio" class="mr-2">
                                     <label for="tidak">Tidak</label><br>
                                 </div>
                             </div>
                             <div class="mr-10">Asrama : </div>
                             <div class="flex items-center justify-around w-3/12">
                                 <div class="flex items-center">
-                                    <input type="radio" id="ya" name="asrama" value="ya" class="mr-2">
+                                    {{-- <input type="radio" id="ya" name="asrama" value="ya" class="mr-2"> --}}
+                                    <input type="radio" class="mr-2">
                                     <label for="ya">Ya</label><br>
                                 </div>
                                 <div class="flex items-center">
-                                    <input type="radio" id="tidak" name="asrama" value="tidak" class="mr-2">
+                                    {{-- <input type="radio" id="tidak" name="asrama" value="tidak" class="mr-2"> --}}
+                                    <input type="radio" class="mr-2">
                                     <label for="tidak">Tidak</label><br>
                                 </div>
                             </div>
