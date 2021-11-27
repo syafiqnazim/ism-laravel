@@ -18,7 +18,7 @@ class AsramaController extends Controller
      */
     public function index()
     {
-        //
+        return Asrama::all();
     }
 
     /**
@@ -39,7 +39,17 @@ class AsramaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Asrama::create([
+                "kod_asrama" => $request->kod_asrama,
+                "kapasiti" => $request->kapasiti,
+                "status" => $request->status,
+            ]);
+
+            return back();
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 
     /**
@@ -71,9 +81,15 @@ class AsramaController extends Controller
      * @param  \App\Models\Asrama  $asrama
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asrama $asrama)
+    public function update(Request $request, $id)
     {
-        //
+        Asrama::where('id', $id)
+            ->update([
+                "kod_asrama" => $request->kod_asrama,
+                "kapasiti" => $request->kapasiti,
+                "status" => $request->status,
+            ]);
+        return back();
     }
 
     /**
@@ -82,9 +98,10 @@ class AsramaController extends Controller
      * @param  \App\Models\Asrama  $asrama
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asrama $asrama)
+    public function destroy($id)
     {
-        //
+        Asrama::find($id)->delete();
+        return redirect()->back();
     }
 
     public function tempahanDalaman(Request $request)

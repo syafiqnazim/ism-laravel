@@ -54,7 +54,9 @@ Route::middleware('auth')->group(function () {
     Route::get('rating-kursus', [PageController::class, 'ratingKursus'])->name('rating-kursus');
 
     // AsramaController
-    Route::resource('asrama', AsramaController::class, ['only' => ['store', 'update', 'destroy']]);
+    Route::resource('asrama', AsramaController::class, ['only' => ['store', 'update']]);
+    Route::get('/asrama/destroy/{id}', [AsramaController::class, 'destroy'])->name('asrama.destroy');
+
     Route::get('tempahan-dalaman', [AsramaController::class, 'tempahanDalaman'])->name('tempahan-dalaman');
     Route::get('pengurusan-bilik', [AsramaController::class, 'pengurusanBilik'])->name('pengurusan-bilik');
     Route::get('tempahan-kursus', [AsramaController::class, 'tempahankursus'])->name('tempahan-kursus');

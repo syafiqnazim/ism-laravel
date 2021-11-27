@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-<title>Senarai penceramah | MyISM</title>
+<title>Senarai asrama | MyISM</title>
 @endsection
 
 @section('subcontent')
@@ -10,8 +10,8 @@
     <!-- BEGIN: Top Header -->
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2 justify-between">
         <button class="btn btn-primary shadow-md mr-2">
-            <a href="javascript:;" data-toggle="modal" data-target="#tambah-penceramah-baru">
-                Tambah Tempahan
+            <a href="javascript:;" data-toggle="modal" data-target="#tambah-asrama-baru">
+                Tambah Asrama
             </a>
         </button>
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -43,29 +43,36 @@
             </thead>
             <tbody>
                 @foreach ($asramas as $asrama)
-                <tr class={{$asrama['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['id'] }}</td>
+                <tr class={{$loop->index % 2!=0 ? 'bg-gray-300' : 'bg-none' }}>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $loop->index + 1 }}</td>
                     <td class="text-center py-3 border-2 border-gray-400"> {{ $asrama['kod_asrama'] }} </td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $asrama['kapasiti'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400"><i data-feather="check"
-                            class="text-green-700 font-bold"></i></td>
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        @if ($asrama['status'] == "available")
+                            <i data-feather="check" class="text-green-700 font-bold"></i>
+                        @else
+                            <i data-feather="x" class="text-red-700 font-bold"></i>
+                        @endif
+                    </td>
                     <td class="text-center py-3 border-2 border-gray-400">
                         <a title="Lihat" class="btn btn-primary p-1" href="javascript:;" data-toggle="modal"
-                            data-target="#view-penceramah-{{ $loop->index }}">
+                            data-target="#view-asrama-{{ $loop->index }}">
                             <i data-feather="eye" class="w-3 h-3 text-white"></i>
                         </a>
                         <a title="Edit" class="btn btn-success p-1" href="javascript:;" data-toggle="modal"
-                            data-target="#edit-penceramah-{{ $loop->index }}">
+                            data-target="#edit-asrama-{{ $loop->index }}">
                             <i data-feather="edit" class="w-3 h-3 text-white"></i>
                         </a>
                         {{-- <a title="Buka" class="btn btn-warning p-1">
                             <i data-feather="calendar" class="w-3 h-3 text-white"></i>
                         </a> --}}
-                        <a title="Delete" class="btn btn-danger p-1 delete-penceramah" id="{{ $asrama['id'] }}">
+                        <a title="Delete" class="btn btn-danger p-1 delete-asrama" id="{{ $asrama['id'] }}" href="{{ route('asrama.destroy', ['id' => $asrama['id']]) }}">
                             <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
                         </a>
                     </td>
                 </tr>
+                @include('../pages/Asrama/edit-asrama-modal', [$loop->index, $asrama])
+                @include('../pages/Asrama/view-asrama-modal', [$loop->index, $asrama])
                 @endforeach
             </tbody>
         </table>
@@ -96,6 +103,7 @@
     </div>
 </div>
 <!-- END: Failed Notification Content -->
+@include('../pages/Asrama/tambah-asrama-modal')
 
-{{-- @include('../pages/Kursus/penceramah-modal') --}}
+{{-- @include('../pages/Asrama/asrama-modal') --}}
 @endsection
