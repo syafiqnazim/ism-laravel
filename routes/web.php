@@ -17,6 +17,7 @@ use App\Http\Controllers\SenaraiKenderaanController;
 use App\Http\Controllers\SenaraiPemanduController;
 use App\Http\Controllers\SubmodulKursusController;
 use App\Http\Controllers\PengurusanSijilController;
+use App\Http\Controllers\PesertaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy', 'index']]);
     Route::get('pendaftaran-kursus', [PageController::class, 'pendaftaranKursus'])->name('pendaftaran-kursus');
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
+    Route::get('jadual-kursus/{id}', [PageController::class, 'jadualKursus'])->name('jadual-kursus');
     Route::get('laporan-kursus', [PageController::class, 'laporanKursus'])->name('laporan-kursus');
     Route::get('rating-kursus', [PageController::class, 'ratingKursus'])->name('rating-kursus');
 
@@ -120,4 +122,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('pengurusan-sijil', PengurusanSijilController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('pengurusan-maklumat-sijil', [PengurusanSijilController::class, 'pengurusanMaklumatSijil'])->name('pengurusan-maklumat-sijil');
     Route::get('cetak-sijil', [PengurusanSijilController::class, 'cetakSijil'])->name('cetak-sijil');
+    Route::get('pesertas', [PesertaController::class, 'index'])->name('peserta.index');
+    Route::get('peserta/destroy/{id}', [PesertaController::class, 'destroy'])->name('peserta.destroy');
+    Route::get('peserta/{id}', [PesertaController::class, 'edit'])->name('peserta.edit');
+    Route::post('peserta/{id}', [PesertaController::class, 'update'])->name('peserta.update');
 });
+
+Route::get('peserta', [PesertaController::class, 'create'])->name('peserta.create');
+Route::post('peserta', [PesertaController::class, 'store']);

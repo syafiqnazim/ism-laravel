@@ -62,9 +62,12 @@
                                 </a>
                                 <button id="{{ $kursus['id'] }}" class="btn btn-danger py-1 px-2 delete-kursus">
                                     Padam
-                                </button> --}}
+                                </button>
                                 <a href="javascript:;" data-toggle="modal"
                                     data-target="#datepicker-modal-{{ $loop->index }}" class="btn btn-primary">
+                                    Pilih Tarikh
+                                </a> --}}
+                                <a href="{{ route('jadual-kursus', ['id' => $kursus['id']]) }}" class="btn btn-primary">
                                     Pilih Tarikh
                                 </a>
                             </td>

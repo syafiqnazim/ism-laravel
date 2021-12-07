@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Kursus extends Model
 {
@@ -19,4 +20,16 @@ class Kursus extends Model
         "tarikh_akhir",
         "bil_keperluan_asrama",
     ];
+
+    protected $dateFormat = 'd/m/Y';
+
+    public function getStartDateAttribute($date)
+    {
+        return Carbon::parse($this->attributes['tarikh_mula'])->format($this->dateFormat);
+    }
+
+    public function getEndDateAttribute($date)
+    {
+        return Carbon::parse($this->attributes['tarikh_akhir'])->format($this->dateFormat);
+    }
 }
