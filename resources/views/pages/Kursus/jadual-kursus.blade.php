@@ -19,6 +19,19 @@
 				</a> --}}
 				{{--
 			</div> --}}
+			<div x-data={show:false}>
+			    <p class="flex">
+			        <a x-on:click.prevent="show=!show" class="bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-3 cursor-pointer focus:outline-none mr-2">
+			        Link with href
+			        </a>
+			        <button  @click="show=!show" class="bg-blue-600 text-gray-200 rounded hover:bg-blue-500 px-4 py-3 text-sm focus:outline-none" type="button">
+			        Button with data-target
+			        </button>
+			    </p>
+			    <div x-show="show" class="border px-4 py-3 my-2 text-gray-700">
+			        This is an example of tailwind css collapse with alpine js and tailwindcss. This collapse is toggle by either the above button or a href anochor tags.
+			    </div>
+			</div>
 			<form class="mt-5">
 				<select id="kluster" class="w-full form-select box border-gray-300" required name="kluster"
 					onchange="this.form.submit()" value="{{ $query }}">

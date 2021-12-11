@@ -2,13 +2,14 @@
 
 @section('subhead')
 <title>Penjadualan Kursus | MyISM</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @endsection
 
 @section('subcontent')
 <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Penjadualan Kursus</h2>
 <div class="grid grid-cols-12 gap-5 mt-5">
     <!-- BEGIN: Calendar Side Menu -->
-    <div class="col-span-12 xl:col-span-6">
+    <div class="col-span-12">
         <div class="box p-5 intro-y">
             <!-- BEGIN: Show Modal Toggle -->
             {{-- <div class="text-center flex justify-between items-center mt-5"> --}}
@@ -67,26 +68,22 @@
                                     data-target="#datepicker-modal-{{ $loop->index }}" class="btn btn-primary">
                                     Pilih Tarikh
                                 </a> --}}
-                                <a href="{{ route('jadual-kursus', ['id' => $kursus['id']]) }}" class="btn btn-primary">
-                                    Pilih Tarikh
-                                </a>
+                                <a onclick="openForm({{ $kursus['id'] }})" class="btn btn-primary">Pilih Tarikh</a>
+                            </td>
+                        </tr>
+                        <tr id="form{{ $kursus['id'] }}" class="hide">
+                            <td colspan="4">
+                                @include('../pages/Kursus/datepicker', [$loop->index, $kursus])
                             </td>
                         </tr>
                         @include('../pages/Kursus/datepicker-modal', [$loop->index, $kursus])
+                        
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <!-- END: Calendar Side Menu -->
-    <!-- BEGIN: Calendar Content -->
-    <div class="col-span-12 xl:col-span-6">
-        <div class="box p-5">
-            <div class="full-calendar" id="calendar-kursus"></div>
-        </div>
-    </div>
-    <!-- END: Calendar Content -->
 </div>
 
 
@@ -113,6 +110,15 @@
     </div>
 </div>
 <!-- END: Failed Notification Content -->
+<script>
+    $(window).on("load", function() {
+        $('.hide').hide();
+    });
+    function openForm(id) {
+        $('.hide').hide();
+        $( '#form'+id ).toggle();
+    }
+</script>
 
 @include('../pages/Kursus/tambah-penjadualan-kursus-modal', [$kursuses, $query])
 @endsection
