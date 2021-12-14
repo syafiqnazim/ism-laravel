@@ -1,5 +1,10 @@
 {
     "/dist/js/app.js": "/dist/js/app.js",
+    "/dist/js/ckeditor-classic.js": "/dist/js/ckeditor-classic.js",
+    "/dist/js/ckeditor-inline.js": "/dist/js/ckeditor-inline.js",
+    "/dist/js/ckeditor-balloon.js": "/dist/js/ckeditor-balloon.js",
+    "/dist/js/ckeditor-balloon-block.js": "/dist/js/ckeditor-balloon-block.js",
+    "/dist/js/ckeditor-document.js": "/dist/js/ckeditor-document.js",
     "/dist/css/app.css": "/dist/css/app.css",
     "/dist/images/bg-login-page.svg": "/dist/images/bg-login-page.svg",
     "/dist/images/bg-main.svg": "/dist/images/bg-main.svg",
