@@ -13,16 +13,15 @@
         <div class="box p-5 intro-y">
             <!-- BEGIN: Show Modal Toggle -->
             {{-- <div class="text-center flex justify-between items-center mt-5"> --}}
-                <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center">Senarai Kursus</h2>
-                {{-- <a class="btn btn-primary shadow-md" href="javascript:;" data-toggle="modal"
+            <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center">Senarai Kursus</h2>
+            {{-- <a class="btn btn-primary shadow-md" href="javascript:;" data-toggle="modal"
                     data-target="#tambah-penjadualan-kursus-baru">
                     Tambah Kursus
                 </a> --}}
-                {{--
+            {{--
             </div> --}}
-            <form class="mt-5">
-                <select id="kluster" class="w-full form-select box border-gray-300" required name="kluster"
-                    onchange="this.form.submit()" value="{{ $query }}">
+            <form method="get" id="department-form">
+                <select id="kluster" class="w-full form-select box border-gray-300" required name="kluster" onchange="document.getElementById('department-form').submit()">
                     <option value="">Pilih Satu</option>
                     <option value="1">Professional Development</option>
                     <option value="2">Social Development</option>
@@ -39,7 +38,8 @@
             <!-- END: Show Modal Toggle -->
             <div class="border-t border-b border-gray-200 mt-6 mb-5 py-3" id="calendar-events">
                 {{-- @include('../pages/Kursus/datepicker-modal') --}}
-                <table class="table-fixed w-full">
+                <h1></h1>
+                <table class="table-fixed w-full" id="kursus">
                     <thead>
                         <tr class="bg-gray-300">
                             <th class="w-1/5 py-3 border-2 border-gray-400">#</th>
@@ -55,19 +55,7 @@
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['nama_kursus'] }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['kapasiti'] }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">
-                                {{-- <a class="btn btn-primary py-1 px-2" href="/ubah-pengguna/{{ $kursus['id'] }}">
-                                    Lihat
-                                </a>
-                                <a class="btn btn-success py-1 px-2" href="/ubah-kata-laluan/{{ $kursus['id'] }}">
-                                    Objektif
-                                </a>
-                                <button id="{{ $kursus['id'] }}" class="btn btn-danger py-1 px-2 delete-kursus">
-                                    Padam
-                                </button>
-                                <a href="javascript:;" data-toggle="modal"
-                                    data-target="#datepicker-modal-{{ $loop->index }}" class="btn btn-primary">
-                                    Pilih Tarikh
-                                </a> --}}
+
                                 <a onclick="openForm({{ $kursus['id'] }})" class="btn btn-primary">Pilih Tarikh</a>
                             </td>
                         </tr>
@@ -77,7 +65,7 @@
                             </td>
                         </tr>
                         @include('../pages/Kursus/datepicker-modal', [$loop->index, $kursus])
-                        
+
                         @endforeach
                     </tbody>
                 </table>
@@ -114,11 +102,12 @@
     $(window).on("load", function() {
         $('.hide').hide();
     });
+
     function openForm(id) {
         $('.hide').hide();
-        $( '#form'+id ).toggle();
+        $('#form' + id).toggle();
     }
 </script>
 
-@include('../pages/Kursus/tambah-penjadualan-kursus-modal', [$kursuses, $query])
+@include('../pages/Kursus/tambah-penjadualan-kursus-modal', [$kursuses])
 @endsection

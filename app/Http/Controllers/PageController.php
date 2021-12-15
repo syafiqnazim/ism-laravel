@@ -98,14 +98,25 @@ class PageController extends Controller
 
     public function penjadualanKursus(Request $request)
     {
-        $kursuses = Kursus::all();
-        $query = '';
-        if (isset($request->query()['nama_kursus'])) {
-            $query = $request->query()['nama_kursus'];
-            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
-        }
 
-        return view('pages/kursus/penjadualan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+        if ($request->query('kluster')) {
+            $kursuses = Kursus::where('kluster', $request->query('kluster'))->get();
+        } else {
+            $kursuses = [];
+        }
+        //dd($kluster);
+
+        return view('pages/kursus/penjadualan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'kluster_name']);
+    }
+
+    public function penjadualanKursusByKluster(Request $request)
+    {
+        $kursuses = Kursus::where('kluster', $request->id)->get();
+
+
+        //dd($kluster);
+
+        return response()->json(["status" => "success", "kursuses" => $kursuses], 200);
     }
 
     public function jadualKursus(Request $request, $id)
