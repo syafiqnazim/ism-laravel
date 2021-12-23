@@ -18,15 +18,49 @@ class PesertaController extends Controller
      */
     public function index(Request $request)
     {
-        $pesertas = Peserta::all();
-        $query = '';
-        if (isset($request->query()['name'])) {
-            $query = $request->query()['name'];
-            $pesertas = Peserta::where('name', 'like', '%' . $query . '%')->get();
-        }
-        $kursuses = Kursus::all();
+        $kluster = $request->input('kluster');
+        //echo $kluster;
+        if(!empty($kluster)){
+            
+            $nama_kursus = $request->input('nama_kursus');
+            if(!empty($kluster) && !empty($nama_kursus)){
+                
+                $kursuses = Kursus::where('kluster', $kluster)->get();
+                //$kursuses = Kursus::all();
+                
 
-        return view('pages/peserta/index')->with(['pesertas' => $pesertas, 'kursuses' => $kursuses, 'query' => $query]);
+                $pesertas = Peserta::where('nama_kursus', $nama_kursus)->get();
+                $query = '';
+
+                if (isset($request->query()['name'])) {
+                    $query = $request->query()['name'];
+                    $pesertas = Peserta::where('name', 'like', '%' . $query . '%')->get();
+                }
+                        
+            }else{
+                //$nama_kursus = $request->input('nama_kursus');
+                $kursuses = Kursus::where('kluster', $kluster)->get();
+                $pesertas='';
+                $query = '';
+                
+                
+            }
+            
+        }else{
+            $kursuses = Kursus::all();
+            $nama_kursus='';
+            $pesertas='';
+            $query = '';
+            
+
+        }
+        
+       //echo $nama_kursus;
+
+        //dd($pesertas);
+        
+
+        return view('pages/peserta/index')->with(['pesertas' => $pesertas, 'kursuses' => $kursuses, 'query' => $query, 'kluster'=>$kluster, 'nama_kursus'=>$nama_kursus ]);
     }
 
     /**

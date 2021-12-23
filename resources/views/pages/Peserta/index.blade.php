@@ -2,36 +2,69 @@
 
 @section('subhead')
 <title>Senarai peserta | MyISM</title>
+<!-- Custom styles for this page -->
+
+
+<link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  
+
 @endsection
 
 @section('subcontent')
+
+
+
+
+
 <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Senarai Peserta</h2>
+
+<form method="get" id="peserta-form">
+	 
+
+	<select id="kluster" class="w-full form-select box border-gray-300" required="" name="kluster" onchange="document.getElementById('peserta-form').submit()">
+		<option value="">Pilih Satu</option>
+		<option value="1" {{ ($kluster == 1) ? 'selected' : '' }}>Professional Development</option>
+		<option value="2" {{ ($kluster == 2) ? 'selected' : '' }}>Social Development</option>
+		<option value="3" {{ ( $kluster == 3) ? 'selected' : '' }}>Volunteerism &amp; Social Entrepreneurship</option>
+		<option value="4" {{ ( $kluster == 4) ? 'selected' : '' }}>Capacity &amp; Gender Development</option>
+		<option value="5" {{ ( $kluster == 5) ? 'selected' : '' }}>Research &amp; Development</option>
+		<option value="6" {{ ( $kluster == 6) ? 'selected' : '' }}>Administration and Human Resources Units</option>
+		<option value="7" {{ ( $kluster == 7) ? 'selected' : '' }}>Finance Units</option>
+		<option value="8" {{ ( $kluster == 8) ? 'selected' : '' }}>Domestic and Maintenance Units</option>
+		<option value="9"> {{ ( $kluster == 9) ? 'selected' : '' }}Library and Documentation Centre</option>
+		<option value="10" {{ ( $kluster == 10) ? 'selected' : '' }}>Information Technology Units</option>
+	</select>
+
+	 
+
+	@if(!empty( $kluster))
+	<select id="nama_kursus" class="w-full form-select box border-gray-300 mt-3" required name="nama_kursus" onchange="document.getElementById('peserta-form').submit()">
+		<option value="">Nama Kursus</option>
+		@foreach ($kursuses as $kursus)
+		<option value="{{ $kursus['nama_kursus'] }}" {{-- ( $kursus['nama_kursus'] == $nama_kursus) ? 'selected' : '' --}}>{{ $kursus['nama_kursus'] }}</option>
+		@endforeach
+	</select>
+	@endif
+</form>
+
+
 <div class="grid grid-cols-12 gap-6 mt-5">
 	<!-- BEGIN: Top Header -->
 	<div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2 justify-between">
-		<button class="btn btn-primary shadow-md mr-2">
-			<a href="{{ route('peserta.create') }}">
-				Tambah Peserta
-			</a>
-		</button>
-		<div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-			<div class="w-56 relative text-gray-700 dark:text-gray-300">
-				<form>
-					<input id='carian' type="text" class="form-control w-56 box pr-10 placeholder-theme-8"
-						placeholder="Carian..." value="{{ $query }}" name="nama_peserta">
-					<button type="submit" class="w-4 h-4 absolute mb-auto mt-2 inset-y-0 mr-3 right-0">
-						<i data-feather="search"></i>
-					</button>
-				</form>
-			</div>
-		</div>
+		
+		
+		
+
+
 	</div>
 	<!-- END: Top Header -->
 
 	<!-- BEGIN: Users Layout -->
 
+	@if(!empty($kluster) && !empty($nama_kursus))
+
 	<div class="col-span-12">
-		<table class="table-fixed w-full">
+		<table class="table-fixed w-full" id="example">
 			<thead>
 				<tr class="bg-gray-300">
 					<th class="w-1/12 py-3 border-2 border-gray-400">#</th>
@@ -66,6 +99,8 @@
 		</table>
 	</div>
 
+	@endif
+
 	<!-- BEGIN: Users Layout -->
 </div>
 </div>
@@ -85,4 +120,15 @@
 	</div>
 </div>
 <!-- END: Failed Notification Content -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+
+
+<script>
+$(document).ready(function() {
+$('#example').DataTable();
+} );
+
+</script>
 @endsection
