@@ -110,9 +110,11 @@ Route::middleware('auth')->group(function () {
 
     // PenceramahController
     Route::resource('penceramah', PenceramahController::class, ['only' => ['store', 'update', 'destroy']]);
+    
     Route::get('profil-penceramah', [PenceramahController::class, 'profilPenceramah'])->name('profil-penceramah');
     Route::get('rating-penceramah', [PenceramahController::class, 'ratingPenceramah'])->name('rating-penceramah');
     Route::get('kredit-penceramah', [PenceramahController::class, 'kreditPenceramah'])->name('kredit-penceramah');
+    Route::post('credit-penceramah-update', [PenceramahController::class, 'creditPenceramahUpdate'])->name('credit-penceramah-update');
 
     // PengurusanICTController
     Route::resource('pengurusanict', PengurusanIctController::class, ['only' => ['store', 'update', 'destroy', 'index']]);

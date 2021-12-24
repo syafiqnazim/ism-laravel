@@ -38,7 +38,14 @@ class PenceramahController extends Controller
 
     public function kreditPenceramah(Request $request)
     {
-        return view('pages/error/construction-page');
+        $penceramah = Penceramah::all();
+        $query = '';
+        if (isset($request->query()['nama_penceramah'])) {
+            $query = $request->query()['nama_penceramah'];
+            $penceramah = Penceramah::where('name', 'like', '%' . $query . '%')->get();
+        }
+
+        return view('pages/penceramah/credit-penceramah')->with(['penceramahs' => $penceramah, 'query' => $query]);
     }
 
     public function ratingPenceramah(Request $request)
@@ -140,4 +147,15 @@ class PenceramahController extends Controller
     {
         return Penceramah::find($id)->delete();
     }
+
+    public function creditPenceramahUpdate(Request $request)
+    {
+        Penceramah::where('id', $request->id)
+            ->update([ 
+                "credit" => $request->credit,
+            ]);
+        return back();
+    }
+
+
 }
