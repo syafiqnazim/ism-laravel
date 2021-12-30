@@ -57,8 +57,9 @@
 					@endif
 				</div>
 			</div>
-			<div class="grid grid-cols-2 gap-4 gap-y-3 mt-5">
-				<div class="grid-cols-1 input-form">
+
+			<div class="grid grid-cols-12 gap-4 gap-y-3 mt-3">
+				<div class="col-span-12 sm:col-span-6">
 					<label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
 						Kapasiti Peserta
 					</label>
@@ -66,11 +67,9 @@
 						data-pristine-required-message="Ruangan ini perlu di isi."> --}}
 					<input type="number" class="form-control" required
 						data-pristine-required-message="Ruangan ini perlu di isi.">
+
 				</div>
-
- 
-
-				<div class="grid-cols-1 input-form">
+				<div class="col-span-12 sm:col-span-6">
 					<div for="register-form-1" class="font-bold form-label text-left">
 						Keperluan Kursus
 					</div>
@@ -97,14 +96,19 @@
 						</div>
 					</div>
 
+				</div>
+			</div>
 
-					 
+
+			<div class="col-span-12 sm:col-span-6">
 				 
 
+ 
+
 				 
 
-
-					
+				<div class="footer text-right">
+					<button type="" class="btn btn-primary w-20">Simpan</button> 
 				</div>
 
 
@@ -277,8 +281,7 @@
 
 			</div>
 		</div>
-		<div class="footer text-right mt-3">
-			<button type="" class="btn btn-primary w-20">Simpan</button>
+		<div class="footer text-right mt-3"> 
 			<button type="" class="btn btn-primary w-20">Hantar</button>
 		</div>
 	</div>
