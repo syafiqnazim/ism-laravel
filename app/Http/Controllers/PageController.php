@@ -106,7 +106,9 @@ class PageController extends Controller
         }
         //dd($kluster);
 
-        return view('pages/kursus/penjadualan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'kluster_name']);
+        $penceramahs = Penceramah::all();
+
+        return view('pages/kursus/penjadualan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'kluster_name', 'penceramahs' => $penceramahs]);
     }
 
     public function penjadualanKursusByKluster(Request $request)
