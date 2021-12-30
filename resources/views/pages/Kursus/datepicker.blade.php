@@ -1,4 +1,4 @@
-<form action="{{url('kursus/'. $kursus->id)}}" method="post">
+	<form action="{{url('kursus/'. $kursus->id)}}" method="post">
 	@csrf
 	<input name="_method" type="hidden" value="PUT">
 	<div class="content mt-3">
@@ -110,10 +110,10 @@
 				<div class="footer text-right">
 					<button type="" class="btn btn-primary w-20">Simpan</button> 
 				</div>
-
-
+			</div>
+			</form>
 				
-
+			 
 				<div class="col-span-12">
 
 					<div for="register-form-1" class="font-bold form-label text-left">
@@ -122,17 +122,12 @@
 
 					<div class="footer mt-3">
 			 
-						<button class="btn btn-primary shadow-md mr-2">
-							<a href="javascript:;" data-toggle="modal" data-target="#tambah-modul-modal-{{$kursus->id}}">
+					 
+							<a href="#" class="btn btn-primary shadow-md mr-2" data-toggle="modal" data-target="#tambah-modul-modal-{{$kursus->id}}">
 								Tambah Kursus
 							</a>
-						</button>
+			 
 					</div>
-
-					 
-
-					
-
 					@include('../pages/Kursus/tambah-modul-modal')
 
 					<table class="table-fixed w-full  mt-3">
@@ -172,20 +167,21 @@
 						LOKASI PROGRAM
 					</div>
 
-					
+					<form action="" method="post">
+						@csrf
 
 					<div class="grid grid-cols-12 gap-4 gap-y-3">
 						<div class="col-span-12 sm:col-span-6">
 							<label for="datepicker-1" class="form-label">Tarikh</label>
 							 
 							<input id="datepicker-1" class="datepicker form-control" data-single-mode="true"
-								name="tarikh_program" value="">
+								name="tarikh_program" value="" required>
 							 
 						</div>
 						<div class="col-span-12 sm:col-span-6">
 							<label for="datepicker-2" class="form-label">Lokasi</label>							
 							<input id="datepicker-1" class="form-control" data-single-mode="true"
-								name="lokasi_program" value="">
+								name="lokasi_program" value="" required>
 							
 						</div>
 
@@ -195,6 +191,7 @@
 						</div>
 
 					</div>
+					</form>
 					
 					<table class="table-fixed w-full mt-3">
 						<thead>
@@ -231,12 +228,15 @@
 						PRAKTIKAL
 					</div>
 
+					<form action="" method="post">
+						@csrf
+
 					<div class="grid grid-cols-12 gap-4 gap-y-3">
 						<div class="col-span-12 sm:col-span-6">
 							<label for="datepicker-1" class="form-label">Tarikh</label>
 							 
 							<input id="datepicker-1" class="datepicker form-control" data-single-mode="true"
-								name="tarikh_praktikal" value="">
+								name="tarikh_praktikal" value="" required>
 							 
 		
 						</div>
@@ -244,7 +244,7 @@
 							<label for="datepicker-2" class="form-label">Lokasi Praktikal</label>
 							
 							<input class="form-control" data-single-mode="true"
-								name="lokasi_praktikal" value="">
+								name="lokasi_praktikal" value="" required>
 							
 						</div>
 
@@ -252,6 +252,7 @@
 			 
 							<button type="" class="btn btn-primary w-20">Simpan</button>
 						</div>
+					</form>
 
 					</div>
 					
@@ -279,11 +280,11 @@
 
 
 
-			</div>
+		
 		</div>
 		<div class="footer text-right mt-3"> 
 			<button type="" class="btn btn-primary w-20">Hantar</button>
 		</div>
 	</div>
-</form>
+
 
