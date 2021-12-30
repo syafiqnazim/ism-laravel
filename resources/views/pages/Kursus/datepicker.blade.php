@@ -187,7 +187,7 @@
 
 						<div class="footer">
 			 
-							<button type="submit" class="btn btn-primary w-20">Simpan</button>
+							<button type="" class="btn btn-primary w-20">Simpan</button>
 						</div>
 
 					</div>
@@ -246,7 +246,7 @@
 
 						<div class="footer">
 			 
-							<button type="submit" class="btn btn-primary w-20">Simpan</button>
+							<button type="" class="btn btn-primary w-20">Simpan</button>
 						</div>
 
 					</div>
