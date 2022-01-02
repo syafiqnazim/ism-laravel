@@ -47,4 +47,15 @@ import momentPlugin from "@fullcalendar/moment";
             }).showToast();
         }
     });
+
+    cash("#nama_kluster").on('change', (event) => {
+        axios.get('rating-penceramah/get-tajuk-program/' + event.target.value)
+        .then((response) => {
+            let str = '<option>Pilih Tajuk Program</option>';
+            response.data.forEach(element => {
+                str += `<option value="${element.id}">${element.nama_submodul}</option>`
+            });
+            cash('#tajuk_program').html(str);
+        });
+    });
 })(cash);

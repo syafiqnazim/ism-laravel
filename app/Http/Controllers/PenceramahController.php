@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kursus;
 use Illuminate\Http\Request;
 use App\Models\Penceramah;
 
@@ -50,9 +51,23 @@ class PenceramahController extends Controller
 
     public function ratingPenceramah(Request $request)
     {
-        return view('pages/error/construction-page');
+        $compactValues = [];
+        $penceramahs = Penceramah::all();
+        $compactValues[] = 'penceramahs';
+        $query = '';
+        if (isset($request->query()['name'])) {
+            $query = $request->query()['name'];
+            $penceramah = Penceramah::where('name', 'like', '%' . $query . '%')->get();
+        }
+        $compactValues[] = 'query';
+        $klusters = Kursus::all();
+        $compactValues[] = 'klusters';
+        return view('pages.penceramah.rating-penceramah', compact($compactValues));
     }
 
+    public function getTajukProgramByKluster(Kursus $kluster) {
+        return response()->json($kluster->subModulKursus);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -151,7 +166,7 @@ class PenceramahController extends Controller
     public function creditPenceramahUpdate(Request $request)
     {
         Penceramah::where('id', $request->id)
-            ->update([ 
+            ->update([
                 "credit" => $request->credit,
             ]);
         return back();
