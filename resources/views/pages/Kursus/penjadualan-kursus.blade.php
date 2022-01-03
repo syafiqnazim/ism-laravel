@@ -6,14 +6,14 @@
 @endsection
 
 @section('subcontent')
-<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Penjadualan Kursus</h2>
+<h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Penjadualan Program</h2>
 <div class="grid grid-cols-12 gap-5 mt-5">
     <!-- BEGIN: Calendar Side Menu -->
     <div class="col-span-12">
         <div class="box p-5 intro-y">
             <!-- BEGIN: Show Modal Toggle -->
             {{-- <div class="text-center flex justify-between items-center mt-5"> --}}
-            <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center">Senarai Kursus</h2>
+            <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center">Senarai Program</h2>
             {{-- <a class="btn btn-primary shadow-md" href="javascript:;" data-toggle="modal"
                     data-target="#tambah-penjadualan-kursus-baru">
                     Tambah Kursus
@@ -43,7 +43,7 @@
                     <thead>
                         <tr class="bg-gray-300">
                             <th class="w-1/5 py-3 border-2 border-gray-400">#</th>
-                            <th class="w-2/5 py-3 border-2 border-gray-400">Nama Kursus / Kluster</th>
+                            <th class="w-2/5 py-3 border-2 border-gray-400">Nama Program / Kluster</th>
                             <th class="w-1/5 py-3 border-2 border-gray-400">Kapasiti</th>
                             <th class="w-1/5 py-3 border-2 border-gray-400">Tindakan</th>
                         </tr>

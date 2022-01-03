@@ -71,7 +71,7 @@
 				</div>
 				<div class="col-span-12 sm:col-span-6">
 					<div for="register-form-1" class="font-bold form-label text-left">
-						Keperluan Kursus{{$kursus->ispeperiksaan}}
+						Keperluan Program
 					</div>
 
 					<input type="hidden" id="lelaki" name="ispeperiksaan" value="0"  >
