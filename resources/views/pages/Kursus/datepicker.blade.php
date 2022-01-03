@@ -1,22 +1,22 @@
-	<form action="{{url('kursus/'. $kursus->id)}}" method="post">
+	<form action="{{url('update-kursus')}}" method="post">
 	@csrf
-	<input name="_method" type="hidden" value="PUT">
+	 
 	<div class="content mt-3">
 
 		<div class="input-form mb-6">
 			<label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
 				Tajuk Program
 			</label>
-			<input id="working_address" name="working_address" type="text" class="form-control" required
-				data-pristine-required-message="Ruangan ini perlu di isi.">
+			<input id="tajuk_program" name="tajuk_program" type="text" class="form-control" required
+				data-pristine-required-message="Ruangan ini perlu di isi." value="{{$kursus->tajuk_program}}">
 		</div>
 
 		<div class="input-form mb-6">
 			<label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
 				Objektif Program
 			</label>
-			<input id="working_address" name="working_address" type="text" class="form-control" required
-				data-pristine-required-message="Ruangan ini perlu di isi.">
+			<input id="objektif_program" name="objektif_program" type="text" class="form-control" required
+				data-pristine-required-message="Ruangan ini perlu di isi." value="{{$kursus->objektif_program}}">
 		</div>
 
 
@@ -65,31 +65,33 @@
 					</label>
 					{{-- <input id="peruntukan" name="peruntukan" type="number" class="form-control" required
 						data-pristine-required-message="Ruangan ini perlu di isi."> --}}
-					<input type="number" class="form-control" required
-						data-pristine-required-message="Ruangan ini perlu di isi.">
+					<input type="number" class="form-control" required name="kapasiti_peserta" required
+						data-pristine-required-message="Ruangan ini perlu di isi." value="{{$kursus->kapasiti_peserta}}">
 
 				</div>
 				<div class="col-span-12 sm:col-span-6">
 					<div for="register-form-1" class="font-bold form-label text-left">
-						Keperluan Kursus
+						Keperluan Kursus{{$kursus->ispeperiksaan}}
 					</div>
 
-					
+					<input type="hidden" id="lelaki" name="ispeperiksaan" value="0"  >
+					<input type="hidden" id="lelaki" name="isasrama" value="0" >
+					<input type="hidden" id="lelaki" name="ispraktikal" value="0" >
 
 					<div class="col-span-1 input-form">
 						 
 						<div class="flex flex-col items-start">
 							<div>
-								<input type="checkbox" id="lelaki" name="gender" value="Lelaki">
+								<input type="checkbox" id="lelaki" name="ispeperiksaan" value="1" {{ ($kursus->ispeperiksaan == 1) ? 'checked' : ''}}>
 								<label for="lelaki">Peperiksaan</label><br>
 							</div>
 							<div>
-								<input type="checkbox" id="perempuan" name="gender" value="Perempuan">
+								<input type="checkbox" id="perempuan" name="isasrama" value="1" {{ ($kursus->isasrama == 1) ? 'checked' : ''}}>
 								<label for="perempuan">Asrama</label><br>
 							</div>
 
 							<div>
-								<input type="checkbox" id="perempuan" name="gender" value="Perempuan">
+								<input type="checkbox" id="perempuan" name="ispraktikal" value="1" {{ ($kursus->ispraktikal == 1) ? 'checked' : ''}}>
 								<label for="perempuan">Praktikal</label><br>
 							</div>
 
@@ -108,6 +110,7 @@
 				 
 
 				<div class="footer text-right">
+					<input type="hidden" name="id" value="{{$kursus->id}}">
 					<button type="" class="btn btn-primary w-20">Simpan</button> 
 				</div>
 			</div>
@@ -124,7 +127,7 @@
 			 
 					 
 							<a href="#" class="btn btn-primary shadow-md mr-2" data-toggle="modal" data-target="#tambah-modul-modal-{{$kursus->id}}">
-								Tambah Kursus
+								Tambah Modul
 							</a>
 			 
 					</div>
@@ -142,18 +145,30 @@
 							</tr>
 						</thead>
 						<tbody>
+							@php
+							$submodulKursuses = \App\Models\SubmodulKursus::where(['kursus_id' => $kursus->id])->get();
+							$bil=1;
+							@endphp
+							@foreach($submodulKursuses as $submodulKursus)
 							
-							<tr class={{-- $penceramah['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none' --}}>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['id'] --}}</td>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['name'] --}}</td>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['ic_number'] --}}</td>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['phone_number'] --}}</td>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['email'] --}}</td>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['sector'] --}}</td>
+							@php
+							$startTime = \Carbon\Carbon::parse($submodulKursus->masa_mula);
+							$finishTime = \Carbon\Carbon::parse($submodulKursus->masa_akhir);
+							
+							$totalDuration = $finishTime->diffInHours($startTime);
+							//dd($totalDuration);
+							@endphp
+							<tr class={{ $submodulKursus['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none' }}>
+								<td class="text-center py-3 border-2 border-gray-400">{{ $bil++ }}</td>
+								<td class="text-center py-3 border-2 border-gray-400">{{ $submodulKursus->masa_mula }} - {{ $submodulKursus->masa_akhir }}</td>
+								<td class="text-center py-3 border-2 border-gray-400">{{ $totalDuration }}</td>
+								<td class="text-center py-3 border-2 border-gray-400">{{ \Carbon\Carbon::parse($submodulKursus->created_at)->format('d/m/Y')}}</td>
+								<td class="text-center py-3 border-2 border-gray-400">{{ $submodulKursus->nama_submodul }}</td>
+								<td class="text-center py-3 border-2 border-gray-400">{{ $submodulKursus->penceramah->name }}</td>
 								 
 							</tr>
 							 
-							
+							@endforeach
 						</tbody>
 					</table>
 				</div>
@@ -167,7 +182,7 @@
 						LOKASI PROGRAM
 					</div>
 
-					<form action="" method="post">
+					<form action="{{url('store-program-kursus')}}" method="post">
 						@csrf
 
 					<div class="grid grid-cols-12 gap-4 gap-y-3">
@@ -175,18 +190,18 @@
 							<label for="datepicker-1" class="form-label">Tarikh</label>
 							 
 							<input id="datepicker-1" class="datepicker form-control" data-single-mode="true"
-								name="tarikh_program" value="" required>
+								name="tarikh" value="" required>
 							 
 						</div>
 						<div class="col-span-12 sm:col-span-6">
 							<label for="datepicker-2" class="form-label">Lokasi</label>							
-							<input id="datepicker-1" class="form-control" data-single-mode="true"
-								name="lokasi_program" value="" required>
+							<input  class="form-control" 
+								name="lokasi" value="" required>
 							
 						</div>
 
 						<div class="footer">
-			 
+							<input type="hidden" name="kursus_id" value="{{$kursus->id}}">
 							<button type="" class="btn btn-primary w-20">Simpan</button>
 						</div>
 
@@ -202,14 +217,19 @@
 							</tr>
 						</thead>
 						<tbody>
-							
-							<tr class={{-- $penceramah['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none' --}}>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['id'] --}}</td>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['name'] --}}</td>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['ic_number'] --}}</td> 
+							@php
+							$programKursuses = \App\Models\ProgramKursus::where(['kursus_id' => $kursus->id])->get();
+							$bilLokasi=1;
+							@endphp
+							@foreach($programKursuses as $programKursus)						
+							 
+							<tr class={{ $programKursus['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none' }}>
+								<td class="text-center py-3 border-2 border-gray-400">{{ $bilLokasi++ }}</td>
+								<td class="text-center py-3 border-2 border-gray-400">{{ $programKursus->lokasi }}</td>
+								<td class="text-center py-3 border-2 border-gray-400">{{ \Carbon\Carbon::parse($programKursus->tarikh)->format('d/m/Y')}}</td> 
 								 
 							</tr>
-							 
+							@endforeach
 							
 						</tbody>
 					</table>
@@ -227,8 +247,7 @@
 					<div for="register-form-1" class="font-bold form-label text-left">
 						PRAKTIKAL
 					</div>
-
-					<form action="" method="post">
+					<form action="{{url('store-praktikal-kursus')}}" method="post">
 						@csrf
 
 					<div class="grid grid-cols-12 gap-4 gap-y-3">
@@ -236,7 +255,7 @@
 							<label for="datepicker-1" class="form-label">Tarikh</label>
 							 
 							<input id="datepicker-1" class="datepicker form-control" data-single-mode="true"
-								name="tarikh_praktikal" value="" required>
+								name="tarikh" value="" required>
 							 
 		
 						</div>
@@ -244,12 +263,12 @@
 							<label for="datepicker-2" class="form-label">Lokasi Praktikal</label>
 							
 							<input class="form-control" data-single-mode="true"
-								name="lokasi_praktikal" value="" required>
+								name="lokasi" value="" required>
 							
 						</div>
 
 						<div class="footer">
-			 
+							<input type="hidden" name="kursus_id" value="{{$kursus->id}}">
 							<button type="" class="btn btn-primary w-20">Simpan</button>
 						</div>
 					</form>
@@ -266,12 +285,19 @@
 						</thead>
 						<tbody>
 							
-							<tr class={{-- $penceramah['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none' --}}>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['id'] --}}</td>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['name'] --}}</td>
-								<td class="text-center py-3 border-2 border-gray-400">{{-- $penceramah['ic_number'] --}}</td> 
+							@php
+							$praktikalKursuses = \App\Models\PraktikalKursus::where(['kursus_id' => $kursus->id])->get();
+							$bilPraktikal=1;
+							@endphp
+							@foreach($praktikalKursuses as $praktikalKursus)						
+							 
+							<tr class={{ $praktikalKursus['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none' }}>
+								<td class="text-center py-3 border-2 border-gray-400">{{ $bilPraktikal++ }}</td>
+								<td class="text-center py-3 border-2 border-gray-400">{{ $praktikalKursus->lokasi }}</td>
+								<td class="text-center py-3 border-2 border-gray-400">{{ \Carbon\Carbon::parse($praktikalKursus->tarikh)->format('d/m/Y')}}</td> 
 								 
 							</tr>
+							@endforeach
 							 
 							
 						</tbody>
@@ -283,7 +309,13 @@
 		
 		</div>
 		<div class="footer text-right mt-3"> 
-			<button type="" class="btn btn-primary w-20">Hantar</button>
+			 
+			@if($kursus->ishantar == 1)
+			
+			<button  type="button" class="btn btn-primary w-20" disabled >Hantar</button>
+			@else
+			<a href="{{url('hantar-kursus/'. $kursus->id)}}" class="btn btn-primary w-20" >Hantar </a>
+			@endif
 		</div>
 	</div>
 
