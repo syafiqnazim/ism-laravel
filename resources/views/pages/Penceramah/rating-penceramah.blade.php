@@ -10,7 +10,7 @@
     <!-- BEGIN: Top Header -->
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2 justify-between">
         <button class="btn btn-primary shadow-md mr-2">
-            <a href="javascript:;" data-toggle="modal" data-target="#tambah-penceramah-baru">
+            <a href="javascript:;" data-toggle="modal" data-target="#rating-penceramah">
                 Tambah Rating Penceramah
             </a>
         </button>

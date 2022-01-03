@@ -48,14 +48,25 @@ import momentPlugin from "@fullcalendar/moment";
         }
     });
 
-    cash("#nama_kluster").on('change', (event) => {
-        axios.get('rating-penceramah/get-tajuk-program/' + event.target.value)
+    cash("#nama_kluster").on('change', async (event) => {
+        axios.get('rating-penceramah/list-program/' + event.target.value)
         .then((response) => {
-            let str = '<option>Pilih Tajuk Program</option>';
+            let str = '<option>Pilih Satu</option>';
             response.data.forEach(element => {
                 str += `<option value="${element.id}">${element.nama_submodul}</option>`
             });
             cash('#tajuk_program').html(str);
+        });
+    });
+
+    cash("#tajuk_program").on('change', async (event) => {
+        axios.get('rating-penceramah/list-penceramah/' + event.target.value)
+        .then((response) => {
+            let str = '<option>Pilih Satu</option>';
+            response.data.forEach(element => {
+                str += `<option value="${element.id}">${element.name}</option>`
+            });
+            cash('#nama_penceramah').html(str);
         });
     });
 })(cash);

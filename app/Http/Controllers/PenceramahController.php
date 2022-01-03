@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kursus;
 use Illuminate\Http\Request;
 use App\Models\Penceramah;
+use App\Models\SubmodulKursus;
 
 class PenceramahController extends Controller
 {
@@ -65,8 +66,13 @@ class PenceramahController extends Controller
         return view('pages.penceramah.rating-penceramah', compact($compactValues));
     }
 
-    public function getTajukProgramByKluster(Kursus $kluster) {
+    public function listProgramByKluster(Kursus $kluster) {
         return response()->json($kluster->subModulKursus);
+    }
+
+    public function listPenceramahByProgram(SubmodulKursus $program)
+    {
+        return response()->json($program->penceramahs);
     }
 
     /**

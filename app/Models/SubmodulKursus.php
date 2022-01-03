@@ -13,4 +13,9 @@ class SubmodulKursus extends Model
         'nama_submodul',
         'kursus_id'
     ];
+
+    public function penceramahs()
+    {
+        return $this->belongsToMany(Penceramah::class)->withTimestamps();
+    }
 }
