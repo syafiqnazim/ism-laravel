@@ -61,18 +61,19 @@ class PenceramahController extends Controller
             $penceramah = Penceramah::where('name', 'like', '%' . $query . '%')->get();
         }
         $compactValues[] = 'query';
-        $klusters = Kursus::all();
-        $compactValues[] = 'klusters';
+        $programs = Kursus::all();
+        $compactValues[] = 'programs';
         return view('pages.penceramah.rating-penceramah', compact($compactValues));
     }
 
-    public function listProgramByKluster(Kursus $kluster) {
-        return response()->json($kluster->subModulKursus);
+    public function listProgramByKluster($kluster) {
+        $programs = Kursus::where('kluster', $kluster)->get();
+        return response()->json($programs);
     }
 
-    public function listPenceramahByProgram(SubmodulKursus $program)
+    public function listPenceramahByProgram(Kursus $program)
     {
-        return response()->json($program->penceramahs);
+        return response()->json([]);
     }
 
     /**

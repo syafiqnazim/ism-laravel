@@ -49,20 +49,22 @@ import momentPlugin from "@fullcalendar/moment";
     });
 
     cash("#nama_kluster").on('change', async (event) => {
+        if(event.target.value == "") return false;
         axios.get('rating-penceramah/list-program/' + event.target.value)
         .then((response) => {
-            let str = '<option>Pilih Satu</option>';
+            let str = '<option value="">Pilih Satu</option>';
             response.data.forEach(element => {
-                str += `<option value="${element.id}">${element.nama_submodul}</option>`
+                str += `<option value="${element.id}">${element.nama_kursus}</option>`
             });
             cash('#tajuk_program').html(str);
         });
     });
 
     cash("#tajuk_program").on('change', async (event) => {
+        if(event.target.value == "") return false;
         axios.get('rating-penceramah/list-penceramah/' + event.target.value)
         .then((response) => {
-            let str = '<option>Pilih Satu</option>';
+            let str = '<option value="">Pilih Satu</option>';
             response.data.forEach(element => {
                 str += `<option value="${element.id}">${element.name}</option>`
             });

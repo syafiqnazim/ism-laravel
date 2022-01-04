@@ -19,10 +19,17 @@
                                 Nama Kluster
                             </label>
                             <select id="nama_kluster" name="nama_kluster" class="w-full form-select box border-gray-300" required>
-                                <option selected>Pilih Satu</option>
-                                @foreach ($klusters as $item)
-                                    <option value="{{$item->id}}">{{$item->nama_kursus}}</option>
-                                @endforeach
+                                <option value="">Pilih Satu</option>
+                                <option value="1">Professional Development</option>
+                                <option value="2">Social Development</option>
+                                <option value="3">Volunteerism & Social Entrepreneurship</option>
+                                <option value="4">Capacity & Gender Development</option>
+                                <option value="5">Research & Development</option>
+                                <option value="6">Administration and Human Resources Units</option>
+                                <option value="7">Finance Units</option>
+                                <option value="8">Domestic and Maintenance Units</option>
+                                <option value="9">Library and Documentation Centre</option>
+                                <option value="10">Information Technology Units</option>
                             </select>
                         </div>
                         <div class="input-form mb-6">
@@ -30,7 +37,7 @@
                                 Tajuk Program
                             </label>
                             <select id="tajuk_program" name="tajuk_program" class="w-full form-select box border-gray-300" required>
-                                <option selected>Pilih Satu</option>
+                                <option value="">Pilih Satu</option>
                             </select>
                         </div>
                         <div class="input-form mb-6">
