@@ -36,4 +36,9 @@ class Penceramah extends Model
         'academic_qualification',
         'business_qualification',
     ];
+
+    public function subModulKursus()
+    {
+        return $this->hasMany(SubmodulKursus::class);
+    }
 }

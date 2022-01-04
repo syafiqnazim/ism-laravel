@@ -37,4 +37,17 @@ class Kursus extends Model
     {
         return $this->hasMany(SubmodulKursus::class);
     }
+
+    public function penceramahs()
+    {
+        $submoduls = $this->subModulKursus;
+        $penceramahs = collect();
+        foreach($submoduls as $submodul) {
+            if(!$penceramahs->contains('id', $submodul->penceramah->id)) {
+                $penceramahs->push($submodul->penceramah);
+            }
+        }
+
+        return $penceramahs;
+    }
 }

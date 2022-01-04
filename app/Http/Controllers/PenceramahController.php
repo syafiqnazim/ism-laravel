@@ -73,7 +73,13 @@ class PenceramahController extends Controller
 
     public function listPenceramahByProgram(Kursus $program)
     {
-        return response()->json([]);
+        $penceramahs = $program->penceramahs();
+        return response()->json($penceramahs);
+    }
+
+    public function listPenceramahSubModulsByKursus(Penceramah $penceramah, $kursusId)
+    {
+        return $penceramah->subModulKursus()->where('kursus_id', $kursusId)->get();
     }
 
     /**
