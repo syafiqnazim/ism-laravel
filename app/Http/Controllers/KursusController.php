@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kursus;
+use App\Models\SubmodulKursus;
+use App\Models\ProgramKursus;
+use App\Models\PraktikalKursus;
 
 class KursusController extends Controller
 {
@@ -77,6 +80,90 @@ class KursusController extends Controller
         };
         return back();
     }
+
+    public function updateKursus(Request $request)
+    {
+        $today = date('Y-m-d');
+        $id = $request->id;
+        Kursus::where('id', $id)
+            ->update([
+                "tajuk_program" => $request->tajuk_program,
+                "objektif_program" => $request->objektif_program,
+                "tarikh_mula" => date("Y-m-d", strtotime($request->tarikh_mula)),
+                "tarikh_akhir" => date("Y-m-d", strtotime($request->tarikh_akhir . ' +1 day')),
+                "kapasiti_peserta" => $request->kapasiti_peserta,
+                "ispeperiksaan" => $request->ispeperiksaan,
+                "isasrama" => $request->isasrama,
+                "ispraktikal" => $request->ispraktikal,
+                "updated_at" => $today,
+                
+            ]);
+        return back();
+        
+             
+    }
+
+    public function storeModulKursus(Request $request)
+    {
+        $today = date('Y-m-d');
+         
+        SubmodulKursus::create([
+                "masa_mula" => $request->masa_mula,
+                "masa_akhir" => $request->masa_akhir,
+                "nama_submodul" => $request->nama_submodul,
+                "penceramah_id" => $request->penceramah_id,
+                "kursus_id" => $request->kursus_id,
+                //"updated_at" => $today,
+            ]);
+
+            return back();
+         
+    }
+
+    public function storeProgramKursus(Request $request)
+    {
+        
+         
+        ProgramKursus::create([
+                "lokasi" => $request->lokasi,
+                "tarikh" => date("Y-m-d", strtotime($request->tarikh)), 
+                "kursus_id" => $request->kursus_id,
+                //"updated_at" => $today,
+            ]);
+
+            return back();
+         
+    }
+
+    public function storePraktikalKursus(Request $request)
+    {
+        
+         
+        PraktikalKursus::create([
+                "lokasi" => $request->lokasi,
+                "tarikh" => date("Y-m-d", strtotime($request->tarikh)), 
+                "kursus_id" => $request->kursus_id,
+                //"updated_at" => $today,
+            ]);
+
+            return back();
+         
+    }
+
+    public function hantarKursus($kursus_id)
+    {
+         //dd($kursus_id);
+         $today = date('Y-m-d');
+            Kursus::where('id', $kursus_id)
+                ->update([
+                    "ishantar" => 1, 
+                    "updated_at" => $today,
+                ]);
+        
+        return back();
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

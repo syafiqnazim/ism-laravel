@@ -40,7 +40,7 @@ class CreatePenceramahsTable extends Migration
             $table->string('experience');
             $table->string('professional_member');
             $table->string('distribution');
-            $table->integer('credit')->nullable();
+            $table->integer('credit')->default(0);
             $table->timestamps();
         });
     }

@@ -11,6 +11,13 @@ class SubmodulKursus extends Model
 
     protected $fillable = [
         'nama_submodul',
+        'masa_mula',
+        'masa_akhir',
+        'penceramah_id',
         'kursus_id'
     ];
+
+    public function penceramah() {
+        return $this->belongsTo('App\Models\Penceramah', 'penceramah_id', 'id');
+    }
 }

@@ -48,7 +48,13 @@ Route::middleware('auth')->group(function () {
     Route::get('ubah-kata-laluan/{id}', [PageController::class, 'ubahKataLaluan'])->name('ubah-kata-laluan');
 
     // KursusController
-    Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy', 'index']]);
+    //Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy', 'index']]);
+    Route::get('kursus', [KursusController::class, 'index'])->name('index-kursus');
+    Route::post('update-kursus', [KursusController::class, 'updateKursus'])->name('update-kursus');
+    Route::post('store-modul-kursus', [KursusController::class, 'storeModulKursus'])->name('store-modul-kursus');
+    Route::post('store-program-kursus', [KursusController::class, 'storeProgramKursus'])->name('store-program-kursus');
+    Route::post('store-praktikal-kursus', [KursusController::class, 'storePraktikalKursus'])->name('store-praktikal-kursus');
+    Route::get('hantar-kursus/{kursus_id}', [KursusController::class, 'hantarKursus'])->name('hantar-kursus');
     Route::get('pendaftaran-kursus', [PageController::class, 'pendaftaranKursus'])->name('pendaftaran-kursus');
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
     Route::get('jadual-kursus/{id}', [PageController::class, 'jadualKursus'])->name('jadual-kursus');
