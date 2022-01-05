@@ -78,8 +78,8 @@ class SideMenu
                     'title' => 'Kredit Penceramah',
                 ],
                 'rating-penceramah' => [
-                    'icon' => 'smile',
-                    'route_name' => 'rating-penceramah',
+                    'icon' => 'star',
+                    'route_name' => 'rating-penceramah.index',
                     'title' => 'Rating Penceramah',
                 ],
                 [

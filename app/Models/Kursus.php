@@ -13,7 +13,7 @@ class Kursus extends Model
     protected $fillable = [
         "nama_kursus",
         "kapasiti",
-        "kluster",
+        "kluster_id",
         "peruntukan",
         "bilik",
         "tarikh_mula",
@@ -31,6 +31,11 @@ class Kursus extends Model
     public function getEndDateAttribute($date)
     {
         return Carbon::parse($this->attributes['tarikh_akhir'])->format($this->dateFormat);
+    }
+
+    public function kluster()
+    {
+        return $this->belongsTo(Kluster::class);
     }
 
     public function subModulKursus()

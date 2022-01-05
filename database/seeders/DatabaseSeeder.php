@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             PengurusanIctSeeder::class,
             ObjektifKursusSeeder::class,
             SubmodulKursusSeeder::class,
+            KlusterSeeder::class,
         ]);
     }
 }

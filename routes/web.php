@@ -11,6 +11,7 @@ use App\Http\Controllers\KewanganController;
 use App\Http\Controllers\AduanController;
 use App\Http\Controllers\ObjektifKursusController;
 use App\Http\Controllers\PenceramahController;
+use App\Http\Controllers\RatingPenceramahController;
 use App\Http\Controllers\PengurusanIctController;
 use App\Http\Controllers\TempahanKenderaanController;
 use App\Http\Controllers\SenaraiKenderaanController;
@@ -118,11 +119,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('penceramah', PenceramahController::class, ['only' => ['store', 'update', 'destroy']]);
 
     Route::get('profil-penceramah', [PenceramahController::class, 'profilPenceramah'])->name('profil-penceramah');
-    Route::get('rating-penceramah', [PenceramahController::class, 'ratingPenceramah'])->name('rating-penceramah');
-    Route::post('rating-penceramah', [PenceramahController::class, 'storeRating'])->name('store-rating-penceramah');
-    Route::get('rating-penceramah/list-program/{kluster}', [PenceramahController::class, 'listProgramByKluster']);
-    Route::get('rating-penceramah/list-penceramah/{program}', [PenceramahController::class, 'listPenceramahByProgram']);
-    Route::get('rating-penceramah/list-submodul/{penceramah}/{kursusId}', [PenceramahController::class, 'listPenceramahSubModulsByKursus']);
+    Route::resource('rating-penceramah', RatingPenceramahController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
+    Route::get('rating-penceramah/list-program/{kluster}', [RatingPenceramahController::class, 'listProgramByKluster']);
+    Route::get('rating-penceramah/list-penceramah/{program}', [RatingPenceramahController::class, 'listPenceramahByProgram']);
+    Route::get('rating-penceramah/list-submodul/{penceramah}/{kursusId}', [RatingPenceramahController::class, 'listPenceramahSubModulsByKursus']);
 
     Route::get('kredit-penceramah', [PenceramahController::class, 'kreditPenceramah'])->name('kredit-penceramah');
     Route::post('credit-penceramah-update', [PenceramahController::class, 'creditPenceramahUpdate'])->name('credit-penceramah-update');

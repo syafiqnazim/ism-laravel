@@ -20,16 +20,9 @@
                             </label>
                             <select id="kluster" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required>
                                 <option value="">Pilih Satu</option>
-                                <option value="1">Professional Development</option>
-                                <option value="2">Social Development</option>
-                                <option value="3">Volunteerism & Social Entrepreneurship</option>
-                                <option value="4">Capacity & Gender Development</option>
-                                <option value="5">Research & Development</option>
-                                <option value="6">Administration and Human Resources Units</option>
-                                <option value="7">Finance Units</option>
-                                <option value="8">Domestic and Maintenance Units</option>
-                                <option value="9">Library and Documentation Centre</option>
-                                <option value="10">Information Technology Units</option>
+                                @foreach ($klusters as $kluster)
+                                    <option value="{{$kluster->id}}">{{$kluster->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="input-form mb-6">

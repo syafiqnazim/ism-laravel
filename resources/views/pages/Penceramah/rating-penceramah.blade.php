@@ -35,42 +35,38 @@
             <thead>
                 <tr class="bg-gray-300">
                     <th class="w-1/12 py-3 border-2 border-gray-400">#</th>
-                    <th class="w-4/12 py-3 border-2 border-gray-400">Nama Penceramah</th>
-                    <th class="w-1/12 py-3 border-2 border-gray-400">I.C. Penceramah</th>
-                    <th class="w-1/12 py-3 border-2 border-gray-400">No. Telefon</th>
-                    <th class="w-2/12 py-3 border-2 border-gray-400">Email</th>
-                    <th class="w-1/12 py-3 border-2 border-gray-400">Sektor</th>
+                    <th class="w-3/12 py-3 border-2 border-gray-400">Nama Penceramah</th>
+                    <th class="w-2/12 py-3 border-2 border-gray-400">Program</th>
+                    <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh Rating</th>
                     <th class="w-2/12 py-3 border-2 border-gray-400">Tindakan</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($penceramahs as $penceramah)
-                <tr class={{$penceramah['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $penceramah['id'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $penceramah['name'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $penceramah['ic_number'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $penceramah['phone_number'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $penceramah['email'] }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $penceramah['sector'] }}</td>
+                @foreach ($ratings as $rating)
+                <tr class={{$rating['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $loop->iteration }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $rating->penceramah->name }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $rating->kursus->nama_kursus }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $rating->updated_at->format('d/m/Y'); }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">
                         <a title="Lihat" class="btn btn-primary p-1" href="javascript:;" data-toggle="modal"
-                            data-target="#view-penceramah-{{ $loop->index }}">
+                            data-target="#view-rating-{{ $loop->index }}">
                             <i data-feather="eye" class="w-3 h-3 text-white"></i>
                         </a>
                         <a title="Edit" class="btn btn-success p-1" href="javascript:;" data-toggle="modal"
-                            data-target="#edit-penceramah-{{ $loop->index }}">
+                            data-target="#edit-rating-{{ $loop->index }}">
                             <i data-feather="edit" class="w-3 h-3 text-white"></i>
                         </a>
                         {{-- <a title="Buka" class="btn btn-warning p-1">
                             <i data-feather="calendar" class="w-3 h-3 text-white"></i>
                         </a> --}}
-                        <a title="Delete" class="btn btn-danger p-1 delete-penceramah" id="{{ $penceramah['id'] }}">
+                        <a title="Delete" class="btn btn-danger p-1 delete-rating" id="{{ $rating['id'] }}">
                             <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
                         </a>
                     </td>
                 </tr>
-                @include('../pages/Penceramah/edit-penceramah-modal', [$loop->index, $penceramah])
-                @include('../pages/Penceramah/view-penceramah-modal', [$loop->index, $penceramah])
+                @include('pages.Penceramah.edit-rating-modal', [$loop->index, $rating])
+                @include('pages.Penceramah.view-rating-modal', [$loop->index, $rating])
                 @endforeach
             </tbody>
         </table>
@@ -102,5 +98,5 @@
 </div>
 <!-- END: Failed Notification Content -->
 
-@include('../pages/Penceramah/tambah-rating-modal')
+@include('pages.Penceramah.tambah-rating-modal', [$klusters])
 @endsection

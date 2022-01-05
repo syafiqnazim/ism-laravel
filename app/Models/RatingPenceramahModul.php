@@ -14,4 +14,9 @@ class RatingPenceramahModul extends Model
         'submodul_kursus_id',
         'rate'
     ];
+
+    public function subModul()
+    {
+        return $this->belongsTo(SubmodulKursus::class, 'submodul_kursus_id');
+    }
 }

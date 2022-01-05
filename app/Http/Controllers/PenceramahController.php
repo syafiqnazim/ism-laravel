@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Penceramah;
 use App\Models\RatingPenceramah;
 use App\Models\SubmodulKursus;
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
 
 class PenceramahController extends Controller
 {
@@ -54,12 +56,14 @@ class PenceramahController extends Controller
     public function ratingPenceramah(Request $request)
     {
         $compactValues = [];
-        $penceramahs = Penceramah::all();
-        $compactValues[] = 'penceramahs';
+        $ratings = RatingPenceramah::all();
+        $compactValues[] = 'ratings';
         $query = '';
         if (isset($request->query()['name'])) {
             $query = $request->query()['name'];
-            $penceramah = Penceramah::where('name', 'like', '%' . $query . '%')->get();
+            $penceramah = RatingPenceramah::has('penceramah', function (Builder $query) {
+                $query->where('name', 'like', '%' . $query . '%');
+            })->get();
         }
         $compactValues[] = 'query';
         $programs = Kursus::all();
@@ -69,21 +73,38 @@ class PenceramahController extends Controller
 
     public function storeRating(Request $request)
     {
-        $kursus = Kursus::find($request->kursus);
-        $penceramah = Penceramah::find($request->penceramah);
-        $rate_1 = $request->rate_teknik_1;
-        $rate_2 = $request->rate_teknik_2;
-        $rate_3 = $request->rate_teknik_3;
+        try{
+            $kursus = Kursus::find($request->program);
+            $penceramah = Penceramah::find($request->penceramah);
+            $rate_1 = $request->rate_teknik_1;
+            $rate_2 = $request->rate_teknik_2;
+            $rate_3 = $request->rate_teknik_3;
 
-        RatingPenceramah::create([
-            'kursus_id'     =>  $kursus->id,
-            'penceramah_id' =>  $penceramah->id,
-            'rate_1'        =>  $rate_1,
-            'rate_2'        =>  $rate_2,
-            'rate_3'        =>  $rate_3
-        ]);
+            $rating = RatingPenceramah::create([
+                'kursus_id'     =>  $kursus->id,
+                'penceramah_id' =>  $penceramah->id,
+                'rate_1'        =>  $rate_1,
+                'rate_2'        =>  $rate_2,
+                'rate_3'        =>  $rate_3
+            ]);
 
-        return response('OK', 201); 
+            $count = 1;
+            while($request->input('rate_modul_' . $count)) {
+                $rating->modulRatings()->create([
+                    'rating_penceramah_id'  =>  $rating->id,
+                    'submodul_kursus_id'    =>  $request->input('modul_' . $count . '_id'),
+                    'rate'                  =>  $request->input('rate_modul_' . $count)
+                ]);
+                $count++;
+            }
+            
+
+            return response('OK', 201); 
+        } catch(Exception $e) {
+            report($e);
+            return response('error ' . $e->getMessage(), 202);
+        }
+        
     }
 
     public function listProgramByKluster($kluster) {
