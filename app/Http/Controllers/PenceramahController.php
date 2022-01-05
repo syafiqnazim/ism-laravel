@@ -107,22 +107,6 @@ class PenceramahController extends Controller
         
     }
 
-    public function listProgramByKluster($kluster) {
-        $programs = Kursus::where('kluster', $kluster)->get();
-        return response()->json($programs);
-    }
-
-    public function listPenceramahByProgram(Kursus $program)
-    {
-        $penceramahs = $program->penceramahs();
-        return response()->json($penceramahs);
-    }
-
-    public function listPenceramahSubModulsByKursus(Penceramah $penceramah, $kursusId)
-    {
-        return $penceramah->subModulKursus()->where('kursus_id', $kursusId)->get();
-    }
-
     /**
      * Store a newly created resource in storage.
      *

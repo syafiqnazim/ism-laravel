@@ -20,7 +20,7 @@
                             <label for="nama_kluster" class="form-label w-full flex flex-col sm:flex-row">
                                 Nama Kluster
                             </label>
-                            <input class="form-control" readonly value="{{ $rating->kursus->kluster->name }}">
+                            <input class="form-control" readonly value="{{ $rating->kursus->kursusKluster->name }}">
                         </div>
                         <div class="input-form mb-6">
                             <label class="form-label w-full flex flex-col sm:flex-row">

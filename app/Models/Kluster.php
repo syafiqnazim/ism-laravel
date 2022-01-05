@@ -15,6 +15,6 @@ class Kluster extends Model
 
     public function kursuses()
     {
-        return $this->hasMany(Kursus::class);
+        return $this->hasMany(Kursus::class, 'kluster');
     }
 }

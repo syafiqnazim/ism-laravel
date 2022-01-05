@@ -33,9 +33,9 @@ class Kursus extends Model
         return Carbon::parse($this->attributes['tarikh_akhir'])->format($this->dateFormat);
     }
 
-    public function kluster()
+    public function kursusKluster()
     {
-        return $this->belongsTo(Kluster::class);
+        return $this->belongsTo(Kluster::class, 'kluster');
     }
 
     public function subModulKursus()
