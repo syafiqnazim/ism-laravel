@@ -44,23 +44,23 @@ class SideMenu
                 ],
                 [
                     // LABEL: HEADER PENGURUSAN KURSUS
-                    'title' => 'Pengurusan Kursus',
+                    'title' => 'Pengurusan Program',
                     'label' => 'header'
                 ],
                 'pendaftaran-kursus' => [
                     'icon' => 'file-text',
                     'route_name' => 'pendaftaran-kursus',
-                    'title' => 'Pendaftaran Kursus',
+                    'title' => 'Pendaftaran Program',
                 ],
                 'penjadualan-kursus' => [
                     'icon' => 'calendar',
                     'route_name' => 'penjadualan-kursus',
-                    'title' => 'Penjadualan Kursus',
+                    'title' => 'Penjadualan Program',
                 ],
                 'rating-kursus' => [
                     'icon' => 'star',
                     'route_name' => 'rating-kursus',
-                    'title' => 'Rating Kursus',
+                    'title' => 'Rating Program',
                 ],
                 [
                     // LABEL: HEADER PENGURUSAN PENCERAMAH
@@ -105,7 +105,7 @@ class SideMenu
                 'tempahan-kursus' => [
                     'icon' => 'calendar',
                     'route_name' => 'tempahan-kursus',
-                    'title' => 'Tempahan Kursus',
+                    'title' => 'Tempahan Program',
                 ],
                 // 'tempahan-fasiliti' => [
                 //     'icon' => 'calendar',
@@ -150,7 +150,7 @@ class SideMenu
                 'laporan-bayaran-kursus' => [
                     'icon' => 'calendar',
                     'route_name' => 'laporan-bayaran-kursus',
-                    'title' => 'Laporan Bayaran Kursus',
+                    'title' => 'Laporan Bayaran Program',
                 ],
                 'laporan-bayaran-penceramah' => [
                     'icon' => 'calendar',
@@ -225,7 +225,7 @@ class SideMenu
                 'laporan-kursus' => [
                     'icon' => 'folder',
                     'route_name' => 'laporan-kursus',
-                    'title' => 'Laporan Kursus',
+                    'title' => 'Laporan Program',
                 ],
 
 
