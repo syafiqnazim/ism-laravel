@@ -18,7 +18,6 @@ class KursusSeeder extends Seeder
         $kursus = [
             [
                 'nama_kursus' => 'Kursus Pengurusan Kewangan',
-                'tajuk_program' => 'Tajuk Program',
                 'objektif_program' => 'Objektif Program',
                 'kapasiti' => '40',
                 'kluster' => '2',
@@ -30,7 +29,6 @@ class KursusSeeder extends Seeder
             ],
             [
                 'nama_kursus' => 'Kursus Pembangunan Ihsan',
-                'tajuk_program' => 'Tajuk Program 1',
                 'objektif_program' => 'Objektif Program 1',
                 'kapasiti' => '30',
                 'kluster' => '3',
@@ -42,7 +40,6 @@ class KursusSeeder extends Seeder
             ],
             [
                 'nama_kursus' => 'Kursus Sukarelawan',
-                'tajuk_program' => 'Tajuk Program 2',
                 'objektif_program' => 'Objektif Program 2',
                 'kapasiti' => '40',
                 'kluster' => '4',
@@ -54,7 +51,6 @@ class KursusSeeder extends Seeder
             ],
             [
                 'nama_kursus' => 'Kursus Kewanitaan',
-                'tajuk_program' => 'Tajuk Program 3',
                 'objektif_program' => 'Objektif Program 3',
                 'kapasiti' => '40',
                 'kluster' => '2',
@@ -66,7 +62,6 @@ class KursusSeeder extends Seeder
             ],
             [
                 'nama_kursus' => 'Program Hari Keluarga',
-                'tajuk_program' => 'Tajuk Program 4',
                 'objektif_program' => 'Objektif Program 4',
                 'kapasiti' => '200',
                 'kluster' => '3',

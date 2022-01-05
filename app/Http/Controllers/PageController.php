@@ -98,6 +98,7 @@ class PageController extends Controller
 
     public function penjadualanKursus(Request $request)
     {
+        $kluster = $request->kluster;
 
         if ($request->query('kluster')) {
             $kursuses = Kursus::where('kluster', $request->query('kluster'))->get();
@@ -108,7 +109,7 @@ class PageController extends Controller
 
         $penceramahs = Penceramah::all();
 
-        return view('pages/kursus/penjadualan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'kluster_name', 'penceramahs' => $penceramahs]);
+        return view('pages/kursus/penjadualan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'kluster_name', 'penceramahs' => $penceramahs, 'kluster' => $kluster]);
     }
 
     public function penjadualanKursusByKluster(Request $request)
@@ -117,6 +118,7 @@ class PageController extends Controller
 
 
         //dd($kluster);
+        
 
         return response()->json(["status" => "success", "kursuses" => $kursuses], 200);
     }

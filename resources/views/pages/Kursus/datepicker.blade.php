@@ -5,10 +5,10 @@
 
 		<div class="input-form mb-6">
 			<label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
-				Tajuk Program
+				Nama Program / Kluster
 			</label>
-			<input id="tajuk_program" name="tajuk_program" type="text" class="form-control" required
-				data-pristine-required-message="Ruangan ini perlu di isi." value="{{$kursus->tajuk_program}}">
+			<input id="nama_kursus" name="nama_kursus" type="text" class="form-control" required
+				data-pristine-required-message="Ruangan ini perlu di isi." value="{{$kursus->nama_kursus}}" readonly>
 		</div>
 
 		<div class="input-form mb-6">

@@ -23,16 +23,16 @@
             <form method="get" id="department-form">
                 <select id="kluster" class="w-full form-select box border-gray-300" required name="kluster" onchange="document.getElementById('department-form').submit()">
                     <option value="">Pilih Satu</option>
-                    <option value="1">Professional Development</option>
-                    <option value="2">Social Development</option>
-                    <option value="3">Volunteerism & Social Entrepreneurship</option>
-                    <option value="4">Capacity & Gender Development</option>
-                    <option value="5">Research & Development</option>
-                    <option value="6">Administration and Human Resources Units</option>
-                    <option value="7">Finance Units</option>
-                    <option value="8">Domestic and Maintenance Units</option>
-                    <option value="9">Library and Documentation Centre</option>
-                    <option value="10">Information Technology Units</option>
+                    <option value="1" {{ ($kluster == 1) ? 'selected' : ''}}>Professional Development</option>
+                    <option value="2" {{ ($kluster == 2) ? 'selected' : ''}}>Social Development</option>
+                    <option value="3" {{ ($kluster == 3) ? 'selected' : ''}}>Volunteerism & Social Entrepreneurship</option>
+                    <option value="4" {{ ($kluster == 4) ? 'selected' : ''}}>Capacity & Gender Development</option>
+                    <option value="5" {{ ($kluster == 5) ? 'selected' : ''}}>Research & Development</option>
+                    <option value="6" {{ ($kluster == 6) ? 'selected' : ''}}>Administration and Human Resources Units</option>
+                    <option value="7" {{ ($kluster == 7) ? 'selected' : ''}}>Finance Units</option>
+                    <option value="8" {{ ($kluster == 8) ? 'selected' : ''}}>Domestic and Maintenance Units</option>
+                    <option value="9" {{ ($kluster == 9) ? 'selected' : ''}}>Library and Documentation Centre</option>
+                    <option value="10" {{ ($kluster == 10) ? 'selected' : ''}}>Information Technology Units</option>
                 </select>
             </form>
             <!-- END: Show Modal Toggle -->
@@ -55,15 +55,23 @@
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['nama_kursus'] }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['kapasiti'] }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">
-
-                                <a onclick="openForm({{ $kursus['id'] }})" class="btn btn-primary">Pilih Tarikh</a>
+                                @php
+                                $url = url()->full();
+                                $kursus_id = $kursus['id'];
+                                
+                                @endphp
+                                <a href="{{$url}}&act={{$kursus_id}}" class="btn btn-primary">Pilih Tarikh</a>
                             </td>
                         </tr>
+                        @if(!empty(request()->act))
+                        @if(request()->act == $kursus_id)
                         <tr id="form{{ $kursus['id'] }}" class="hide">
                             <td colspan="4">
                                 @include('../pages/Kursus/datepicker', [$loop->index, $kursus])
                             </td>
                         </tr>
+                        @endif
+                        @endif
                         @include('../pages/Kursus/datepicker-modal', [$loop->index, $kursus])
 
                         @endforeach
@@ -99,14 +107,29 @@
 </div>
 <!-- END: Failed Notification Content -->
 <script>
+    /*
     $(window).on("load", function() {
+        //$('.hide').hide();
+        @if(!empty(session()->get('sess_kursus_id')))
+        $('.hide').show(); 
+        @else
         $('.hide').hide();
+         
+        @endif
+
     });
 
     function openForm(id) {
+        @if(!empty(session()->get('sess_kursus_id')))
+        $('.hide').show();
+        $('#form' + {{session()->get('sess_kursus_id')}}).toggle();
+        @else
         $('.hide').hide();
         $('#form' + id).toggle();
+        @endif
+        
     }
+    */
 </script>
 
 @include('../pages/Kursus/tambah-penjadualan-kursus-modal', [$kursuses])

@@ -83,11 +83,10 @@ class KursusController extends Controller
 
     public function updateKursus(Request $request)
     {
-        $today = date('Y-m-d');
-        $id = $request->id;
+        $today = date('Y-m-d'); 
         Kursus::where('id', $id)
             ->update([
-                "tajuk_program" => $request->tajuk_program,
+                
                 "objektif_program" => $request->objektif_program,
                 "tarikh_mula" => date("Y-m-d", strtotime($request->tarikh_mula)),
                 "tarikh_akhir" => date("Y-m-d", strtotime($request->tarikh_akhir . ' +1 day')),
