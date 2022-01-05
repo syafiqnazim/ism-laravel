@@ -21,14 +21,15 @@ class RatingPenceramahController extends Controller
     {
         $compactValues = [];
         $ratings = RatingPenceramah::all();
-        $compactValues[] = 'ratings';
-        $query = '';
-        if (isset($request->query()['name'])) {
-            $query = $request->query()['name'];
-            $penceramah = RatingPenceramah::has('penceramah', function (Builder $query) {
-                $query->where('name', 'like', '%' . $query . '%');
+        $search = '';
+        if (isset($request->query()['nama_penceramah'])) {
+            $search = $request->query()['nama_penceramah'];
+            $ratings = RatingPenceramah::whereHas('penceramah', function (Builder $query) use($search) {
+                $query->where('name', 'like', '%' . $search . '%');
             })->get();
         }
+        $query = $search;
+        $compactValues[] = 'ratings';
         $compactValues[] = 'query';
         $programs = Kursus::all();
         $compactValues[] = 'programs';
