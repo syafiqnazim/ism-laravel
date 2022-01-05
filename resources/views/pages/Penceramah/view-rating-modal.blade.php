@@ -33,7 +33,7 @@
                             <div class="col-span-2 py-3 border-2 border-gray-400">Nilai</div>
                         </div>
                         @foreach ($rating->modulRatings as $submodul)
-                        <div class="grid grid-cols-6 text-center gap-0">
+                        <div class="grid grid-cols-6 text-center gap-0 {{ $loop->even?'bg-gray-300':'' }}">
                             <div class="py-3 border-2 border-r-0 border-t-0 border-gray-400">{{ $loop->iteration }}</div>
                             <div class="col-span-3 py-3 border-2 border-r-0 border-t-0 border-gray-400">{{ $submodul->subModul->nama_submodul }}</div>
                             <div class="col-span-2 py-3 border-2 border-t-0 border-gray-400 font-extrabold">{{ $submodul->rate }}</div>

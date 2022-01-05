@@ -115,7 +115,7 @@ import momentPlugin from "@fullcalendar/moment";
             let str = '';
             let count = 1;
             response.data.forEach(element => {
-                str += `<tr>
+                str += `<tr class="${count%2?'':'bg-gray-300'}">
                             <input type="hidden" name="modul_${count}_id" value="${element.id}" />
                             <td class="py-3 border-2 border-gray-400">${count}</td>
                             <td class="py-3 border-2 border-gray-400">${element.nama_submodul}</td>
