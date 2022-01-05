@@ -119,6 +119,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('profil-penceramah', [PenceramahController::class, 'profilPenceramah'])->name('profil-penceramah');
     Route::get('rating-penceramah', [PenceramahController::class, 'ratingPenceramah'])->name('rating-penceramah');
+    Route::post('rating-penceramah', [PenceramahController::class, 'storeRating'])->name('store-rating-penceramah');
     Route::get('rating-penceramah/list-program/{kluster}', [PenceramahController::class, 'listProgramByKluster']);
     Route::get('rating-penceramah/list-penceramah/{program}', [PenceramahController::class, 'listPenceramahByProgram']);
     Route::get('rating-penceramah/list-submodul/{penceramah}/{kursusId}', [PenceramahController::class, 'listPenceramahSubModulsByKursus']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kursus;
 use Illuminate\Http\Request;
 use App\Models\Penceramah;
+use App\Models\RatingPenceramah;
 use App\Models\SubmodulKursus;
 
 class PenceramahController extends Controller
@@ -64,6 +65,25 @@ class PenceramahController extends Controller
         $programs = Kursus::all();
         $compactValues[] = 'programs';
         return view('pages.penceramah.rating-penceramah', compact($compactValues));
+    }
+
+    public function storeRating(Request $request)
+    {
+        $kursus = Kursus::find($request->kursus);
+        $penceramah = Penceramah::find($request->penceramah);
+        $rate_1 = $request->rate_teknik_1;
+        $rate_2 = $request->rate_teknik_2;
+        $rate_3 = $request->rate_teknik_3;
+
+        RatingPenceramah::create([
+            'kursus_id'     =>  $kursus->id,
+            'penceramah_id' =>  $penceramah->id,
+            'rate_1'        =>  $rate_1,
+            'rate_2'        =>  $rate_2,
+            'rate_3'        =>  $rate_3
+        ]);
+
+        return response('OK', 201); 
     }
 
     public function listProgramByKluster($kluster) {

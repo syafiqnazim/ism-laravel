@@ -9,7 +9,7 @@
 <div id="rating-penceramah" class="modal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog mt-10">
         <div class="modal-content">
-            <form action="{{url('penceramah/')}}" method="post" class="rate-penceramah-form">
+            <form action="{{url('penceramah/')}}" method="post" id="rate-penceramah-form">
                 @csrf
                 <div class="modal-body p-0">
                     <div class="p-5 text-center">
@@ -18,7 +18,7 @@
                             <label for="nama_kluster" class="form-label w-full flex flex-col sm:flex-row">
                                 Nama Kluster
                             </label>
-                            <select id="nama_kluster" name="nama_kluster" class="w-full form-select box border-gray-300" data-pristine-required>
+                            <select id="kluster" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required>
                                 <option value="">Pilih Satu</option>
                                 <option value="1">Professional Development</option>
                                 <option value="2">Social Development</option>
@@ -33,18 +33,18 @@
                             </select>
                         </div>
                         <div class="input-form mb-6">
-                            <label for="tajuk_program" class="form-label w-full flex flex-col sm:flex-row">
+                            <label for="program" class="form-label w-full flex flex-col sm:flex-row">
                                 Tajuk Program
                             </label>
-                            <select id="tajuk_program" name="tajuk_program" class="w-full form-select box border-gray-300" data-pristine-required>
+                            <select id="program" name="program" class="w-full form-select box border-gray-300" data-pristine-required>
                                 <option value="">Pilih Satu</option>
                             </select>
                         </div>
                         <div class="input-form mb-6">
-                            <label for="nama_penceramah" class="form-label w-full flex flex-col sm:flex-row">
+                            <label for="penceramah" class="form-label w-full flex flex-col sm:flex-row">
                                 Nama Penceramah
                             </label>
-                            <select id="nama_penceramah" name="nama_penceramah" class="w-full form-select box border-gray-300" data-pristine-required>
+                            <select id="penceramah" name="penceramah" class="w-full form-select box border-gray-300" data-pristine-required>
                                 <option selected>Pilih Satu</option>
                             </select>
                         </div>

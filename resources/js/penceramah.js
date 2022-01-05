@@ -48,7 +48,7 @@ import momentPlugin from "@fullcalendar/moment";
         }
     });
 
-    cash("#nama_kluster").on('change', async (event) => {
+    cash("#kluster").on('change', async (event) => {
         if(event.target.value == "") return false;
         axios.get('rating-penceramah/list-program/' + event.target.value)
         .then((response) => {
@@ -56,11 +56,11 @@ import momentPlugin from "@fullcalendar/moment";
             response.data.forEach(element => {
                 str += `<option value="${element.id}">${element.nama_kursus}</option>`
             });
-            cash('#tajuk_program').html(str);
+            cash('#program').html(str);
         });
     });
 
-    cash("#tajuk_program").on('change', async (event) => {
+    cash("#program").on('change', async (event) => {
         if(event.target.value == "") return false;
         axios.get('rating-penceramah/list-penceramah/' + event.target.value)
         .then((response) => {
@@ -68,13 +68,13 @@ import momentPlugin from "@fullcalendar/moment";
             response.data.forEach(element => {
                 str += `<option value="${element.id}">${element.name}</option>`
             });
-            cash('#nama_penceramah').html(str);
+            cash('#penceramah').html(str);
         });
     });
 
-    cash("#nama_penceramah").on('change', async (event) => {
+    cash("#penceramah").on('change', async (event) => {
         if(event.target.value == "") return false;
-        axios.get('rating-penceramah/list-submodul/' + event.target.value + '/' + cash("#tajuk_program").val())
+        axios.get('rating-penceramah/list-submodul/' + event.target.value + '/' + cash("#program").val())
         .then((response) => {
             let str = '';
             let count = 1;
@@ -123,24 +123,28 @@ import momentPlugin from "@fullcalendar/moment";
         });
     });
 
-    let pristine = new Pristine(cash("#rate-penceramah-form"), {
-        classTo: "input-form",
-        errorClass: "has-error",
-        errorTextParent: "input-form",
-        errorTextClass: "text-theme-24 mt-2",
-    });
-
     cash("#rate-penceramah").on("click", async function (e) {
         e.preventDefault();
-        ratePenceramah(pristine);
+        ratePenceramah(initPristine());
     });
 
-    cash(".rate-penceramah-form").on("keyup", function (e) {
+    cash("#rate-penceramah-form").on("keyup", function (e) {
         if (e.keyCode === 13) {
             e.preventDefault();
-            ratePenceramah(pristine);
+            ratePenceramah(initPristine());
         }
     });
+
+    function initPristine() {
+        let pristine = new Pristine(document.getElementById('rate-penceramah-form'), {
+            classTo: "input-form",
+            errorClass: "has-error",
+            errorTextParent: "input-form",
+            errorTextClass: "text-theme-24 mt-2",
+        });
+
+        return pristine;
+    }
 
     async function ratePenceramah(pristine) {
         cash("#rate-penceramah")
@@ -169,10 +173,9 @@ import momentPlugin from "@fullcalendar/moment";
         }
 
         // Post form
-        var formData = new FormData(cash('#rate-penceramah-form'))
-        const response = await axios.post(`rate-penceramah`, {
-        });
-
+        var formData = new FormData(document.getElementById('rate-penceramah-form'))
+        const response = await axios.post(`rating-penceramah`, formData);
+        console.log(response)
         if (response.status === 201) {
             Toastify({
                 node: cash("#success-notification-content")
