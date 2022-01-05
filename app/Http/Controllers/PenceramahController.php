@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kursus;
 use Illuminate\Http\Request;
 use App\Models\Penceramah;
+use App\Models\RatingPenceramah;
+use App\Models\SubmodulKursus;
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
 
 class PenceramahController extends Controller
 {
@@ -50,9 +55,57 @@ class PenceramahController extends Controller
 
     public function ratingPenceramah(Request $request)
     {
-        return view('pages/error/construction-page');
+        $compactValues = [];
+        $ratings = RatingPenceramah::all();
+        $compactValues[] = 'ratings';
+        $query = '';
+        if (isset($request->query()['name'])) {
+            $query = $request->query()['name'];
+            $penceramah = RatingPenceramah::has('penceramah', function (Builder $query) {
+                $query->where('name', 'like', '%' . $query . '%');
+            })->get();
+        }
+        $compactValues[] = 'query';
+        $programs = Kursus::all();
+        $compactValues[] = 'programs';
+        return view('pages.penceramah.rating-penceramah', compact($compactValues));
     }
 
+    public function storeRating(Request $request)
+    {
+        try{
+            $kursus = Kursus::find($request->program);
+            $penceramah = Penceramah::find($request->penceramah);
+            $rate_1 = $request->rate_teknik_1;
+            $rate_2 = $request->rate_teknik_2;
+            $rate_3 = $request->rate_teknik_3;
+
+            $rating = RatingPenceramah::create([
+                'kursus_id'     =>  $kursus->id,
+                'penceramah_id' =>  $penceramah->id,
+                'rate_1'        =>  $rate_1,
+                'rate_2'        =>  $rate_2,
+                'rate_3'        =>  $rate_3
+            ]);
+
+            $count = 1;
+            while($request->input('rate_modul_' . $count)) {
+                $rating->modulRatings()->create([
+                    'rating_penceramah_id'  =>  $rating->id,
+                    'submodul_kursus_id'    =>  $request->input('modul_' . $count . '_id'),
+                    'rate'                  =>  $request->input('rate_modul_' . $count)
+                ]);
+                $count++;
+            }
+            
+
+            return response('OK', 201); 
+        } catch(Exception $e) {
+            report($e);
+            return response('error ' . $e->getMessage(), 202);
+        }
+        
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -151,7 +204,7 @@ class PenceramahController extends Controller
     public function creditPenceramahUpdate(Request $request)
     {
         Penceramah::where('id', $request->id)
-            ->update([ 
+            ->update([
                 "credit" => $request->credit,
             ]);
         return back();

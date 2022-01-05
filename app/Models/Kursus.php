@@ -13,7 +13,7 @@ class Kursus extends Model
     protected $fillable = [
         "nama_kursus",
         "kapasiti",
-        "kluster",
+        "kluster_id",
         "peruntukan",
         "bilik",
         "tarikh_mula",
@@ -31,5 +31,28 @@ class Kursus extends Model
     public function getEndDateAttribute($date)
     {
         return Carbon::parse($this->attributes['tarikh_akhir'])->format($this->dateFormat);
+    }
+
+    public function kursusKluster()
+    {
+        return $this->belongsTo(Kluster::class, 'kluster');
+    }
+
+    public function subModulKursus()
+    {
+        return $this->hasMany(SubmodulKursus::class);
+    }
+
+    public function penceramahs()
+    {
+        $submoduls = $this->subModulKursus;
+        $penceramahs = collect();
+        foreach($submoduls as $submodul) {
+            if(!$penceramahs->contains('id', $submodul->penceramah->id)) {
+                $penceramahs->push($submodul->penceramah);
+            }
+        }
+
+        return $penceramahs;
     }
 }
