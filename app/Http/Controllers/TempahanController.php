@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tempahan;
+use App\Models\Asrama;
 use App\Models\Kursus;
 use App\Models\TempahanKenderaan;
 use App\Models\Role;
 use App\Models\SenaraiKenderaan;
 use App\Models\SenaraiPemandu;
+use App\Models\Peserta;
 use Illuminate\Http\Request;
 
 class TempahanController extends Controller
@@ -169,7 +171,56 @@ class TempahanController extends Controller
             $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
         }
 
-        return view('pages/tempahan/tempahan-asrama')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+        if (isset($request->tarikh_masuk) && isset($request->tarikh_keluar) && isset($request->id_asrama) && isset($request->tempah)) {
+            dd($request->tempah);
+
+        }else if (isset($request->tarikh_masuk) && isset($request->tarikh_keluar) && isset($request->id_asrama)) {
+            $tarikh_masuk = $request->tarikh_masuk;
+            $tarikh_keluar = $request->tarikh_keluar;
+            $id_asrama = $request->id_asrama;
+
+            $kapasiti_asrama = Asrama::where('id',$id_asrama)->select('kapasiti')->first();
+
+            $asramas = Asrama::get();
+            $pesertas = Peserta::get();
+            $step=2;
+
+        }else if (isset($request->tarikh_masuk) && isset($request->tarikh_keluar)) {
+            $tarikh_masuk = $request->tarikh_masuk;
+            $tarikh_keluar = $request->tarikh_keluar;
+            $id_asrama = '';
+
+            $kapasiti_asrama = '';
+
+            $asramas = Asrama::get();
+            $pesertas = Peserta::get();
+            $step=1;
+        }else{
+            $tarikh_masuk = '';
+            $tarikh_keluar ='';
+            $id_asrama = '';
+            $kapasiti_asrama = '';
+
+            $asramas = Asrama::get();
+            $pesertas = Peserta::get();
+            $step=0;
+        }
+        //dd($kapasiti_asrama->kapasiti);
+
+        return view('pages/tempahan/tempahan-asrama')->with(
+        [
+            'roles' => Role::all(), 
+            'kursuses' => $kursuses, 
+            'tarikh_masuk' => $tarikh_masuk, 
+            'tarikh_keluar' => $tarikh_keluar, 
+            'asramas' => $asramas, 
+            'pesertas' => $pesertas, 
+            'id_asrama' => $id_asrama, 
+            'kapasiti_asrama' => $kapasiti_asrama, 
+            'step' => $step, 
+            'query' => $query
+        
+        ]);
     }
 
     public function tempahanPeralatanIct(Request $request)

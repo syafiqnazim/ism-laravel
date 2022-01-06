@@ -2,18 +2,28 @@
 
 @section('subhead')
 <title>Penjadualan Kursus | MyISM</title>
+
+
 @endsection
 
 @section('subcontent')
+  
+
 <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Tempahan Asrama</h2>
 <div class="grid grid-cols-12 gap-5 mt-5">
     <!-- BEGIN: Calendar Side Menu -->
     <div class="col-span-12 xl:col-span-6">
         <div class="box p-5 intro-y">
             <!-- BEGIN: Show Modal Toggle -->
-            <div class="text-center">
-                <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">Senarai Tempahan Asrama</h2>
+            <div class="flex justify-between items-center">
+                <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center">Senarai Tempahan Asrama</h2>
+                <a class="btn btn-primary shadow-md mr-2" href="javascript:;" data-toggle="modal"
+                    data-target="#tambah-tempahan-asrama-baru"  >
+                    Tempahan Baru
+                </a>
             </div>
+
+ 
             <!-- END: Show Modal Toggle -->
             <div class="border-t border-b border-gray-200 mt-6 mb-5 py-3" id="calendar-events">
                 {{-- @include('../pages/Kursus/datepicker-modal') --}}
@@ -88,4 +98,7 @@
 <!-- END: Failed Notification Content -->
 
 {{-- @include('../pages/Kursus/datepicker-modal') --}}
+@include('../pages/Tempahan/tambah-tempahan-asrama-modal')
+ 
+
 @endsection
