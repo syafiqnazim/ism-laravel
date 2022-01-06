@@ -72,7 +72,7 @@
                           
                                 <div class="grid-cols-1 input-form">
                                     <label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
-                                        Asrama(Bilik)
+                                        Asrama(Bilik) Available
                                     </label>
                                     <select id="id_asrama" class="w-full form-select box border-gray-300" required
                                         name="id_asrama" onchange="this.form.submit()">
@@ -118,7 +118,7 @@
                           
                                 <div class="grid-cols-1 input-form">
                                     <label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
-                                        Asrama(Bilik)
+                                        Asrama(Bilik) Available
                                     </label>
                                     <select id="id_asrama" class="w-full form-select box border-gray-300" required
                                         name="id_asrama" onchange="this.form.submit()">
@@ -136,7 +136,7 @@
                                     </label>
                                     
                                     
-                                    <select data-placeholder="Pilih <?php echo $kapasiti_asrama->kapasiti; ?> peserta sahaja" class="tom-select w-full" multiple>
+                                    <select data-placeholder="Pilih <?php echo $kapasiti_asrama->kapasiti; ?> peserta sahaja" class="tom-select w-full" multiple required>
                                         <option value="">Pilih Satu</option>
                                         @foreach ($pesertas as $peserta)
                                         <option value="{{ $peserta['id'] }}">
@@ -146,6 +146,26 @@
                                 
                             
                                 </div>
+
+                                <div class="grid-cols-1 input-form">
+                                    <label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
+                                        Nama Kursus
+                                    </label>
+                                    
+                                    
+                                    <select id="nama_kursus" class="w-full form-select box border-gray-300" required
+                                    name="nama_kursus">
+                                    <option value="">Pilih Satu</option>
+                                    @foreach ($kursuses as $kursus)
+                                    <option value="{{$kursus->nama_kursus}}">{{$kursus->nama_kursus}} ( {{$kursus->start_date}} - {{$kursus->end_date}} )</option>
+                                    @endforeach
+                                </select>
+                                
+                            
+                                </div>
+
+                                
+                               
                          
 
                                 @endif
