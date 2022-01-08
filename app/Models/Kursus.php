@@ -13,7 +13,7 @@ class Kursus extends Model
     protected $fillable = [
         "nama_kursus",
         "kapasiti",
-        "kluster_id",
+        "kluster",
         "peruntukan",
         "bilik",
         "tarikh_mula",
@@ -47,8 +47,8 @@ class Kursus extends Model
     {
         $submoduls = $this->subModulKursus;
         $penceramahs = collect();
-        foreach($submoduls as $submodul) {
-            if(!$penceramahs->contains('id', $submodul->penceramah->id)) {
+        foreach ($submoduls as $submodul) {
+            if (!$penceramahs->contains('id', $submodul->penceramah->id)) {
                 $penceramahs->push($submodul->penceramah);
             }
         }
