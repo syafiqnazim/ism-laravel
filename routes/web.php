@@ -19,6 +19,7 @@ use App\Http\Controllers\SenaraiPemanduController;
 use App\Http\Controllers\SubmodulKursusController;
 use App\Http\Controllers\PengurusanSijilController;
 use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\RatingKursusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,10 @@ Route::middleware('auth')->group(function () {
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
     Route::get('jadual-kursus/{id}', [PageController::class, 'jadualKursus'])->name('jadual-kursus');
     Route::get('laporan-kursus', [PageController::class, 'laporanKursus'])->name('laporan-kursus');
-    Route::get('rating-kursus', [PageController::class, 'ratingKursus'])->name('rating-kursus');
+    //RatingKursusController
+    Route::get('rating-kursus/list-submodul/{id}', [RatingKursusController::class, 'listKursusSubmodul']);
+    Route::get('rating-kursus/list-objektif/{id}', [RatingKursusController::class, 'listKursusObjektif']);
+    Route::resource('rating-kursus', RatingKursusController::class, ['only' => ['index', 'store', 'update', 'destroy']]);
 
     // AsramaController
     Route::resource('asrama', AsramaController::class, ['only' => ['store', 'update']]);
@@ -84,8 +88,7 @@ Route::middleware('auth')->group(function () {
     Route::get('jadual-kenderaan', [TempahanController::class, 'kenderaan'])->name('jadual-kenderaan');
     Route::get('tempahan-1mtc', [TempahanController::class, 'tempahan1mtc'])->name('tempahan-1mtc');
     Route::get('tempahan-fasiliti', [TempahanController::class, 'tempahanFasiliti'])->name('tempahan-fasiliti');
-    Route::get('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asrama');
-    Route::post('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asrama');
+    Route::any('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asrama');
     Route::get('tempahan-peralatan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('tempahan-peralatan-ict');
 
     // KewanganController

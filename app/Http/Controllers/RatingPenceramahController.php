@@ -39,7 +39,7 @@ class RatingPenceramahController extends Controller
     }
 
     public function listProgramByKluster($kluster) {
-        $programs = Kursus::where('kluster_id', $kluster)->get();
+        $programs = Kursus::where('kluster', $kluster)->get();
         return response()->json($programs);
     }
 

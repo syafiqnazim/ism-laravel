@@ -13,7 +13,7 @@ class Kursus extends Model
     protected $fillable = [
         "nama_kursus",
         "kapasiti",
-        "kluster_id",
+        "kluster",
         "peruntukan",
         "bilik",
         "tarikh_mula",
@@ -54,5 +54,10 @@ class Kursus extends Model
         }
 
         return $penceramahs;
+    }
+
+    public function objektifs()
+    {
+        return $this->hasMany(ObjektifKursus::class);
     }
 }
