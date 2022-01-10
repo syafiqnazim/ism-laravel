@@ -255,6 +255,12 @@ import dayjs from "dayjs";
         });
     });
 
+    cash('#rate-kursus-form').on('submit', function(event) {
+        event.preventDefault();
+        console.log(event.target);
+        rateKursus(initPristine(event.target));
+    });
+
     async function rateKursus(pristine) {
         cash("#rate-kursus")
             .html(
@@ -267,13 +273,13 @@ import dayjs from "dayjs";
         if (!valid) {
             failedToast();
 
-            cash("#rate-kursus").html("Rate Penceramah");
+            cash("#rate-kursus").html("Rate Kursus");
             return;
         }
 
         // Post form
-        var formData = new FormData(document.getElementById('rate-penceramah-form'))
-        const response = await axios.post(`rating-penceramah`, formData);
+        var formData = new FormData(document.getElementById('rate-kursus-form'))
+        const response = await axios.post(`rating-kursus`, formData);
         if (response.status === 201) {
             Toastify({
                 node: cash("#success-notification-content")
@@ -289,10 +295,10 @@ import dayjs from "dayjs";
 
             await helper.delay(3000);
 
-            location.href = "/rating-penceramah";
+            location.href = "/rating-kursus";
         } else {
             failedToast();
-            cash("#rate-penceramah").html("Rate Penceramah");
+            cash("#rate-penceramah").html("Rate Kursus");
         }
     }
 

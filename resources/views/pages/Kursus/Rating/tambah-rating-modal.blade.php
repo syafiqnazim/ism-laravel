@@ -113,12 +113,12 @@
                                         <div class="col-span-1 input-form">
                                             <div class="flex flex-row items-start justify-center md:space-x-3">
                                                 <div>
-                                                    <input type="radio" id="rate_3_1" name="rate_3" value="1" data-pristine-required>
-                                                    <label for="rate_1_1">Ya</label><br>
+                                                    <input type="radio" id="rate_4_1" name="rate_4" value="1" data-pristine-required>
+                                                    <label for="rate_4_1">Ya</label><br>
                                                 </div>
                                                 <div>
-                                                    <input type="radio" id="rate_3_2" name="rate_3" value="0" data-pristine-required>
-                                                    <label for="rate_3_2">Tidak</label><br>
+                                                    <input type="radio" id="rate_4_2" name="rate_4" value="0" data-pristine-required>
+                                                    <label for="rate_4_2">Tidak</label><br>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,7 +128,7 @@
                         </div>
                         <div class="mb-6 text-left">
                             <p class="text-blue-700 font-bold">5. Cadangan Kursus</p>
-                            <textarea id="suggestion" name="suggestion" type="text" class="form-control" required="" data-pristine-required-message="Ruangan ini perlu di isi."></textarea>
+                            <textarea id="suggestion" name="suggestion" type="text" class="form-control"></textarea>
                         </div>
                         <div class="mb-6 text-left">
                             <p class="text-blue-700 font-bold">6. Makanan</p>
@@ -255,7 +255,7 @@
                                     <td class="py-3 border-2 border-gray-400">Komen/Cadangan Lain</td>
                                     <td class="py-3 border-2 border-gray-400">
                                         <div class="px-3 input-form">
-                                            <textarea id="food_suggestion" name="food_suggestion" type="text" class="form-control" required="" data-pristine-required-message="Ruangan ini perlu di isi."></textarea>
+                                            <textarea id="food_suggestion" name="food_suggestion" type="text" class="form-control"></textarea>
                                         </div>
                                     </td>
                                 </tr>
@@ -263,7 +263,7 @@
                         </div>
                     </div>
                     <div class="px-5 pb-8 text-center">
-                        <button id="rate-penceramah" type="submit" class="btn btn-primary mr-1">
+                        <button id="rate-kursus" type="submit" class="btn btn-primary mr-1">
                             Rate Program
                         </button>
                     </div>
