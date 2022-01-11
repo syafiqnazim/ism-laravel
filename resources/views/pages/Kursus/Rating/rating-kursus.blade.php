@@ -43,7 +43,7 @@
             </thead>
             <tbody>
                 @foreach ($ratings as $rating)
-                <tr class={{$rating['id'] % 2 == 0 ? 'bg-gray-300' : 'bg-none'}}>
+                <tr class={{$rating['id'] % 2 == 0 ? 'bg-none' : 'bg-gray-300'}}>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $loop->iteration }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $rating->kursus->nama_kursus }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">{{ $rating->kursus->kursusKluster->name }}</td>

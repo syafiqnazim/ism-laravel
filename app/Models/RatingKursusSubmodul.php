@@ -20,7 +20,7 @@ class RatingKursusSubmodul extends Model
         return $this->BelongsTo(RatingKursus::class);
     }
 
-    public function submodul()
+    public function submodulKursus()
     {
         return $this->belongsTo(SubmodulKursus::class);
     }

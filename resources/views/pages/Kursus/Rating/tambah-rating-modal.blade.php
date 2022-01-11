@@ -113,11 +113,11 @@
                                         <div class="col-span-1 input-form">
                                             <div class="flex flex-row items-start justify-center md:space-x-3">
                                                 <div>
-                                                    <input type="radio" id="rate_4_1" name="rate_4" value="1" data-pristine-required>
+                                                    <input type="radio" id="rate_4_1" name="rate_3" value="1" data-pristine-required>
                                                     <label for="rate_4_1">Ya</label><br>
                                                 </div>
                                                 <div>
-                                                    <input type="radio" id="rate_4_2" name="rate_4" value="0" data-pristine-required>
+                                                    <input type="radio" id="rate_4_2" name="rate_3" value="0" data-pristine-required>
                                                     <label for="rate_4_2">Tidak</label><br>
                                                 </div>
                                             </div>
@@ -156,7 +156,7 @@
                                 </tr>
                                 <tr class="bg-gray-300">
                                     <td class="py-3 border-2 border-gray-400">2</td>
-                                    <td class="py-3 border-2 border-gray-400">Makanan Mencukui</td>
+                                    <td class="py-3 border-2 border-gray-400">Makanan Mencukupi</td>
                                     <td class="py-3 border-2 border-gray-400">
                                         <div class="col-span-1 input-form">
                                             <div class="flex flex-row items-start justify-center md:space-x-3">

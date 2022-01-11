@@ -18,10 +18,10 @@ class RatingKursusObjektif extends Model
 
     public function ratingKursus() 
     {
-        return $this->BelongsTo(RatingKursus::class);
+        return $this->belongsTo(RatingKursus::class);
     }
 
-    public function objektif()
+    public function objektifKursus()
     {
         return $this->belongsTo(ObjektifKursus::class);
     }

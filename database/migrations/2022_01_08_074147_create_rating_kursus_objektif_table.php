@@ -13,7 +13,7 @@ class CreateRatingKursusObjektifTable extends Migration
      */
     public function up()
     {
-        Schema::create('rating_kursus_objektif', function (Blueprint $table) {
+        Schema::create('rating_kursus_objektifs', function (Blueprint $table) {
             $table->id();
             $table->integer('rating_kursus_id');
             $table->integer('objektif_kursus_id');

@@ -257,9 +257,58 @@ import dayjs from "dayjs";
 
     cash('#rate-kursus-form').on('submit', function(event) {
         event.preventDefault();
-        console.log(event.target);
         rateKursus(initPristine(event.target));
     });
+
+    cash('.edit-kursus-form').on('submit', function(event) {
+        event.preventDefault();
+        updateRatingKursus(initPristine(event.target), event.target);
+    });
+
+    async function updateRatingKursus(pristine, form) {
+        cash(".update-rating-kursus")
+            .html(
+                '<i data-loading-icon="oval" data-color="white" class="w-5 h-5 mx-auto"></i>'
+            )
+            .svgLoader();
+
+        let valid = pristine.validate();
+
+        if (!valid) {
+            failedToast();
+
+            cash(".update-rating-kursus").html("Tukar Maklumat");
+            return;
+        }
+
+        // Post form
+        var formData = new FormData(form);
+        var data = {};
+        for (var [key, value] of formData.entries()) { 
+            data[key] = value;
+        }
+        const response = await axios.put(`rating-kursus/${cash(form).data('id')}`, data);
+        if (response.status === 201) {
+            Toastify({
+                node: cash("#success-notification-content")
+                    .clone()
+                    .removeClass("hidden")[0],
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+            }).showToast();
+
+            await helper.delay(3000);
+
+            location.href = "/rating-kursus";
+        } else {
+            failedToast();
+            cash(".update-rating-kursus").html("Tukar Maklumat");
+        }
+    }
 
     async function rateKursus(pristine) {
         cash("#rate-kursus")
@@ -298,7 +347,7 @@ import dayjs from "dayjs";
             location.href = "/rating-kursus";
         } else {
             failedToast();
-            cash("#rate-penceramah").html("Rate Kursus");
+            cash("#rate-kursus").html("Rate Kursus");
         }
     }
 

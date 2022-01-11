@@ -13,7 +13,7 @@ class CreateRatingKursusSubmodulTable extends Migration
      */
     public function up()
     {
-        Schema::create('rating_kursus_submodul', function (Blueprint $table) {
+        Schema::create('rating_kursus_submoduls', function (Blueprint $table) {
             $table->id();
             $table->integer('rating_kursus_id');
             $table->integer('submodul_kursus_id');
