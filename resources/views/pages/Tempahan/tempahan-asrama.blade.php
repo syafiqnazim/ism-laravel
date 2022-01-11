@@ -65,7 +65,9 @@
                             <td class="text-center py-3 border-2 border-gray-400">{{ date("d/m/Y", strtotime($tempahanAsrama->tarikh_masuk)) }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">{{ date("d/m/Y", strtotime($tempahanAsrama->tarikh_keluar)) }}</td>
                             <td class="text-center py-3 border-2 border-gray-400">
-                                 
+                                <a href="{{ route('tempahan-asrama-destroy', ['id' => $tempahanAsrama['id']]) }}" title="Delete" class="btn btn-danger p-1 delete-peserta" id="{{ $tempahanAsrama['id'] }}">
+                                    <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
+                                </a>
                             </td>
                         </tr>
                         @endforeach

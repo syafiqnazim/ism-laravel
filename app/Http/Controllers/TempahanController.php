@@ -339,6 +339,13 @@ class TempahanController extends Controller
         ]);
     }
 
+    public function tempahanAsramaDestroy($id)
+    {
+        TempahanAsrama::find($id)->delete();
+        TempahanPesertaAsrama::where('tempahan_asrama_id',$id)->delete();
+        return back();
+    }
+
     public function tempahanPeralatanIct(Request $request)
     {
         $kursuses = Kursus::all();

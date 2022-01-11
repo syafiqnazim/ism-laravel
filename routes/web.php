@@ -86,6 +86,7 @@ Route::middleware('auth')->group(function () {
     Route::get('tempahan-fasiliti', [TempahanController::class, 'tempahanFasiliti'])->name('tempahan-fasiliti');
     Route::get('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asrama');
     Route::post('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asrama');
+    Route::get('tempahan-asrama-destroy/{id}', [TempahanController::class, 'tempahanAsramaDestroy'])->name('tempahan-asrama-destroy');
     Route::get('tempahan-peralatan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('tempahan-peralatan-ict');
 
     // KewanganController
