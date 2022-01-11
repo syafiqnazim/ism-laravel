@@ -11,6 +11,18 @@
                 @csrf
                 <div class="modal-body p-0">
                     <div class="p-5 text-center">
+
+                        @if(Session::has('msg_error'))
+                        <div class="alert alert-danger alert-dismissible show flex items-center mb-2" role="alert">
+                            <i data-feather="alert-octagon" class="w-6 h-6 mr-2"></i>{{Session::get('msg_error')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                <i data-feather="x" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        @endif
+                       
+
+
                         <h5 class="intro-x font-bold text-2xl xl:text-3xl text-center mb-6">Tempahan Baru</h5>
                         <div class="grid grid-cols-2 gap-2 mb-6">
 
@@ -59,15 +71,15 @@
                                         $tarikh_keluar = date('Y-m-d');
                                     }
                                 @endphp
-                                <input id="modal-datepicker-1" name="tarikh_masuk" type="text" class="form-control" required
-                                    data-pristine-required-message="Ruangan ini perlu di isi." data-single-mode="true" value="{{ date(" j M Y", strtotime($tarikh_masuk)) }}" readonly>
+                                <input id="modal-datepicker-1" name="tarikh_masuk" type="text" class="datepicker form-control" required
+                                    data-pristine-required-message="Ruangan ini perlu di isi." data-single-mode="true" value="{{ date(" j M Y", strtotime($tarikh_masuk)) }}" >
                             </div>
                             <div class="grid-cols-1 input-form">
                                 <label for="register-form-1" class="form-label w-full flex flex-col sm:flex-row">
                                     Tarikh Keluar
                                 </label>
-                                <input id="modal-datepicker-2" name="tarikh_keluar" type="text" class="form-control" required
-                                    data-pristine-required-message="Ruangan ini perlu di isi." data-single-mode="true" value="{{ date(" j M Y", strtotime($tarikh_keluar)) }}" readonly>
+                                <input id="modal-datepicker-2" name="tarikh_keluar" type="text" class="datepicker form-control" required
+                                    data-pristine-required-message="Ruangan ini perlu di isi." data-single-mode="true" value="{{ date(" j M Y", strtotime($tarikh_keluar)) }}" >
                             </div>
                           
                                 <div class="grid-cols-1 input-form">
@@ -135,14 +147,17 @@
                                         Peserta
                                     </label>
                                     
-                                    
-                                    <select data-placeholder="Pilih <?php echo $kapasiti_asrama->kapasiti; ?> peserta sahaja" class="tom-select w-full" multiple required>
+                                   
+                                    <select name="peserta[]" data-placeholder="Pilih <?php echo $kapasiti_asrama->kapasiti; ?> peserta sahaja" class="tom-select w-full" multiple="multiple" required>
                                         <option value="">Pilih Satu</option>
                                         @foreach ($pesertas as $peserta)
                                         <option value="{{ $peserta['id'] }}">
-                                            {{ $peserta['name'] }} - {{ $peserta['ic_number'] }}</option>
+                                            {{ $peserta['name'] }} - {{ $peserta['ic_number'] }}
+                                        </option>
                                         @endforeach
                                     </select>
+
+                                    
                                 
                             
                                 </div>
@@ -154,10 +169,10 @@
                                     
                                     
                                     <select id="nama_kursus" class="w-full form-select box border-gray-300" required
-                                    name="nama_kursus">
+                                    name="kursus_id">
                                     <option value="">Pilih Satu</option>
                                     @foreach ($kursuses as $kursus)
-                                    <option value="{{$kursus->nama_kursus}}">{{$kursus->nama_kursus}} ( {{$kursus->start_date}} - {{$kursus->end_date}} )</option>
+                                    <option value="{{$kursus->id}}">{{$kursus->nama_kursus}} ( {{$kursus->start_date}} - {{$kursus->end_date}} )</option>
                                     @endforeach
                                 </select>
                                 
@@ -177,8 +192,9 @@
                     </div>
                     <div class="px-5 pb-8 text-center">
                         @if($step==1)
-
-
+                        <a id="tambah-pemandu" href="{{url('tempahan-asrama')}}" class="btn btn-primary mr-1">
+                            Batal
+                        </a>
                         @elseif($step==2)
                         
                         <input id='tempah' type='submit' name='tempah'    class="btn btn-primary mr-1" value='Tempah'>
@@ -187,8 +203,12 @@
                         </a>
                         @else
                         <button id="tambah-pemandu" type="submit" class="btn btn-primary mr-1">
-                            Seterusnya
+                            Pilih Bilik
                         </button>
+
+                        <a id="tambah-pemandu" href="{{url('tempahan-asrama')}}" class="btn btn-primary mr-1">
+                            Batal
+                        </a>
 
                         @endif
                     </div>
@@ -197,6 +217,23 @@
         </div>
     </div>
 </div>
+
+ 
+
+    <script type="text/javascript">
+
+
+        var verified = [];
+        document.querySelector('#userRequest_activity').onchange = function(e) {
+          if (this.querySelectorAll('option:checked').length <= 1) {
+              verified = Array.apply(null, this.querySelectorAll('option:checked'));
+          } else {
+            Array.apply(null, this.querySelectorAll('option')).forEach(function(e) {
+                e.selected = verified.indexOf(e) > -1;
+            });
+          }
+        }
+        </script>
 <!-- END: Tambah Pemandu Modal -->
 
  

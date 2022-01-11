@@ -6,6 +6,8 @@ use App\Models\Tempahan;
 use App\Models\Asrama;
 use App\Models\Kursus;
 use App\Models\TempahanKenderaan;
+use App\Models\TempahanAsrama;
+use App\Models\TempahanPesertaAsrama;
 use App\Models\Role;
 use App\Models\SenaraiKenderaan;
 use App\Models\SenaraiPemandu;
@@ -165,6 +167,7 @@ class TempahanController extends Controller
     public function tempahanAsrama(Request $request)
     {
         $kursuses = Kursus::all();
+        $tempahanAsramas = TempahanAsrama::all();
         $query = '';
         if (isset($request->query()['nama_kursus'])) {
             $query = $request->query()['nama_kursus'];
@@ -172,11 +175,75 @@ class TempahanController extends Controller
         }
 
         if (isset($request->tarikh_masuk) && isset($request->tarikh_keluar) && isset($request->id_asrama) && isset($request->tempah)) {
-            dd($request->tempah);
-
-        }else if (isset($request->tarikh_masuk) && isset($request->tarikh_keluar) && isset($request->id_asrama)) {
+            //dd($request->tempah);
             $tarikh_masuk = $request->tarikh_masuk;
             $tarikh_keluar = $request->tarikh_keluar;
+            $id_asrama = $request->id_asrama;
+            $peserta = $request->peserta;
+            $kursus_id = $request->kursus_id;
+           // $ary = $request->ary;
+            $kapasiti_asrama = '';
+
+            $asramas = Asrama::get();
+            $pesertas = Peserta::get();
+            $step=3;
+
+            //dd($peserta);
+
+            //$values = $_POST['ary'];
+            $tarikh_masuk = date("Y-m-d", strtotime($tarikh_masuk));
+            $tarikh_keluar = date("Y-m-d", strtotime($tarikh_keluar));
+
+            try {
+
+               
+                $checkExist = TempahanAsrama::where('asrama_id',$id_asrama)
+                ->where('tarikh_masuk', '>=', $tarikh_masuk)
+                ->where('tarikh_masuk', '<=', $tarikh_keluar)
+                ->where('tarikh_keluar', '>=', $tarikh_masuk)
+                ->where('tarikh_keluar', '<=', $tarikh_keluar)
+                ->count();
+
+                if($checkExist >0){
+                    $step=1;
+                }
+                 
+                $tempahanAsrama = new TempahanAsrama(); 
+                $tempahanAsrama->tarikh_masuk = $tarikh_masuk;  
+                $tempahanAsrama->tarikh_keluar = $tarikh_keluar;  
+                $tempahanAsrama->asrama_id = $id_asrama;  
+                $tempahanAsrama->kursus_id = $kursus_id;  
+                $tempahanAsrama->save();
+
+                $insertedId = $tempahanAsrama->id;
+
+                foreach ($peserta as $a){
+                    echo $a;
+                    TempahanPesertaAsrama::create([
+                        "tempahan_asrama_id" => $insertedId,
+                        "peserta_id" => $a, 
+                    ]);
+                }
+    
+                return back();
+            } catch (\Throwable $th) {
+                dd($th);
+            }
+
+            
+            /*
+            foreach ($ary as $b){
+                echo $b;
+            }
+            */
+
+            exit();
+
+        }else if (isset($request->tarikh_masuk) && isset($request->tarikh_keluar) && isset($request->id_asrama)) {
+            //$tarikh_masuk = $request->tarikh_masuk;
+            //$tarikh_keluar = $request->tarikh_keluar;
+            $tarikh_masuk = date("Y-m-d", strtotime($request->tarikh_masuk));
+            $tarikh_keluar = date("Y-m-d", strtotime($request->tarikh_keluar));
             $id_asrama = $request->id_asrama;
 
             $kapasiti_asrama = Asrama::where('id',$id_asrama)->select('kapasiti')->first();
@@ -184,6 +251,39 @@ class TempahanController extends Controller
             $asramas = Asrama::get();
             $pesertas = Peserta::get();
             $step=2;
+
+            /*
+
+            $checkExist = TempahanAsrama::where('asrama_id',$id_asrama)
+            ->where('tarikh_masuk', '>=', $tarikh_masuk) 
+            ->where('tarikh_keluar', '<=', $tarikh_keluar)
+            //->where('tarikh_masuk', '>=', $tarikh_masuk)
+            //->where('tarikh_masuk', '<=', $tarikh_keluar)
+            //->where('tarikh_keluar', '>=', $tarikh_masuk)
+            //->where('tarikh_keluar', '<=', $tarikh_keluar)
+            ->count();
+           */
+          $checkExist = TempahanAsrama::where('asrama_id',$id_asrama)->where(function ($query) use ($tarikh_masuk, $tarikh_keluar) {
+            $query->where(function ($query) use ($tarikh_masuk, $tarikh_keluar) {
+                $query->where('tarikh_masuk', '<=', $tarikh_masuk)
+                    ->where('tarikh_keluar', '>=', $tarikh_masuk);
+                })->orWhere(function ($query) use ($tarikh_masuk, $tarikh_keluar) {
+                $query->where('tarikh_masuk', '<=', $tarikh_keluar)
+                    ->where('tarikh_keluar', '>=', $tarikh_keluar);
+                })->orWhere(function ($query) use ($tarikh_masuk, $tarikh_keluar) {
+                $query->where('tarikh_masuk', '>=', $tarikh_masuk)
+                    ->where('tarikh_keluar', '<=', $tarikh_keluar);
+                });
+            })->count();
+
+            if($checkExist > 0){
+                $step=1;
+                \Session::flash('msg_error', 'Tempahan bilik pada tarikh tersebut telah wujud.'); 
+            }
+
+           //dd($checkExist);
+          // return back()->with('msg_error','New product included, go to next step.');
+          
 
         }else if (isset($request->tarikh_masuk) && isset($request->tarikh_keluar)) {
             $tarikh_masuk = $request->tarikh_masuk;
@@ -195,6 +295,19 @@ class TempahanController extends Controller
             $asramas = Asrama::get();
             $pesertas = Peserta::get();
             $step=1;
+
+            $tarikh_masuk = date("Y-m-d", strtotime($tarikh_masuk));
+            $tarikh_keluar = date("Y-m-d", strtotime($tarikh_keluar));
+
+            $checkExist = TempahanAsrama::
+            where('tarikh_masuk', '>=', $tarikh_masuk)
+            ->where('tarikh_masuk', '<=', $tarikh_keluar)
+            ->where('tarikh_keluar', '>=', $tarikh_masuk)
+            ->where('tarikh_keluar', '<=', $tarikh_keluar)
+            ->count();
+
+            //dd($checkExist);
+            
         }else{
             $tarikh_masuk = '';
             $tarikh_keluar ='';
@@ -203,9 +316,11 @@ class TempahanController extends Controller
 
             $asramas = Asrama::get();
             $pesertas = Peserta::get();
-            $step=0;
+            $step=1;
+            
         }
         //dd($kapasiti_asrama->kapasiti);
+        //dd($pesertas);
 
         return view('pages/tempahan/tempahan-asrama')->with(
         [
@@ -218,7 +333,8 @@ class TempahanController extends Controller
             'id_asrama' => $id_asrama, 
             'kapasiti_asrama' => $kapasiti_asrama, 
             'step' => $step, 
-            'query' => $query
+            'query' => $query,
+            'tempahanAsramas' => $tempahanAsramas,
         
         ]);
     }

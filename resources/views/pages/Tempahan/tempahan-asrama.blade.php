@@ -33,27 +33,39 @@
                             <th class="w-1/5 py-3 border-2 border-gray-400">#</th>
                             <th class="w-2/5 py-3 border-2 border-gray-400">Butiran Pemohon</th>
                             <th class="w-1/5 py-3 border-2 border-gray-400">Bilik</th>
-                            <th class="w-1/5 py-3 border-2 border-gray-400">Tarkih Mula</th>
-                            <th class="w-1/5 py-3 border-2 border-gray-400">Tarkih Tamat</th>
-                            <th class="w-1/5 py-3 border-2 border-gray-400">Daftar</th>
+                            <th class="w-1/5 py-3 border-2 border-gray-400">Tarikh Masuk</th>
+                            <th class="w-1/5 py-3 border-2 border-gray-400">Tarikh Keluar</th>
+                            <th class="w-1/5 py-3 border-2 border-gray-400">Tindakan</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($kursuses as $kursus)
-                        <tr class={{$kursus['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
-                            <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['id'] }}</td>
-                            <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['nama_kursus'] }}</td>
-                            <td class="text-center py-3 border-2 border-gray-400">A001</td>
-                            <td class="text-center py-3 border-2 border-gray-400">26-01-2021</td>
-                            <td class="text-center py-3 border-2 border-gray-400">28-01-2021</td>
-                            <td class="text-center py-3 border-2 border-gray-400 flex justify-around">
-                                {{-- <a href="javascript:;" data-toggle="modal" data-target="#datepicker-modal-preview"
-                                    class="btn btn-primary pilih-tarikh" id="{{ $kursus->id }}">
-                                    Daftar
-                                </a> --}}
-                                <a class="btn btn-primary pilih-tarikh" id="{{ $kursus->id }}">
-                                    Daftar
-                                </a>
+                        @foreach ($tempahanAsramas as $tempahanAsrama)
+                        <tr class={{$tempahanAsrama['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
+                            <td class="text-center py-3 border-2 border-gray-400">{{ $tempahanAsrama['id'] }}</td>
+                            <td class="text-center py-3 border-2 border-gray-400">
+                               
+                                @php
+                                $pesertaTempahanAsramas = \App\Models\TempahanPesertaAsrama::join('pesertas', 'pesertas.id', '=', 'tempahan_peserta_asramas.peserta_id')
+                                ->where(['tempahan_asrama_id' => $tempahanAsrama->id])->select('name','ic_number')->get();
+
+                                    //echo $tempahanPesertaAsramas->pesertas->name."==";  
+                                    foreach ($pesertaTempahanAsramas  AS $pesertaTempahanAsrama ) 
+                                    {
+
+                                        echo $pesertaTempahanAsrama->name."-".$pesertaTempahanAsrama->ic_number."<br>";  
+                                        //dd($pesertas);
+                                    }  
+
+                                    //dump($tempahanPesertaAsramas->pesertas);
+                                  
+                                @endphp
+                                   
+                                    </td>
+                            <td class="text-center py-3 border-2 border-gray-400">{{ $tempahanAsrama->asrama->kod_asrama }}</td>
+                            <td class="text-center py-3 border-2 border-gray-400">{{ date("d/m/Y", strtotime($tempahanAsrama->tarikh_masuk)) }}</td>
+                            <td class="text-center py-3 border-2 border-gray-400">{{ date("d/m/Y", strtotime($tempahanAsrama->tarikh_keluar)) }}</td>
+                            <td class="text-center py-3 border-2 border-gray-400">
+                                 
                             </td>
                         </tr>
                         @endforeach
