@@ -47,8 +47,8 @@ class Kursus extends Model
     {
         $submoduls = $this->subModulKursus;
         $penceramahs = collect();
-        foreach($submoduls as $submodul) {
-            if(!$penceramahs->contains('id', $submodul->penceramah->id)) {
+        foreach ($submoduls as $submodul) {
+            if (!$penceramahs->contains('id', $submodul->penceramah->id)) {
                 $penceramahs->push($submodul->penceramah);
             }
         }

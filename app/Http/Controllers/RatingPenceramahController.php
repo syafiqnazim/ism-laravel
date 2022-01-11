@@ -24,7 +24,7 @@ class RatingPenceramahController extends Controller
         $search = '';
         if (isset($request->query()['nama_penceramah'])) {
             $search = $request->query()['nama_penceramah'];
-            $ratings = RatingPenceramah::whereHas('penceramah', function (Builder $query) use($search) {
+            $ratings = RatingPenceramah::whereHas('penceramah', function (Builder $query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
             })->get();
         }
@@ -38,7 +38,8 @@ class RatingPenceramahController extends Controller
         return view('pages.penceramah.rating-penceramah', compact($compactValues));
     }
 
-    public function listProgramByKluster($kluster) {
+    public function listProgramByKluster($kluster)
+    {
         $programs = Kursus::where('kluster', $kluster)->get();
         return response()->json($programs);
     }
@@ -62,7 +63,7 @@ class RatingPenceramahController extends Controller
      */
     public function store(Request $request)
     {
-        try{
+        try {
             $kursus = Kursus::find($request->program);
             $penceramah = Penceramah::find($request->penceramah);
             $rate_1 = $request->rate_teknik_1;
@@ -78,7 +79,7 @@ class RatingPenceramahController extends Controller
             ]);
 
             $count = 1;
-            while($request->input('rate_modul_' . $count)) {
+            while ($request->input('rate_modul_' . $count)) {
                 $rating->modulRatings()->create([
                     'rating_penceramah_id'  =>  $rating->id,
                     'submodul_kursus_id'    =>  $request->input('modul_' . $count . '_id'),
@@ -86,10 +87,10 @@ class RatingPenceramahController extends Controller
                 ]);
                 $count++;
             }
-            
 
-            return response('OK', 201); 
-        } catch(Exception $e) {
+
+            return response('OK', 201);
+        } catch (Exception $e) {
             report($e);
             return response('error ' . $e->getMessage(), 202);
         }
@@ -104,7 +105,7 @@ class RatingPenceramahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
+        try {
             $rating = RatingPenceramah::find($id);
 
             $rating->rate_1 = $request->rate_teknik_1;
@@ -114,14 +115,14 @@ class RatingPenceramahController extends Controller
 
             $count = 1;
             $submodulRatings = $rating->modulRatings;
-            while($request->input('rate_modul_' . $count)) {
-                $submodulRatings[$count-1]->rate = $request->input('rate_modul_' . $count);
-                $submodulRatings[$count-1]->save();
+            while ($request->input('rate_modul_' . $count)) {
+                $submodulRatings[$count - 1]->rate = $request->input('rate_modul_' . $count);
+                $submodulRatings[$count - 1]->save();
                 $count++;
             }
 
             return response('OK', 201);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             report($e);
             return response('Error', 202);
         }
