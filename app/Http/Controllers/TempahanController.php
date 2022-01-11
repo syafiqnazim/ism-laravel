@@ -184,7 +184,7 @@ class TempahanController extends Controller
            // $ary = $request->ary;
             $kapasiti_asrama = '';
 
-            $asramas = Asrama::get();
+            $asramas = Asrama::where('status','available')->get();
             $pesertas = Peserta::get();
             $step=3;
 
@@ -248,7 +248,7 @@ class TempahanController extends Controller
 
             $kapasiti_asrama = Asrama::where('id',$id_asrama)->select('kapasiti')->first();
 
-            $asramas = Asrama::get();
+            $asramas = Asrama::where('status','available')->get();
             $pesertas = Peserta::get();
             $step=2;
 
@@ -292,7 +292,7 @@ class TempahanController extends Controller
 
             $kapasiti_asrama = '';
 
-            $asramas = Asrama::get();
+            $asramas = Asrama::where('status','available')->get();
             $pesertas = Peserta::get();
             $step=1;
 
@@ -314,7 +314,7 @@ class TempahanController extends Controller
             $id_asrama = '';
             $kapasiti_asrama = '';
 
-            $asramas = Asrama::get();
+            $asramas = Asrama::where('status','available')->get();
             $pesertas = Peserta::get();
             $step=1;
             
