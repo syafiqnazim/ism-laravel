@@ -163,9 +163,18 @@ class RatingKursusController extends Controller
      */  
     public function destroy($id)  
     {  
-            
-            
-    //  
+        try{
+            $rating = RatingKursus::find($id);
+
+            $rating->ratingObjektif()->delete();
+            $rating->ratingSubmodul()->delete();
+            $rating->delete();
+
+            return response('OK', 201);
+        } catch(Exception $e) {
+            report($e);
+            return response($e->getMessage(), 202);
+        }
         
     } 
 

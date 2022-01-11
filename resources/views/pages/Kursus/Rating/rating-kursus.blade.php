@@ -60,7 +60,7 @@
                         {{-- <a title="Buka" class="btn btn-warning p-1">
                             <i data-feather="calendar" class="w-3 h-3 text-white"></i>
                         </a> --}}
-                        <a title="Delete" class="btn btn-danger p-1 delete-rating" id="{{ $rating['id'] }}">
+                        <a title="Delete" class="btn btn-danger p-1 delete-rating-kursus" id="{{ $rating['id'] }}">
                             <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
                         </a>
                     </td>

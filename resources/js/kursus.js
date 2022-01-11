@@ -143,6 +143,43 @@ import dayjs from "dayjs";
     });
 
     // Rating Kursus
+
+    cash(".delete-rating-kursus").on("click", async function (e) {
+        let id = cash(e.currentTarget).attr("id");
+
+        try {
+            await axios.delete(`rating-kursus/${id}`);
+
+            Toastify({
+                node: cash("#success-notification-content")
+                    .clone()
+                    .removeClass("hidden")[0],
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+            }).showToast();
+
+            await helper.delay(3000);
+
+            location.href = "/rating-kursus";
+        } catch (error) {
+            Toastify({
+                node: cash("#failed-notification-content")
+                    .clone()
+                    .removeClass("hidden")[0],
+                duration: 3000,
+                newWindow: true,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+            }).showToast();
+        }
+    });
+
     cash('#rate_kursus_kluster').on('change', (event) => {
         if(event.target.value == "") return false;
         axios.get('rating-penceramah/list-program/' + event.target.value)
