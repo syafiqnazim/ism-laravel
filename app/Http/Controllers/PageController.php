@@ -146,9 +146,4 @@ class PageController extends Controller
 
         return view('pages/kursus/laporan-kursus')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
     }
-
-    public function ratingKursus(Request $request)
-    {
-        return view('pages/error/construction-page');
-    }
 }

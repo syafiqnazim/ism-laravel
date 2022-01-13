@@ -15,10 +15,10 @@
                     <div class="p-5 text-center">
                         <h5 class="intro-x font-bold text-2xl xl:text-3xl text-center mb-6">Rate Penceramah</h5>
                         <div class="input-form mb-6">
-                            <label for="nama_kluster" class="form-label w-full flex flex-col sm:flex-row">
+                            <label for="rate_penceramah_kluster" class="form-label w-full flex flex-col sm:flex-row">
                                 Nama Kluster
                             </label>
-                            <select id="kluster" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required>
+                            <select id="rate_penceramah_kluster" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required>
                                 <option value="">Pilih Satu</option>
                                 @foreach ($klusters as $kluster)
                                     <option value="{{$kluster->id}}">{{$kluster->name}}</option>
@@ -26,18 +26,18 @@
                             </select>
                         </div>
                         <div class="input-form mb-6">
-                            <label for="program" class="form-label w-full flex flex-col sm:flex-row">
+                            <label for="rate_penceramah_program" class="form-label w-full flex flex-col sm:flex-row">
                                 Tajuk Program
                             </label>
-                            <select id="program" name="program" class="w-full form-select box border-gray-300" data-pristine-required>
+                            <select id="rate_penceramah_program" name="program" class="w-full form-select box border-gray-300" data-pristine-required>
                                 <option value="">Pilih Satu</option>
                             </select>
                         </div>
                         <div class="input-form mb-6">
-                            <label for="penceramah" class="form-label w-full flex flex-col sm:flex-row">
+                            <label for="rate_penceramah_penceramah" class="form-label w-full flex flex-col sm:flex-row">
                                 Nama Penceramah
                             </label>
-                            <select id="penceramah" name="penceramah" class="w-full form-select box border-gray-300" data-pristine-required>
+                            <select id="rate_penceramah_penceramah" name="penceramah" class="w-full form-select box border-gray-300" data-pristine-required>
                                 <option selected>Pilih Satu</option>
                             </select>
                         </div>
@@ -51,7 +51,7 @@
                                         <th class="w-1/3 py-3 border-2 border-gray-400">Nilai</th>
                                     </tr>
                                 </thead>
-                                <tbody id="modul_rate_section">
+                                <tbody id="rate_penceramah_modul_rate_section">
                                 </tbody>
                             </table>
                         </div>

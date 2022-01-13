@@ -50,9 +50,10 @@ import momentPlugin from "@fullcalendar/moment";
 
     cash(".delete-rating").on("click", async function (e) {
         let id = cash(e.currentTarget).attr("id");
+        let url = cash(e.currentTarget).data('url');
 
         try {
-            await axios.delete(`rating-penceramah/${id}`);
+            await axios.delete(`${url}/${id}`);
 
             Toastify({
                 node: cash("#success-notification-content")
@@ -84,7 +85,7 @@ import momentPlugin from "@fullcalendar/moment";
         }
     });
 
-    cash("#kluster").on('change', async (event) => {
+    cash("#rate_penceramah_kluster").on('change', async (event) => {
         if(event.target.value == "") return false;
         axios.get('rating-penceramah/list-program/' + event.target.value)
         .then((response) => {
@@ -92,11 +93,11 @@ import momentPlugin from "@fullcalendar/moment";
             response.data.forEach(element => {
                 str += `<option value="${element.id}">${element.nama_kursus}</option>`
             });
-            cash('#program').html(str);
+            cash('#rate_penceramah_program').html(str);
         });
     });
 
-    cash("#program").on('change', async (event) => {
+    cash("#rate_penceramah_program").on('change', async (event) => {
         if(event.target.value == "") return false;
         axios.get('rating-penceramah/list-penceramah/' + event.target.value)
         .then((response) => {
@@ -104,13 +105,13 @@ import momentPlugin from "@fullcalendar/moment";
             response.data.forEach(element => {
                 str += `<option value="${element.id}">${element.name}</option>`
             });
-            cash('#penceramah').html(str);
+            cash('#rate_penceramah_penceramah').html(str);
         });
     });
 
-    cash("#penceramah").on('change', async (event) => {
+    cash("#rate_penceramah_penceramah").on('change', async (event) => {
         if(event.target.value == "") return false;
-        axios.get('rating-penceramah/list-submodul/' + event.target.value + '/' + cash("#program").val())
+        axios.get('rating-penceramah/list-submodul/' + event.target.value + '/' + cash("#rate_penceramah_program").val())
         .then((response) => {
             let str = '';
             let count = 1;
@@ -156,7 +157,7 @@ import momentPlugin from "@fullcalendar/moment";
                         <tr>`;
                 count++;
             });
-            cash('#modul_rate_section').html(str);
+            cash('#rate_penceramah_modul_rate_section').html(str);
         });
     });
 

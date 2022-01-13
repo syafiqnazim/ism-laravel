@@ -59,7 +59,7 @@ class SideMenu
                 ],
                 'rating-kursus' => [
                     'icon' => 'star',
-                    'route_name' => 'rating-kursus',
+                    'route_name' => 'rating-kursus.index',
                     'title' => 'Rating Program',
                 ],
                 [

@@ -55,4 +55,9 @@ class Kursus extends Model
 
         return $penceramahs;
     }
+
+    public function objektifs()
+    {
+        return $this->hasMany(ObjektifKursus::class);
+    }
 }
