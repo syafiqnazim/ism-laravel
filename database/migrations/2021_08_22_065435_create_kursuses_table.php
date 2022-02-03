@@ -16,7 +16,7 @@ class CreateKursusesTable extends Migration
         Schema::create('kursuses', function (Blueprint $table) {
             $table->id();
             $table->string('nama_kursus');
-            $table->string('objektif_program');
+            $table->string('objektif_program')->nullable();
             $table->string('kapasiti');
             $table->integer('kapasiti_peserta')->default(0);
             $table->string('kluster');

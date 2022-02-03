@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
     // KursusController
     //Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy', 'index']]);
     Route::get('kursus', [KursusController::class, 'index'])->name('index-kursus');
+    Route::post('kursus', [KursusController::class, 'store'])->name('store-kursus');
     Route::post('update-kursus', [KursusController::class, 'updateKursus'])->name('update-kursus');
     Route::post('store-modul-kursus', [KursusController::class, 'storeModulKursus'])->name('store-modul-kursus');
     Route::post('store-program-kursus', [KursusController::class, 'storeProgramKursus'])->name('store-program-kursus');
@@ -61,7 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
     Route::get('jadual-kursus/{id}', [PageController::class, 'jadualKursus'])->name('jadual-kursus');
     Route::get('laporan-kursus', [PageController::class, 'laporanKursus'])->name('laporan-kursus');
-    
+
     //RatingKursusController
     Route::get('rating-kursus/list-submodul/{id}', [RatingKursusController::class, 'listKursusSubmodul']);
     Route::get('rating-kursus/list-objektif/{id}', [RatingKursusController::class, 'listKursusObjektif']);
@@ -90,7 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::get('tempahan-1mtc', [TempahanController::class, 'tempahan1mtc'])->name('tempahan-1mtc');
     Route::get('tempahan-fasiliti', [TempahanController::class, 'tempahanFasiliti'])->name('tempahan-fasiliti');
     Route::get('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asrama');
-    Route::post('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asrama');
+    Route::post('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asram');
     Route::get('tempahan-asrama-destroy/{id}', [TempahanController::class, 'tempahanAsramaDestroy'])->name('tempahan-asrama-destroy');
     Route::get('tempahan-peralatan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('tempahan-peralatan-ict');
 
