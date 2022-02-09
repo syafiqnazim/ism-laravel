@@ -87,6 +87,7 @@ class KursusController extends Controller
 
     public function updateKursus(Request $request)
     {
+        $id = $request->id;
         $today = date('Y-m-d');
         Kursus::where('id', $id)
             ->update([
