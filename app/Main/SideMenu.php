@@ -148,9 +148,9 @@ class SideMenu
                     'label' => 'header'
                 ],
                 'laporan-bayaran-kursus' => [
-                    'icon' => 'calendar',
-                    'route_name' => 'laporan-bayaran-kursus',
-                    'title' => 'Laporan Bayaran Program',
+                    'icon' => 'dollar-sign',
+                    'route_name' => 'kutipan-yuran',
+                    'title' => 'Laporan Kutipan Yuran',
                 ],
                 'laporan-bayaran-penceramah' => [
                     'icon' => 'calendar',

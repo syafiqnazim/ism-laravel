@@ -97,8 +97,8 @@ Route::middleware('auth')->group(function () {
 
     // KewanganController
     Route::resource('kewangan', KewanganController::class, ['only' => ['store', 'update', 'destroy']]);
-    Route::get('kutipan', [KewanganController::class, 'kutipan'])->name('kutipan');
-    Route::get('laporan-bayaran-kursus', [KewanganController::class, 'laporanBayaranKursus'])->name('laporan-bayaran-kursus');
+    Route::get('kutipan-yuran', [KewanganController::class, 'kutipanYuran'])->name('kutipan-yuran');
+    Route::get('kutipan-yuran/kemas-kini', [KewanganController::class, 'editKutipanYuran'])->name('kutipan-yuran.edit');
     Route::get('laporan-bayaran-penceramah', [KewanganController::class, 'laporanBayaranPenceramah'])->name('laporan-bayaran-penceramah');
 
     // TODO

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kewangan;
+use App\Models\Kluster;
 use Illuminate\Http\Request;
 use App\Models\Kursus;
 
@@ -84,22 +85,19 @@ class KewanganController extends Controller
         //
     }
 
-    public function kutipan(Request $request)
-    {
-        $kursuses = Kursus::all();
-        $query = '';
-        if (isset($request->query()['nama_kursus'])) {
-            $query = $request->query()['nama_kursus'];
-            $kursuses = Kursus::where('nama_kursus', 'like', '%' . $query . '%')->get();
-        }
 
-        return view('pages/kewangan/kutipan')->with(['kursuses' => $kursuses, 'query' => $query]);
+    public function kutipanYuran(Request $request)
+    {
+        $klusters = Kluster::all();
+        $kursuses = Kursus::all();
+        return view('pages.kewangan.kutipan.laporan', compact('kursuses', 'klusters'));
     }
 
-    public function laporanBayaranKursus(Request $request)
+    public function editKutipanYuran(Request $request) 
     {
-
-        return view('pages/error/construction-page');
+        $klusters = Kluster::all();
+        $kursuses = Kursus::all();
+        return view('pages.kewangan.kutipan.edit', compact('kursuses', 'klusters'));
     }
 
     public function laporanBayaranPenceramah(Request $request)
