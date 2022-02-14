@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kluster;
 use App\Models\PengurusanIct;
 use App\Models\Kursus;
 use Illuminate\Http\Request;

@@ -52,7 +52,7 @@
             </div>
 
             <div class="flex flex-row items-center">
-                <input type="checkbox" id="lelaki" name="ispeperiksaan" value="1">
+                <input type="checkbox" id="lelaki" name="isB40subsidized" checked value="1">
                 <label for="lelaki" class="ml-2">Kategori B40 dikecualikan</label><br>
             </div>
 
@@ -104,6 +104,17 @@
                             </td>
                             <td class="text-center py-3 border-2 border-gray-400">M40</td>
                             <td class="text-center py-3 border-2 border-gray-400"></td>
+                        </tr>
+                        <tr class="bg-gray-300">
+                            <td class="text-center py-3 border-2 border-gray-400">4</td>
+                            <td class="text-center py-3 border-2 border-gray-400">Abu</td>
+                            <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
+                            <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
+                            <td class="text-center py-3 border-2 border-gray-400">
+                                <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="01122">
+                            </td>
+                            <td class="text-center py-3 border-2 border-gray-400">B40</td>
+                            <td class="text-center py-3 border-2 border-gray-400">Percuma</td>
                         </tr>
                         {{-- @foreach ($kursuses as $kursus)
                         <tr class={{$kursus['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>

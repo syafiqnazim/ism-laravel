@@ -127,6 +127,11 @@ class SideMenu
                     'route_name' => 'tempahan-peralatan-ict',
                     'title' => 'Tempahan Peralatan ICT',
                 ],
+                'tempahan-makan-minum' => [
+                    'icon' => 'coffee',
+                    'route_name' => 'tempahan-makan-minum',
+                    'title' => 'Tempahan Makanan & Minuman',
+                ],
                 [
                     // LABEL: HEADER PENGURUSAN SIJIL
                     'title' => 'Pengurusan Sijil',
@@ -152,10 +157,20 @@ class SideMenu
                     'route_name' => 'kutipan-yuran',
                     'title' => 'Laporan Kutipan Yuran',
                 ],
-                'laporan-bayaran-penceramah' => [
-                    'icon' => 'calendar',
-                    'route_name' => 'laporan-bayaran-penceramah',
-                    'title' => 'Laporan Bayaran Penceramah',
+                'laporan-program' => [
+                    'icon' => 'paperclip',
+                    'route_name' => 'laporan-program',
+                    'title' => 'Laporan Program',
+                ],
+                'laporan-penceramah' => [
+                    'icon' => 'users',
+                    'route_name' => 'laporan-penceramah',
+                    'title' => 'Laporan Penceramah',
+                ],
+                'laporan-makan-minum' => [
+                    'icon' => 'coffee',
+                    'route_name' => 'laporan-makan-minum',
+                    'title' => 'Laporan Tempahan Makanan & Minuman',
                 ],
                 [
                     // LABEL: HEADER PENGURUSAN ASET

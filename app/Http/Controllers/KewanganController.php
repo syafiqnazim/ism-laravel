@@ -6,6 +6,7 @@ use App\Models\Kewangan;
 use App\Models\Kluster;
 use Illuminate\Http\Request;
 use App\Models\Kursus;
+use App\Models\Penceramah;
 
 class KewanganController extends Controller
 {
@@ -100,9 +101,21 @@ class KewanganController extends Controller
         return view('pages.kewangan.kutipan.edit', compact('kursuses', 'klusters'));
     }
 
-    public function laporanBayaranPenceramah(Request $request)
+    public function laporanProgram(Request $request)
     {
+        $klusters = Kluster::all();
+        return view('pages.kewangan.program.laporan', compact('klusters'));
+    }
 
-        return view('pages/error/construction-page');
+    public function laporanPenceramah(Request $request)
+    {
+        $penceramahs = Penceramah::all();
+        return view('pages.kewangan.penceramah.laporan', compact('penceramahs'));
+    }
+    public function laporanMakanMinum(Request $request)
+    {
+        $klusters = Kluster::all();
+        $kursuses = Kursus::all();
+        return view('pages.kewangan.makan-minum.laporan', compact('kursuses', 'klusters'));
     }
 }

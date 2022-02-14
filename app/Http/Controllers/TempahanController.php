@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tempahan;
 use App\Models\Asrama;
+use App\Models\Kluster;
 use App\Models\Kursus;
 use App\Models\TempahanKenderaan;
 use App\Models\TempahanAsrama;
@@ -356,5 +357,12 @@ class TempahanController extends Controller
         }
 
         return view('pages/tempahan/tempahan-1mtc')->with(['roles' => Role::all(), 'kursuses' => $kursuses, 'query' => $query]);
+    }
+
+    public function tempahanMakanMinum(Request $request)
+    {
+        $klusters = Kluster::all();
+        $kursuses = Kursus::all();
+        return view('pages.Tempahan.Makan-minum.index', compact('klusters', 'kursuses'));
     }
 }

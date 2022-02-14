@@ -94,12 +94,15 @@ Route::middleware('auth')->group(function () {
     Route::post('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asram');
     Route::get('tempahan-asrama-destroy/{id}', [TempahanController::class, 'tempahanAsramaDestroy'])->name('tempahan-asrama-destroy');
     Route::get('tempahan-peralatan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('tempahan-peralatan-ict');
+    Route::get('tempahan-makan-minum', [TempahanController::class, 'tempahanMakanMinum'])->name('tempahan-makan-minum');
 
     // KewanganController
     Route::resource('kewangan', KewanganController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('kutipan-yuran', [KewanganController::class, 'kutipanYuran'])->name('kutipan-yuran');
     Route::get('kutipan-yuran/kemas-kini', [KewanganController::class, 'editKutipanYuran'])->name('kutipan-yuran.edit');
-    Route::get('laporan-bayaran-penceramah', [KewanganController::class, 'laporanBayaranPenceramah'])->name('laporan-bayaran-penceramah');
+    Route::get('laporan-program', [KewanganController::class, 'laporanProgram'])->name('laporan-program');
+    Route::get('laporan-penceramah', [KewanganController::class, 'laporanPenceramah'])->name('laporan-penceramah');
+    Route::get('laporan-makan-minum', [KewanganController::class, 'laporanMakanMinum'])->name('laporan-makan-minum');
 
     // TODO
     Route::get('tetapan-sistem', [KewanganController::class, 'laporanBayaranPenceramah'])->name('tetapan-sistem');
