@@ -21,13 +21,13 @@ class PesertaController extends Controller
         $kluster = $request->input('kluster');
         //echo $kluster;
         if(!empty($kluster)){
-            
+
             $nama_kursus = $request->input('nama_kursus');
             if(!empty($kluster) && !empty($nama_kursus)){
-                
+
                 $kursuses = Kursus::where('kluster', $kluster)->get();
                 //$kursuses = Kursus::all();
-                
+
 
                 $pesertas = Peserta::where('nama_kursus', $nama_kursus)->get();
                 $query = '';
@@ -36,29 +36,29 @@ class PesertaController extends Controller
                     $query = $request->query()['name'];
                     $pesertas = Peserta::where('name', 'like', '%' . $query . '%')->get();
                 }
-                        
+
             }else{
                 //$nama_kursus = $request->input('nama_kursus');
                 $kursuses = Kursus::where('kluster', $kluster)->get();
                 $pesertas='';
                 $query = '';
-                
-                
+
+
             }
-            
+
         }else{
             $kursuses = Kursus::all();
             $nama_kursus='';
             $pesertas='';
             $query = '';
-            
+
 
         }
-        
+
        //echo $nama_kursus;
 
         //dd($pesertas);
-        
+
 
         return view('pages/peserta/index')->with(['pesertas' => $pesertas, 'kursuses' => $kursuses, 'query' => $query, 'kluster'=>$kluster, 'nama_kursus'=>$nama_kursus ]);
     }
@@ -121,7 +121,7 @@ class PesertaController extends Controller
             } else {
                 return back();
             }
-            
+
         } catch (\Throwable $th) {
             dd($th);
         }
@@ -204,5 +204,16 @@ class PesertaController extends Controller
     {
         Peserta::find($id)->delete();
         return redirect()->back();
+    }
+
+    /**
+     *  Get List of Peserta by program id
+     *
+     * @param int|string $id
+     * @return Response $json
+     */
+    public function pesertaProgram($id)
+    {
+        return Peserta::where('nama_kursus', Kursus::find($id)->nama_kursus)->with('program')->get();
     }
 }

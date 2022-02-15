@@ -94,11 +94,16 @@ class KewanganController extends Controller
         return view('pages.kewangan.kutipan.laporan', compact('kursuses', 'klusters'));
     }
 
-    public function editKutipanYuran(Request $request) 
+    public function editKutipanYuran(Request $request, $id)
     {
         $klusters = Kluster::all();
         $kursuses = Kursus::all();
         return view('pages.kewangan.kutipan.edit', compact('kursuses', 'klusters'));
+    }
+
+    public function updateKutipanYuran($id)
+    {
+
     }
 
     public function laporanProgram(Request $request)

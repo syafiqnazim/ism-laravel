@@ -19,7 +19,7 @@
                 <label for="" class="form-label w-full flex flex-col sm:flex-row">
                     Nama Kluster
                 </label>
-                <select id="" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required="">
+                <select id="kluster" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required="">
                     <option value="">Pilih Satu</option>
                     @foreach ($klusters as $item)
                         <option value="{{ $item->id  }}">{{ $item->name }}</option>
@@ -31,15 +31,7 @@
                 <label for="" class="form-label w-full flex flex-col sm:flex-row">
                     Nama Program
                 </label>
-                <select id="" name="program" class="w-full form-select box border-gray-300" data-pristine-required=""
-                onchange="document.getElementById('report-div').classList.remove('hidden')"
-                >
-                    <option value="">Pilih Satu</option>
-                    <option value="">Semua</option>
-                    @foreach ($kursuses as $item)
-                        <option value="{{ $item->id  }}">{{ $item->nama_kursus }}</option>
-                    @endforeach
-                </select>
+                <select id="program" name="program" class="w-full form-select box border-gray-300" data-pristine-required=""></select>
             </div>
 
             <div class="hidden" id="report-div">
@@ -56,12 +48,12 @@
                         <option value="PERCUMA">PERCUMA</option>
                     </select> --}}
                 </div>
-    
+
                 <div class="flex flex-row items-center">
                     <input type="checkbox" id="lelaki" name="" value="1" checked disabled>
                     <label for="lelaki" class="ml-2">Kategori B40 dikecualikan</label><br>
                 </div>
-    
+
                 <!-- END: Show Modal Toggle -->
                 <div class="border-t border-b border-gray-200 mt-6 mb-5 py-3">
                     {{-- @include('../pages/Kursus/datepicker-modal') --}}
@@ -78,7 +70,7 @@
                                 <th class="w-2/12 py-3 border-2 border-gray-400">Bayaran</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="paidTableBody">
                             <tr class="bg-none">
                                 <td class="text-center py-3 border-2 border-gray-400">1</td>
                                 <td class="text-center py-3 border-2 border-gray-400">Amirul</td>
@@ -163,7 +155,7 @@
                                 <th class="w-2/12 py-3 border-2 border-gray-400">Bayaran</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="freeTableBody">
                             <tr class="bg-none">
                                 <td class="text-center py-3 border-2 border-gray-400">1</td>
                                 <td class="text-center py-3 border-2 border-gray-400">Abu</td>
@@ -184,7 +176,7 @@
                 </div>
             </div>
 
-            
+
         </div>
     </div>
 </div>
@@ -215,4 +207,72 @@
 <!-- END: Failed Notification Content -->
 
 {{-- @include('../pages/Kursus/datepicker-modal') --}}
+@endsection
+
+@section('script')
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+
+        document.getElementById('kluster').addEventListener("change", (event) => {
+            var klusterId = event.target.value;
+            axios.get('rating-penceramah/list-program/' + klusterId)
+            .then(response => {
+                var html = `<option value="-1">Pilih Satu</option>`;
+                response.data.forEach(element => {
+                    html += `<option value="${element.id}">${element.nama_kursus}</option>`;
+                });
+                document.getElementById('program').innerHTML = html;
+            });
+        });
+
+        document.getElementById('program').addEventListener('change', event => {
+            axios.get('peserta/program/' + event.target.value)
+            .then(response => {
+                var html1 = '', html2 = '';
+                var count = 0;
+
+                response.data.forEach(data => {
+                    count++;
+                    if(data.kumpulan_isi_rumah == 'B40') {
+                        html1 +=  `
+                            <tr class="${ count % 2 ? 'bg-none' : 'bg-gray-300' }">
+                                <td class="text-center py-3 border-2 border-gray-400">${count}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.name}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.nama_kursus}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${(new Date(data.program.tarikh_mula).toLocaleDateString())}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">
+                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="" readonly>
+                                </td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.kumpulan_isi_rumah}</td>
+                                <td class="text-center py-3 border-2 border-gray-400 program-fee">PERCUMA</td>
+                            </tr>
+                            `;
+                    } else {
+                        html2 +=  `
+                            <tr class="${ count % 2 ? 'bg-none' : 'bg-gray-300' }">
+                                <td class="text-center py-3 border-2 border-gray-400">${count}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.name}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.nama_kursus}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${(new Date(data.program.tarikh_mula).toLocaleDateString())}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">
+                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="" readonly>
+                                </td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.kumpulan_isi_rumah}</td>
+                                <td class="text-center py-3 border-2 border-gray-400 program-fee">RM30</td>
+                            </tr>
+                            `;
+                    }
+
+
+                });
+
+                document.getElementById('report-div').classList.remove('hidden');
+                document.getElementById('freeTableBody').innerHTML = html1;
+                document.getElementById('paidTableBody').innerHTML = html2;
+                console.log(response.data);
+            });
+        });
+    });
+
+</script>
 @endsection

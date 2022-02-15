@@ -40,4 +40,8 @@ class Peserta extends Model
         "relative_home_number",
         "relative_phone_number",
     ];
+
+    public function program() {
+        return $this->belongsTo(Kursus::class, 'nama_kursus', 'nama_kursus');
+    }
 }

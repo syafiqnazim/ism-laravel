@@ -146,10 +146,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('pengurusan-sijil', PengurusanSijilController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('pengurusan-maklumat-sijil', [PengurusanSijilController::class, 'pengurusanMaklumatSijil'])->name('pengurusan-maklumat-sijil');
     Route::get('cetak-sijil', [PengurusanSijilController::class, 'cetakSijil'])->name('cetak-sijil');
+
+    // peserta controller
     Route::get('pesertas', [PesertaController::class, 'index'])->name('peserta.index');
     Route::get('peserta/destroy/{id}', [PesertaController::class, 'destroy'])->name('peserta.destroy');
     Route::get('peserta/{id}', [PesertaController::class, 'edit'])->name('peserta.edit');
     Route::post('peserta/{id}', [PesertaController::class, 'update'])->name('peserta.update');
+    Route::get('peserta/program/{id}', [PesertaController::class, 'pesertaProgram'])->name('peserta.program');
 });
 
 Route::get('peserta', [PesertaController::class, 'create'])->name('peserta.create');
