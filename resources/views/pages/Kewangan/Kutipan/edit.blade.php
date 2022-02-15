@@ -16,27 +16,17 @@
             </div>
 
             <div class="input-form mb-6">
-                <label for="" class="form-label w-full flex flex-col sm:flex-row">
+                <label for="kluster" class="form-label w-full flex flex-col sm:flex-row">
                     Nama Kluster
                 </label>
-                <select id="" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required="">
-                    <option value="">Pilih Satu</option>
-                    @foreach ($klusters as $item)
-                        <option value="{{ $item->id  }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
+                <input type="text" class="form-control py-1 px-2 border-gray-300 block" id="kluster" name="" value="{{$kursus->kursusKluster->id}}" disabled>
             </div>
 
             <div class="input-form mb-6">
                 <label for="" class="form-label w-full flex flex-col sm:flex-row">
                     Nama Program
                 </label>
-                <select id="" name="program" class="w-full form-select box border-gray-300" data-pristine-required="">
-                    <option value="">Pilih Satu</option>
-                    @foreach ($kursuses as $item)
-                        <option value="{{ $item->id  }}">{{ $item->nama_kursus }}</option>
-                    @endforeach
-                </select>
+                <input type="text" class="form-control py-1 px-2 border-gray-300 block" id="kluster" name="" value="{{$kursus->nama_kursus}}" disabled>
             </div>
 
             <div class="input-form mb-6">
@@ -45,9 +35,9 @@
                 </label>
                 <select id="" name="yuran_program" class="w-full form-select box border-gray-300" data-pristine-required="">
                     <option value="">Pilih Satu</option>
-                    <option value="50">RM   50</option>
-                    <option value="30">RM30</option>
-                    <option value="PERCUMA">PERCUMA</option>
+                    <option {{$kursus->fee == '50' ? 'selected' : '' }} value="50">RM50</option>
+                    <option {{$kursus->fee == '30' ? 'selected' : '' }} value="30">RM30</option>
+                    <option {{$kursus->fee == 'PERCUMA' ? 'selected' : '' }} value="PERCUMA">PERCUMA</option>
                 </select>
             </div>
 

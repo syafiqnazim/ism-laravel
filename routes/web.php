@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
     //Route::resource('kursus', KursusController::class, ['only' => ['store', 'update', 'destroy', 'index']]);
     Route::get('kursus', [KursusController::class, 'index'])->name('index-kursus');
     Route::post('kursus', [KursusController::class, 'store'])->name('store-kursus');
+    Route::get('kursus/{id}', [KursusController::class, 'kursusById'])->name('get-kursus-by-id');
     Route::post('update-kursus', [KursusController::class, 'updateKursus'])->name('update-kursus');
     Route::post('store-modul-kursus', [KursusController::class, 'storeModulKursus'])->name('store-modul-kursus');
     Route::post('store-program-kursus', [KursusController::class, 'storeProgramKursus'])->name('store-program-kursus');
@@ -99,7 +100,7 @@ Route::middleware('auth')->group(function () {
     // KewanganController
     Route::resource('kewangan', KewanganController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('kutipan-yuran', [KewanganController::class, 'kutipanYuran'])->name('kutipan-yuran');
-    Route::get('kutipan-yuran/kemas-kini', [KewanganController::class, 'editKutipanYuran'])->name('kutipan-yuran.edit');
+    Route::get('kutipan-yuran/kemas-kini/{id}', [KewanganController::class, 'editKutipanYuran'])->name('kutipan-yuran.edit');
     Route::get('laporan-program', [KewanganController::class, 'laporanProgram'])->name('laporan-program');
     Route::get('laporan-penceramah', [KewanganController::class, 'laporanPenceramah'])->name('laporan-penceramah');
     Route::get('laporan-makan-minum', [KewanganController::class, 'laporanMakanMinum'])->name('laporan-makan-minum');

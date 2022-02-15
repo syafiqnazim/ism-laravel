@@ -37,21 +37,13 @@
             <div class="hidden" id="report-div">
                 <div class="input-form mb-6">
                     <label for="" class="form-label w-full flex flex-col sm:flex-row">
-                        Yuran Program
+                        Yuran Program (RM)
                     </label>
-                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" value="RM30" readonly>
-                    {{-- <select id="" name="yuran_program" class="w-full form-select box border-gray-300" data-pristine-required="">
-                        <input type="text" class="form-control py-1 px-2 border-gray-300 block" value="Professional Development">
-                        <option value="">Pilih Satu</option>
-                        <option value="50">RM   50</option>
-                        <option value="30">RM30</option>
-                        <option value="PERCUMA">PERCUMA</option>
-                    </select> --}}
-                </div>
+                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" id="fee" value="" readonly>
 
                 <div class="flex flex-row items-center">
-                    <input type="checkbox" id="lelaki" name="" value="1" checked disabled>
-                    <label for="lelaki" class="ml-2">Kategori B40 dikecualikan</label><br>
+                    <input type="checkbox" id="is_free_b40" name="" value="1" disabled>
+                    <label for="is_free_b40" class="ml-2">Kategori B40 dikecualikan</label><br>
                 </div>
 
                 <!-- END: Show Modal Toggle -->
@@ -71,75 +63,6 @@
                             </tr>
                         </thead>
                         <tbody id="paidTableBody">
-                            <tr class="bg-none">
-                                <td class="text-center py-3 border-2 border-gray-400">1</td>
-                                <td class="text-center py-3 border-2 border-gray-400">Amirul</td>
-                                <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                                <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
-                                <td class="text-center py-3 border-2 border-gray-400">
-                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" readonly>
-                                </td>
-                                <td class="text-center py-3 border-2 border-gray-400">M40</td>
-                                <td class="text-center py-3 border-2 border-gray-400">RM30</td>
-                            </tr>
-                            <tr class="bg-gray-300">
-                                <td class="text-center py-3 border-2 border-gray-400">2</td>
-                                <td class="text-center py-3 border-2 border-gray-400">Khairul</td>
-                                <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                                <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
-                                <td class="text-center py-3 border-2 border-gray-400">
-                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="01121" readonly>
-                                </td>
-                                <td class="text-center py-3 border-2 border-gray-400">M40</td>
-                                <td class="text-center py-3 border-2 border-gray-400">RM30</td>
-                            </tr>
-                            <tr class="bg-none">
-                                <td class="text-center py-3 border-2 border-gray-400">3</td>
-                                <td class="text-center py-3 border-2 border-gray-400">Amira</td>
-                                <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                                <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
-                                <td class="text-center py-3 border-2 border-gray-400">
-                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="01122" readonly>
-                                </td>
-                                <td class="text-center py-3 border-2 border-gray-400">M40</td>
-                                <td class="text-center py-3 border-2 border-gray-400">RM30</td>
-                            </tr>
-                            <tr class="">
-                                <td colspan="6" class="text-right px-2 py-3 border-2 border-gray-400 font-bold">
-                                    JUMLAH
-                                </td>
-                                <td class="text-center px-2 py-3 border-2 border-gray-400 font-bold">
-                                    RM60
-                                </td>
-                            </tr>
-                            {{-- @foreach ($kursuses as $kursus)
-                            <tr class={{$kursus['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
-                                <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['id'] }}</td>
-                                <td class="text-left pl-5 py-3 border-2 border-gray-400">
-                                    <a href="#" class="text-blue-700 font-bold">{{ $kursus['nama_kursus'] }}</a>
-                                    <br />
-                                    {{ $kursus['kluster'] }}
-                                </td>
-                                <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['bilik'] }}</td>
-                                <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['tarikh_mula'] }}</td>
-                                <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['tarikh_akhir'] }}</td>
-                                <td class="text-center py-3 border-2 border-gray-400">RM 100</td>
-                                <td class="text-center py-3 border-2 border-gray-400">
-                                    <button title="View" class="btn btn-primary p-1" href="#" id="edit">
-                                        <i data-feather="eye" class="w-3 h-3 text-white"></i>
-                                    </button>
-                                    <button title="Edit" class="btn btn-success p-1" href="#" id="edit">
-                                        <i data-feather="edit" class="w-3 h-3 text-white"></i>
-                                    </button>
-                                    <button title="Buka" class="btn btn-warning p-1" href="#" id="schedule" key="0">
-                                        <i data-feather="calendar" class="w-3 h-3 text-white"></i>
-                                    </button>
-                                    <button title="Delete" class="btn btn-danger p-1" href="#" id="schedule" key="0">
-                                        <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            @endforeach --}}
                         </tbody>
                     </table>
                     <div class="font-bold mt-2">Maklumat Tanpa Bayaran Yuran Program</div>
@@ -156,22 +79,11 @@
                             </tr>
                         </thead>
                         <tbody id="freeTableBody">
-                            <tr class="bg-none">
-                                <td class="text-center py-3 border-2 border-gray-400">1</td>
-                                <td class="text-center py-3 border-2 border-gray-400">Abu</td>
-                                <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                                <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
-                                <td class="text-center py-3 border-2 border-gray-400">
-                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" readonly>
-                                </td>
-                                <td class="text-center py-3 border-2 border-gray-400">B40</td>
-                                <td class="text-center py-3 border-2 border-gray-400">Percuma</td>
-                            </tr>
                         </tbody>
                     </table>
                     <div class="flex flex-row justify-center py-2">
-                        <a href="{{route('kutipan-yuran.edit')}}" class="btn btn-primary"><i data-feather="edit"></i>&nbsp;&nbsp;Kemas Kini</a>
-                        <button type="button" class="btn"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
+                        <a href="#" id="kemasKiniBtn" class="btn btn-primary"><i data-feather="edit"></i>&nbsp;&nbsp;Kemas Kini</a>
+                        <button type="button" class="btn" onclick="window.print()"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
                     </div>
                 </div>
             </div>
@@ -226,6 +138,18 @@
         });
 
         document.getElementById('program').addEventListener('change', event => {
+
+            axios.get('kursus/'+ event.target.value)
+            .then(response => {
+                document.getElementById('fee').value = response.data.fee;
+                if(response.data.is_free_b40 == '1') {
+                    document.getElementById('is_free_b40').checked = true;
+                } else {
+                    document.getElementById('is_free_b40').checked = false;
+                }
+                document.getElementById('kemasKiniBtn').href = 'kutipan-yuran/kemas-kini/' + response.data.id;
+            });
+
             axios.get('peserta/program/' + event.target.value)
             .then(response => {
                 var html1 = '', html2 = '';
@@ -233,7 +157,7 @@
 
                 response.data.forEach(data => {
                     count++;
-                    if(data.kumpulan_isi_rumah == 'B40') {
+                    if((data.program.is_free_b40) && (data.kumpulan_isi_rumah == 'B40')) {
                         html1 +=  `
                             <tr class="${ count % 2 ? 'bg-none' : 'bg-gray-300' }">
                                 <td class="text-center py-3 border-2 border-gray-400">${count}</td>
@@ -262,14 +186,12 @@
                             </tr>
                             `;
                     }
-
-
                 });
 
                 document.getElementById('report-div').classList.remove('hidden');
                 document.getElementById('freeTableBody').innerHTML = html1;
                 document.getElementById('paidTableBody').innerHTML = html2;
-                console.log(response.data);
+
             });
         });
     });

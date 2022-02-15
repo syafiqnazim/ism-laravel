@@ -66,7 +66,7 @@ class KursusController extends Controller
         //             "peperiksaan" => $request->peperiksaan,
         //             "asrama" => $request->asrama,
         //         ]);
-        // } else 
+        // } else
         if ($request->tarikh_mula) {
             Kursus::where('id', $id)
                 ->update([
@@ -173,5 +173,10 @@ class KursusController extends Controller
     public function destroy($id)
     {
         return Kursus::find($id)->delete();
+    }
+
+    public function kursusById($id)
+    {
+        return Kursus::find($id)->first();
     }
 }
