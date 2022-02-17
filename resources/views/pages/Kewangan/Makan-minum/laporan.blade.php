@@ -49,11 +49,36 @@
                     <input type="text" class="form-control py-1 px-2 border-gray-300 block" value="Bilik Kuliah 1" readonly>
                 </div>
     
-                <div class="input-form mb-6">
-                    <label for="" class="form-label w-full flex flex-col sm:flex-row">
-                        Jumlah Peserta
-                    </label>
-                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" value="30 orang" readonly>
+                <div class="flex flex row">
+                    <div class="input-form mb-6 w-1/3 p-2">
+                        <label for="" class="form-label w-full flex flex-col sm:flex-row">
+                            Jumlah PAX
+                        </label>
+                        <div class="flex flex-row items-center">
+                            <input type="text" class="form-control py-1 px-2 border-gray-300 block" style="max-width: 100px" value="30" readonly>
+                            <p class="px-2">Orang</p>
+                        </div>
+                    </div>
+    
+                    <div class="input-form mb-6 w-1/3 p-2">
+                        <label for="" class="form-label w-full flex flex-col sm:flex-row">
+                            Vegetarian
+                        </label>
+                        <div class="flex flex-row items-center">
+                            <input type="text" class="form-control py-1 px-2 border-gray-300 block" style="max-width: 100px" value="11" readonly>
+                            <p class="px-2">Orang</p>
+                        </div>
+                    </div>
+    
+                    <div class="input-form mb-6 w-1/3 p-2">
+                        <label for="" class="form-label w-full flex flex-col sm:flex-row">
+                            VIP
+                        </label>
+                        <div class="flex flex-row items-center">
+                            <input type="text" class="form-control py-1 px-2 border-gray-300 block" style="max-width: 100px" value="2" readonly>
+                            <p class="px-2">Orang</p>
+                        </div>
+                    </div>
                 </div>
     
                 <!-- END: Show Modal Toggle -->
