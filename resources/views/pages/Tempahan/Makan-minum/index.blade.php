@@ -256,11 +256,7 @@
                         </tbody>
                     </table>
                     <div class="flex flex-row justify-center py-2">
-<<<<<<< HEAD
-                        <a href="" class="btn btn-primary"><i data-feather="save"></i>&nbsp;&nbsp;Simpan</a>
-=======
                         <a href="#" class="btn btn-primary"><i data-feather="save"></i>&nbsp;&nbsp;Simpan</a>
->>>>>>> 8c7d0871123f8f80b9f1895c3790277846f2b27c
                         <button type="button" class="btn"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
                     </div>
                 </div>
