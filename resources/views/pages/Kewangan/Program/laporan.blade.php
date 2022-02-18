@@ -60,6 +60,9 @@
                             <th class="w-3/12 py-3 border-2 border-gray-400">Nama Kluster</th>
                             <th class="w-2/12 py-3 border-2 border-gray-400">Nama Program</th>
                             <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh Program</th>
+                            <th class="w-2/12 py-3 border-2 border-gray-400">Lokasi Program</th>
+                            <th class="w-2/12 py-3 border-2 border-gray-400">Jumlah Peserta</th>
+                            <th class="w-2/12 py-3 border-2 border-gray-400">Jumlah Penceramah</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,18 +71,27 @@
                             <td class="text-center py-3 border-2 border-gray-400">Social Development</td>
                             <td class="text-center py-3 border-2 border-gray-400">Kewangan Siri 1</td>
                             <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
+                            <td class="text-center py-3 border-2 border-gray-400">Dewan Kuliah</td>
+                            <td class="text-center py-3 border-2 border-gray-400">20</td>
+                            <td class="text-center py-3 border-2 border-gray-400">2</td>
                         </tr>
                         <tr class="bg-gray-300">
                             <td class="text-center py-3 border-2 border-gray-400">1</td>
                             <td class="text-center py-3 border-2 border-gray-400">Social Development</td>
                             <td class="text-center py-3 border-2 border-gray-400">Kewangan Siri 2</td>
                             <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
+                            <td class="text-center py-3 border-2 border-gray-400">Dewan Kuliah</td>
+                            <td class="text-center py-3 border-2 border-gray-400">20</td>
+                            <td class="text-center py-3 border-2 border-gray-400">2</td>
                         </tr>
                         <tr class="bg-none">
                             <td class="text-center py-3 border-2 border-gray-400">1</td>
                             <td class="text-center py-3 border-2 border-gray-400">Social Development</td>
                             <td class="text-center py-3 border-2 border-gray-400">Kewangan Siri 3</td>
                             <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
+                            <td class="text-center py-3 border-2 border-gray-400">Dewan Kuliah</td>
+                            <td class="text-center py-3 border-2 border-gray-400">20</td>
+                            <td class="text-center py-3 border-2 border-gray-400">2</td>
                         </tr>
                     </tbody>
                 </table>
