@@ -2,6 +2,30 @@
 
 @section('subhead')
 <title>Kutipan Yuran | MyISM</title>
+<style>
+    @media screen {
+        #print {
+            display: none;
+        }
+    }
+
+    @media print {
+        #print {
+            display: block;
+        }
+
+        body>div:not(#printable) {
+            display: none;
+        }
+
+        #print {
+            width: 21cm;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+</style>
 @endsection
 
 @section('subcontent')
@@ -49,17 +73,26 @@
                 <!-- END: Show Modal Toggle -->
                 <div class="border-t border-b border-gray-200 mt-6 mb-5 py-3">
                     {{-- @include('../pages/Kursus/datepicker-modal') --}}
+                    <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">
+                        SENARAI NAMA PESERTA YANG TELAH MEMBUAT BAYARAN YURAN KURSUS BAGI <span id="reportHeader"></span>
+                    </h2>
+                    <h2 class="intro-x font-bold text-xl xl:text-3xl text-center mt-5">
+                        PADA <span id="tarikhProgramSpan"></span>
+                    </h2>
+                    <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center mt-5">
+                        ANJURAN KLUSTER : <span id="klusterName"></span>
+                    </h2>
                     <div class="font-bold">Maklumat Bayaran Yuran Program</div>
                     <table class="table-fixed w-full">
                         <thead>
                             <tr class="bg-gray-300">
                                 <th class="w-1/12 py-3 border-2 border-gray-400">#</th>
                                 <th class="w-3/12 py-3 border-2 border-gray-400">Nama</th>
-                                <th class="w-2/12 py-3 border-2 border-gray-400">Nama Program</th>
-                                <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh</th>
+                                <th class="w-2/12 py-3 border-2 border-gray-400">No Kad Pengenalan</th>
+                                <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh Bayaran</th>
                                 <th class="w-2/12 py-3 border-2 border-gray-400">No Resit</th>
                                 <th class="w-2/12 py-3 border-2 border-gray-400">Kategori</th>
-                                <th class="w-2/12 py-3 border-2 border-gray-400">Bayaran</th>
+                                <th class="w-2/12 py-3 border-2 border-gray-400">Kadar Yuran (RM)</th>
                             </tr>
                         </thead>
                         <tbody id="paidTableBody">
@@ -71,11 +104,9 @@
                             <tr class="bg-gray-300">
                                 <th class="w-1/12 py-3 border-2 border-gray-400">#</th>
                                 <th class="w-3/12 py-3 border-2 border-gray-400">Nama</th>
-                                <th class="w-2/12 py-3 border-2 border-gray-400">Nama Program</th>
-                                <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh</th>
-                                <th class="w-2/12 py-3 border-2 border-gray-400">No Resit</th>
+                                <th class="w-2/12 py-3 border-2 border-gray-400">No Kad Pengenalan</th>
                                 <th class="w-2/12 py-3 border-2 border-gray-400">Kategori</th>
-                                <th class="w-2/12 py-3 border-2 border-gray-400">Bayaran</th>
+                                <th class="w-2/12 py-3 border-2 border-gray-400">Kadar Yuran (RM)</th>
                             </tr>
                         </thead>
                         <tbody id="freeTableBody">
@@ -83,7 +114,7 @@
                     </table>
                     <div class="flex flex-row justify-center py-2">
                         <a href="#" id="kemasKiniBtn" class="btn btn-primary"><i data-feather="edit"></i>&nbsp;&nbsp;Kemas Kini</a>
-                        <button type="button" class="btn" onclick="window.print()"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
+                        <button type="button" class="btn" id="print-laporan-kutipan-yuran"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
                     </div>
                 </div>
             </div>
@@ -123,6 +154,7 @@
 
 @section('script')
 <script>
+
     document.addEventListener("DOMContentLoaded", function(event) {
 
         document.getElementById('kluster').addEventListener("change", (event) => {
@@ -154,19 +186,17 @@
             .then(response => {
                 var html1 = '', html2 = '';
                 var count = 0;
-
                 response.data.forEach(data => {
                     count++;
+                    document.getElementById('reportHeader').innerHTML = data.nama_kursus.toUpperCase();;
+                    document.getElementById('klusterName').innerHTML = data.program.kursus_kluster.name.toUpperCase();
+                    document.getElementById('tarikhProgramSpan').innerHTML = new Date(data.program.tarikh_mula).toLocaleDateString();
                     if((data.program.is_free_b40) && (data.kumpulan_isi_rumah == 'B40')) {
                         html1 +=  `
                             <tr class="${ count % 2 ? 'bg-none' : 'bg-gray-300' }">
                                 <td class="text-center py-3 border-2 border-gray-400">${count}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">${data.name}</td>
-                                <td class="text-center py-3 border-2 border-gray-400">${data.nama_kursus}</td>
-                                <td class="text-center py-3 border-2 border-gray-400">${(new Date(data.program.tarikh_mula).toLocaleDateString())}</td>
-                                <td class="text-center py-3 border-2 border-gray-400">
-                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="" readonly>
-                                </td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.ic_number}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">${data.kumpulan_isi_rumah}</td>
                                 <td class="text-center py-3 border-2 border-gray-400 program-fee">PERCUMA</td>
                             </tr>
@@ -176,18 +206,21 @@
                             <tr class="${ count % 2 ? 'bg-none' : 'bg-gray-300' }">
                                 <td class="text-center py-3 border-2 border-gray-400">${count}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">${data.name}</td>
-                                <td class="text-center py-3 border-2 border-gray-400">${data.nama_kursus}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.ic_number}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">${(new Date(data.program.tarikh_mula).toLocaleDateString())}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">
                                     <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="" readonly>
                                 </td>
-                                <td class="text-center py-3 border-2 border-gray-400">${data.kumpulan_isi_rumah}</td>
                                 <td class="text-center py-3 border-2 border-gray-400 program-fee">RM30</td>
                             </tr>
                             `;
                     }
                 });
-
+                if(response.data.length == 0) {
+                    document.getElementById('reportHeader').innerHTML = document.querySelector('#program option:checked').text.toUpperCase();
+                    document.getElementById('klusterName').innerHTML = document.querySelector('#kluster option:checked').text.toUpperCase();
+                    document.getElementById('tarikhProgramSpan').innerHTML = '';
+                }
                 document.getElementById('report-div').classList.remove('hidden');
                 document.getElementById('freeTableBody').innerHTML = html1;
                 document.getElementById('paidTableBody').innerHTML = html2;

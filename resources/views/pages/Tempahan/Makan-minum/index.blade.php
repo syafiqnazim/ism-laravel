@@ -43,10 +43,17 @@
             </div>
 
             <div class="hidden" id="report-div">
-                
+
                 <div class="input-form mb-6 p-2">
                     <label for="" class="form-label w-full flex flex-col sm:flex-row">
                         Lokasi Program
+                    </label>
+                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" value="">
+                </div>
+
+                <div class="input-form mb-6 p-2">
+                    <label for="" class="form-label w-full flex flex-col sm:flex-row">
+                        Nama Urusetia
                     </label>
                     <input type="text" class="form-control py-1 px-2 border-gray-300 block" value="">
                 </div>
@@ -61,7 +68,7 @@
                             <p class="px-2">Orang</p>
                         </div>
                     </div>
-    
+
                     <div class="input-form mb-6 w-1/3 p-2">
                         <label for="" class="form-label w-full flex flex-col sm:flex-row">
                             Vegetarian
@@ -71,7 +78,7 @@
                             <p class="px-2">Orang</p>
                         </div>
                     </div>
-    
+
                     <div class="input-form mb-6 w-1/3 p-2">
                         <label for="" class="form-label w-full flex flex-col sm:flex-row">
                             VIP
@@ -82,8 +89,8 @@
                         </div>
                     </div>
                 </div>
-                
-    
+
+
                 <!-- END: Show Modal Toggle -->
                 <div class="border-t border-b border-gray-200 mt-6 mb-5 py-3">
                     {{-- @include('../pages/Kursus/datepicker-modal') --}}
@@ -249,13 +256,13 @@
                         </tbody>
                     </table>
                     <div class="flex flex-row justify-center py-2">
-                        <a href="{{route('kutipan-yuran.edit')}}" class="btn btn-primary"><i data-feather="save"></i>&nbsp;&nbsp;Simpan</a>
+                        <a href="" class="btn btn-primary"><i data-feather="save"></i>&nbsp;&nbsp;Simpan</a>
                         <button type="button" class="btn"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
                     </div>
                 </div>
             </div>
 
-            
+
         </div>
     </div>
 </div>

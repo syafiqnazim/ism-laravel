@@ -9,5 +9,8 @@
         <!-- END: JS Assets-->
 
         @yield('script')
+        <div id="print">
+
+        </div>
     </body>
 @endsection

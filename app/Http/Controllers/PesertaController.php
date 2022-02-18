@@ -214,6 +214,6 @@ class PesertaController extends Controller
      */
     public function pesertaProgram($id)
     {
-        return Peserta::where('nama_kursus', Kursus::find($id)->nama_kursus)->with('program')->get();
+        return Peserta::where('nama_kursus', Kursus::find($id)->nama_kursus)->with('program', 'program.kursusKluster')->get();
     }
 }

@@ -42,7 +42,7 @@
             </div>
 
             <div class="flex flex-row items-center">
-                <input type="checkbox" id="lelaki" name="isB40subsidized" checked value="1">
+                <input type="checkbox" id="lelaki" name="is_free_b40" {{ $kursus->is_free_b40 ? 'checked' : '' }} value="1">
                 <label for="lelaki" class="ml-2">Kategori B40 dikecualikan</label><br>
             </div>
 
@@ -55,7 +55,7 @@
                             <th class="w-1/12 py-3 border-2 border-gray-400">#</th>
                             <th class="w-3/12 py-3 border-2 border-gray-400">Nama</th>
                             <th class="w-2/12 py-3 border-2 border-gray-400">Nama Program</th>
-                            <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh</th>
+                            <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh Bayaran</th>
                             <th class="w-2/12 py-3 border-2 border-gray-400">No Resit</th>
                             <th class="w-2/12 py-3 border-2 border-gray-400">Kategori</th>
                             <th class="w-2/12 py-3 border-2 border-gray-400">Bayaran</th>
@@ -66,7 +66,9 @@
                             <td class="text-center py-3 border-2 border-gray-400">1</td>
                             <td class="text-center py-3 border-2 border-gray-400">Amirul</td>
                             <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                            <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
+                            <td class="text-center py-3 border-2 border-gray-400">
+                                <input type="date" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="2022-01-01">
+                            </td>
                             <td class="text-center py-3 border-2 border-gray-400">
                                 <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit">
                             </td>
@@ -77,7 +79,9 @@
                             <td class="text-center py-3 border-2 border-gray-400">2</td>
                             <td class="text-center py-3 border-2 border-gray-400">Khairul</td>
                             <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                            <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
+                            <td class="text-center py-3 border-2 border-gray-400">
+                                <input type="date" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="2022-01-01">
+                            </td>
                             <td class="text-center py-3 border-2 border-gray-400">
                                 <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit">
                             </td>
@@ -88,7 +92,9 @@
                             <td class="text-center py-3 border-2 border-gray-400">3</td>
                             <td class="text-center py-3 border-2 border-gray-400">Amira</td>
                             <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                            <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
+                            <td class="text-center py-3 border-2 border-gray-400">
+                                <input type="date" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="2022-01-01">
+                            </td>
                             <td class="text-center py-3 border-2 border-gray-400">
                                 <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="01122">
                             </td>
@@ -99,7 +105,9 @@
                             <td class="text-center py-3 border-2 border-gray-400">4</td>
                             <td class="text-center py-3 border-2 border-gray-400">Abu</td>
                             <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                            <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
+                            <td class="text-center py-3 border-2 border-gray-400">
+                                <input type="date" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="2022-01-01">
+                            </td>
                             <td class="text-center py-3 border-2 border-gray-400">
                                 <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="01122">
                             </td>
@@ -171,4 +179,12 @@
 <!-- END: Failed Notification Content -->
 
 {{-- @include('../pages/Kursus/datepicker-modal') --}}
+@endsection
+
+@section('script')
+<script>
+    function simpan(event) {
+        console.log(event);
+    }
+</script>
 @endsection
