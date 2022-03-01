@@ -10,7 +10,11 @@ class KutipanYuran extends Model
     use HasFactory;
 
     protected $fillable = [
-        'no_resit'
+        'no_resit',
+        'tarikh_bayaran',
+        'kursus_id',
+        'peserta_id',
+        'kursus_id'
     ];
 
     public function kursus()

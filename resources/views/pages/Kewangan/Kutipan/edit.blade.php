@@ -19,7 +19,7 @@
                 <label for="kluster" class="form-label w-full flex flex-col sm:flex-row">
                     Nama Kluster
                 </label>
-                <input type="text" class="form-control py-1 px-2 border-gray-300 block" id="kluster" name="" value="{{$kursus->kursusKluster->id}}" disabled>
+                <input type="text" class="form-control py-1 px-2 border-gray-300 block" id="kluster" name="" value="{{$kursus->kursusKluster->name}}" disabled>
             </div>
 
             <div class="input-form mb-6">
@@ -27,6 +27,7 @@
                     Nama Program
                 </label>
                 <input type="text" class="form-control py-1 px-2 border-gray-300 block" id="kluster" name="" value="{{$kursus->nama_kursus}}" disabled>
+                <input type="hidden" name="kursus_id" value="{{$kursus->id}}">
             </div>
 
             <div class="input-form mb-6">
@@ -34,7 +35,7 @@
                     Yuran Program
                 </label>
                 <select id="" name="yuran_program" class="w-full form-select box border-gray-300" data-pristine-required="">
-                    <option value="">Pilih Satu</option>
+                    <option value="-1">Pilih Satu</option>
                     <option {{$kursus->fee == '50' ? 'selected' : '' }} value="50">RM50</option>
                     <option {{$kursus->fee == '30' ? 'selected' : '' }} value="30">RM30</option>
                     <option {{$kursus->fee == 'PERCUMA' ? 'selected' : '' }} value="PERCUMA">PERCUMA</option>
@@ -42,8 +43,8 @@
             </div>
 
             <div class="flex flex-row items-center">
-                <input type="checkbox" id="lelaki" name="is_free_b40" {{ $kursus->is_free_b40 ? 'checked' : '' }} value="1">
-                <label for="lelaki" class="ml-2">Kategori B40 dikecualikan</label><br>
+                <input type="checkbox" id="is_free_b40" name="is_free_b40" {{ $kursus->is_free_b40 ? 'checked' : '' }} value="1">
+                <label for="is_free_b40" class="ml-2">Kategori B40 dikecualikan</label><br>
             </div>
 
             <!-- END: Show Modal Toggle -->
@@ -58,95 +59,37 @@
                             <th class="w-2/12 py-3 border-2 border-gray-400">Tarikh Bayaran</th>
                             <th class="w-2/12 py-3 border-2 border-gray-400">No Resit</th>
                             <th class="w-2/12 py-3 border-2 border-gray-400">Kategori</th>
-                            <th class="w-2/12 py-3 border-2 border-gray-400">Bayaran</th>
+                            <th class="w-2/12 py-3 border-2 border-gray-400">Bayaran (RM)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-none">
-                            <td class="text-center py-3 border-2 border-gray-400">1</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Amirul</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <input type="date" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="2022-01-01">
-                            </td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit">
-                            </td>
-                            <td class="text-center py-3 border-2 border-gray-400">B40</td>
-                            <td class="text-center py-3 border-2 border-gray-400"></td>
-                        </tr>
-                        <tr class="bg-gray-300">
-                            <td class="text-center py-3 border-2 border-gray-400">2</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Khairul</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <input type="date" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="2022-01-01">
-                            </td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit">
-                            </td>
-                            <td class="text-center py-3 border-2 border-gray-400">M40</td>
-                            <td class="text-center py-3 border-2 border-gray-400"></td>
-                        </tr>
-                        <tr class="bg-none">
-                            <td class="text-center py-3 border-2 border-gray-400">3</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Amira</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <input type="date" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="2022-01-01">
-                            </td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="01122">
-                            </td>
-                            <td class="text-center py-3 border-2 border-gray-400">M40</td>
-                            <td class="text-center py-3 border-2 border-gray-400"></td>
-                        </tr>
-                        <tr class="bg-gray-300">
-                            <td class="text-center py-3 border-2 border-gray-400">4</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Abu</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Keusahawanan</td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <input type="date" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="2022-01-01">
-                            </td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="01122">
-                            </td>
-                            <td class="text-center py-3 border-2 border-gray-400">B40</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Percuma</td>
-                        </tr>
-                        {{-- @foreach ($kursuses as $kursus)
-                        <tr class={{$kursus['id'] % 2==0 ? 'bg-gray-300' : 'bg-none' }}>
-                            <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['id'] }}</td>
-                            <td class="text-left pl-5 py-3 border-2 border-gray-400">
-                                <a href="#" class="text-blue-700 font-bold">{{ $kursus['nama_kursus'] }}</a>
-                                <br />
-                                {{ $kursus['kluster'] }}
-                            </td>
-                            <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['bilik'] }}</td>
-                            <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['tarikh_mula'] }}</td>
-                            <td class="text-center py-3 border-2 border-gray-400">{{ $kursus['tarikh_akhir'] }}</td>
-                            <td class="text-center py-3 border-2 border-gray-400">RM 100</td>
-                            <td class="text-center py-3 border-2 border-gray-400">
-                                <button title="View" class="btn btn-primary p-1" href="#" id="edit">
-                                    <i data-feather="eye" class="w-3 h-3 text-white"></i>
-                                </button>
-                                <button title="Edit" class="btn btn-success p-1" href="#" id="edit">
-                                    <i data-feather="edit" class="w-3 h-3 text-white"></i>
-                                </button>
-                                <button title="Buka" class="btn btn-warning p-1" href="#" id="schedule" key="0">
-                                    <i data-feather="calendar" class="w-3 h-3 text-white"></i>
-                                </button>
-                                <button title="Delete" class="btn btn-danger p-1" href="#" id="schedule" key="0">
-                                    <i data-feather="trash-2" class="w-3 h-3 text-white"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach --}}
+                        @foreach ($participants as $participant)
+                            @php
+                                $bayaranYuran = $participant->bayaranYuran()->where('kursus_id', $kursus->id)->first();
+                                if($bayaranYuran) {
+                                    $tarikhBayaran = $bayaranYuran->tarikh_bayaran;
+                                    $noResit = $bayaranYuran->no_resit;
+                                }
+                            @endphp
+                            <tr class="{{$loop->odd?'bg-none':'bg-gray-300'}}">
+                                <td class="text-center py-3 border-2 border-gray-400">{{$loop->iteration}}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">{{$participant->name}}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">{{$kursus->nama_kursus}}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">
+                                    <input type="date" class="form-control py-1 px-2 border-gray-300 block tarikh-bayaran" data-id="{{$participant->id}}" placeholder="" value="{{$bayaranYuran?$tarikhBayaran:''}}">
+                                </td>
+                                <td class="text-center py-3 border-2 border-gray-400">
+                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block no-resit" data-id="{{$participant->id}}" placeholder="No Resit" value="{{$bayaranYuran?$noResit:''}}" >
+                                </td>
+                                <td class="text-center py-3 border-2 border-gray-400">{{$participant->kumpulan_isi_rumah}}</td>
+                                <td class="text-center py-3 border-2 border-gray-400 {{$participant->kumpulan_isi_rumah == 'B40' ? 'bayaran-b40' : 'bayaran'}}">{{($participant->kumpulan_isi_rumah == 'B40' && $kursus->is_free_b40)?'PERCUMA':$kursus->fee}}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div class="flex flex-row justify-center py-2">
-                    <a href="{{route('kutipan-yuran')}}" class="btn btn-primary"><i data-feather="save"></i>&nbsp;&nbsp;Simpan</a>
-                    <button type="button" class="btn"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
+                    <button type="button" class="btn btn-primary" id="save-kutipan-yuran" data-id="{{$kursus->id}}"><i data-feather="save"></i>&nbsp;&nbsp;Simpan</button>
+                    <button type="button" class="btn btn-danger mx-1" onclick="history.back();"><i data-feather="x"></i>&nbsp;&nbsp;Batal</button>
                 </div>
             </div>
         </div>
@@ -159,8 +102,8 @@
 <div id="success-notification-content" class="toastify-content hidden flex">
     <i class="text-theme-10" data-feather="check-circle"></i>
     <div class="ml-4 mr-4">
-        <div class="font-medium">Registration success!</div>
-        <div class="text-gray-600 mt-1">
+        <div class="font-medium">Success!</div>
+        <div class="text-gray-600 mt-1 toast-text">
             Please check your e-mail for further info!
         </div>
     </div>
@@ -170,8 +113,8 @@
 <div id="failed-notification-content" class="toastify-content hidden flex">
     <i class="text-theme-24" data-feather="x-circle"></i>
     <div class="ml-4 mr-4">
-        <div class="font-medium">Registration failed!</div>
-        <div class="text-gray-600 mt-1">
+        <div class="font-medium">Failed!</div>
+        <div class="text-gray-600 mt-1 toast-text">
             Please check the fileld form.
         </div>
     </div>
@@ -183,8 +126,6 @@
 
 @section('script')
 <script>
-    function simpan(event) {
-        console.log(event);
-    }
+    
 </script>
 @endsection

@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::post('store-program-kursus', [KursusController::class, 'storeProgramKursus'])->name('store-program-kursus');
     Route::post('store-praktikal-kursus', [KursusController::class, 'storePraktikalKursus'])->name('store-praktikal-kursus');
     Route::get('hantar-kursus/{kursus_id}', [KursusController::class, 'hantarKursus'])->name('hantar-kursus');
+    Route::get('kursus/tarikh/kluster/{tarikhMula}/{tarikhAkhir}/{klusterId}', [KursusController::class, 'getKursusByKlusterAndTarikh']);
     Route::get('pendaftaran-kursus', [PageController::class, 'pendaftaranKursus'])->name('pendaftaran-kursus');
     Route::get('penjadualan-kursus', [PageController::class, 'penjadualanKursus'])->name('penjadualan-kursus');
     Route::get('jadual-kursus/{id}', [PageController::class, 'jadualKursus'])->name('jadual-kursus');
@@ -101,7 +102,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('kewangan', KewanganController::class, ['only' => ['store', 'update', 'destroy']]);
     Route::get('kutipan-yuran', [KewanganController::class, 'kutipanYuran'])->name('kutipan-yuran');
     Route::get('kutipan-yuran/kemas-kini/{id}', [KewanganController::class, 'editKutipanYuran'])->name('kutipan-yuran.edit');
+    Route::get('kutipan-yuran/cetak/{id}', [KewanganController::class, 'cetakKutipanYuran'])->name('kutipan-yuran.cetak');
+    Route::put('kutipan-yuran/update/{id}', [KewanganController::class, 'updateKutipanYuran'])->name('kutipan-yuran.update');
     Route::get('laporan-program', [KewanganController::class, 'laporanProgram'])->name('laporan-program');
+    Route::get('laporan-program/cetak/{tarikh_mula}/{tarikh_akhir}/{id}', [KewanganController::class, 'cetakLaporanProgram'])->name('laporan-program.cetak');
     Route::get('laporan-penceramah', [KewanganController::class, 'laporanPenceramah'])->name('laporan-penceramah');
     Route::get('laporan-makan-minum', [KewanganController::class, 'laporanMakanMinum'])->name('laporan-makan-minum');
 

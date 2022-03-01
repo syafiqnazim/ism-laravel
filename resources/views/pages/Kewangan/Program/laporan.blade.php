@@ -19,8 +19,8 @@
                 <label for="" class="form-label w-full flex flex-col sm:flex-row">
                     Nama Kluster
                 </label>
-                <select id="" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required="">
-                    <option value="">Pilih Satu</option>
+                <select id="klusterId" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required="">
+                    <option value="-1">Pilih Satu</option>
                     @foreach ($klusters as $item)
                         <option value="{{ $item->id  }}">{{ $item->name }}</option>
                     @endforeach
@@ -32,7 +32,7 @@
                         Tarikh Mula
                     </label>
                     <input class="datepicker form-control" data-single-mode="true"
-                                    name="tarikh_mula">
+                                    name="tarikh_mula" id="tarikh_mula">
                 </div>
     
                 <div class="input-form mb-6 w-1/2 px-2">
@@ -40,12 +40,12 @@
                         Tarikh Akhir
                     </label>
                     <input class="datepicker form-control" data-single-mode="true"
-                                    name="tarikh_akhir">
+                                    name="tarikh_akhir" id="tarikh_akhir">
                 </div>
             </div>
             <div class="flex flex-row justify-center py-2">
                 <button type="button" class="btn btn-primary"
-                    onclick="document.getElementById('report-div').classList.remove('hidden')"
+                    onclick="getProgram();"
                 ><i data-feather="mouse-pointer"></i>&nbsp;&nbsp;Jana</button>
             </div>
             
@@ -65,38 +65,11 @@
                             <th class="w-2/12 py-3 border-2 border-gray-400">Jumlah Penceramah</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="bg-none">
-                            <td class="text-center py-3 border-2 border-gray-400">1</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Social Development</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Kewangan Siri 1</td>
-                            <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Dewan Kuliah</td>
-                            <td class="text-center py-3 border-2 border-gray-400">20</td>
-                            <td class="text-center py-3 border-2 border-gray-400">2</td>
-                        </tr>
-                        <tr class="bg-gray-300">
-                            <td class="text-center py-3 border-2 border-gray-400">1</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Social Development</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Kewangan Siri 2</td>
-                            <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Dewan Kuliah</td>
-                            <td class="text-center py-3 border-2 border-gray-400">20</td>
-                            <td class="text-center py-3 border-2 border-gray-400">2</td>
-                        </tr>
-                        <tr class="bg-none">
-                            <td class="text-center py-3 border-2 border-gray-400">1</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Social Development</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Kewangan Siri 3</td>
-                            <td class="text-center py-3 border-2 border-gray-400">15/12/2021</td>
-                            <td class="text-center py-3 border-2 border-gray-400">Dewan Kuliah</td>
-                            <td class="text-center py-3 border-2 border-gray-400">20</td>
-                            <td class="text-center py-3 border-2 border-gray-400">2</td>
-                        </tr>
+                    <tbody id="tbodyDiv">
                     </tbody>
                 </table>
                 <div class="flex flex-row justify-center py-2">
-                    <button type="button" class="btn"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
+                    <a href="#/" type="button" id="cetakBtn" class="btn" target="_blank"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</a>
                 </div>
             </div>
         </div>
@@ -129,4 +102,58 @@
 <!-- END: Failed Notification Content -->
 
 {{-- @include('../pages/Kursus/datepicker-modal') --}}
+@endsection
+
+@section('script')
+
+    <script>
+        function getProgram() {
+            let klusterId = document.getElementById('klusterId').value;
+            if(klusterId == -1) return false;
+            let tarikh_mula = document.getElementById('tarikh_mula').value;
+            let tarikh_akhir = document.getElementById('tarikh_akhir').value;
+            let klusterName = document.getElementById('klusterId').options[document.getElementById('klusterId').selectedIndex].text;
+            let html = '';
+            tarikh_mula = new Date(tarikh_mula);
+            tarikh_akhir = new Date(tarikh_akhir);
+            tarikh_mula = tarikh_mula.getFullYear() + '-' + (tarikh_mula.getMonth()+1) + '-' + tarikh_mula.getDate();
+            tarikh_akhir = tarikh_akhir.getFullYear() + '-' + (tarikh_akhir.getMonth()+1) + '-' + tarikh_akhir.getDate();
+            axios.get('kursus/tarikh/kluster/' + tarikh_mula + '/' + tarikh_akhir + '/' + klusterId)
+            .then(function(response) {
+                var count = 0;
+                console.log(response);
+                if(response.data.length > 0) {
+                    response.data.forEach(function(data) {
+                        count++;
+                        html += `
+                            <tr class="${count%2?'bg-none':'bg-gray-300'}">
+                                <td class="text-center py-3 border-2 border-gray-400">${count}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${klusterName}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.nama_kursus}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${new Date(data.tarikh_mula).toLocaleDateString('fr')}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.bilik}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.totalParticipants}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${data.totalPenceramah}</td>
+                            </tr>
+                        `;
+                    });
+                } else {
+                    html = `
+                            <tr class="bg-none">
+                                <td colspan="7" class="text-center py-3 border-2 border-gray-400">Rekod Tidak Dijumpai</td>
+                            </tr>
+                        `;
+                }
+
+                document.getElementById('report-div').classList.remove('hidden');
+                document.getElementById('tbodyDiv').innerHTML = html;
+                document.getElementById('cetakBtn').href = `laporan-program/cetak/${tarikh_mula}/${tarikh_akhir}/${klusterId}`;
+            });
+        }
+
+        function cetakLaporanProgram() {
+            let klusterId = document.getElementById('klusterId').value;
+        }
+    </script>
+
 @endsection

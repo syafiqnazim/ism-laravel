@@ -57,7 +57,7 @@ class KursusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request);
+        // dd($request);
         // if ($request->yuran) {
         //     dd($request);
         //     Kursus::where('id', $id)
@@ -160,6 +160,14 @@ class KursusController extends Controller
             ]);
 
         return back();
+    }
+
+    public function getKursusByKlusterAndTarikh($tarikhMula, $tarikhAkhir, $klusterId)
+    {
+        return Kursus::where('kluster', $klusterId)
+                ->where('tarikh_mula', '>=', $tarikhMula)
+                ->where('tarikh_akhir', '<=', $tarikhAkhir)
+                ->get();
     }
 
 

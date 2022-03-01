@@ -114,7 +114,7 @@
                     </table>
                     <div class="flex flex-row justify-center py-2">
                         <a href="#" id="kemasKiniBtn" class="btn btn-primary"><i data-feather="edit"></i>&nbsp;&nbsp;Kemas Kini</a>
-                        <button type="button" class="btn" id="print-laporan-kutipan-yuran"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
+                        <a href="#" id="cetakBtn" class="btn" target="_blank"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</a>
                     </div>
                 </div>
             </div>
@@ -130,9 +130,9 @@
 <div id="success-notification-content" class="toastify-content hidden flex">
     <i class="text-theme-10" data-feather="check-circle"></i>
     <div class="ml-4 mr-4">
-        <div class="font-medium">Registration success!</div>
+        <div class="font-medium">Success!</div>
         <div class="text-gray-600 mt-1">
-            Please check your e-mail for further info!
+            Maklumat Kutipan Yuran Telah Disimpan
         </div>
     </div>
 </div>
@@ -141,9 +141,9 @@
 <div id="failed-notification-content" class="toastify-content hidden flex">
     <i class="text-theme-24" data-feather="x-circle"></i>
     <div class="ml-4 mr-4">
-        <div class="font-medium">Registration failed!</div>
+        <div class="font-medium">Failed!</div>
         <div class="text-gray-600 mt-1">
-            Please check the fileld form.
+            Maklumat Kutipan Yuran Gagal Disimpan. Hubungi Pentadbir Sistem Jika Berterusan.
         </div>
     </div>
 </div>
@@ -180,21 +180,23 @@
                     document.getElementById('is_free_b40').checked = false;
                 }
                 document.getElementById('kemasKiniBtn').href = 'kutipan-yuran/kemas-kini/' + response.data.id;
+                document.getElementById('cetakBtn').href = 'kutipan-yuran/cetak/' + response.data.id;
             });
 
             axios.get('peserta/program/' + event.target.value)
             .then(response => {
                 var html1 = '', html2 = '';
-                var count = 0;
+                var countPaid = 0, countFree = 0, totalYuran = 0, totalYuranDiterima = 0;
                 response.data.forEach(data => {
-                    count++;
+                    
                     document.getElementById('reportHeader').innerHTML = data.nama_kursus.toUpperCase();;
                     document.getElementById('klusterName').innerHTML = data.program.kursus_kluster.name.toUpperCase();
                     document.getElementById('tarikhProgramSpan').innerHTML = new Date(data.program.tarikh_mula).toLocaleDateString();
-                    if((data.program.is_free_b40) && (data.kumpulan_isi_rumah == 'B40')) {
+                    if((data.program.is_free_b40 == '1') && (data.kumpulan_isi_rumah == 'B40')) {
+                        countFree++;
                         html1 +=  `
-                            <tr class="${ count % 2 ? 'bg-none' : 'bg-gray-300' }">
-                                <td class="text-center py-3 border-2 border-gray-400">${count}</td>
+                            <tr class="${ countFree % 2 ? 'bg-none' : 'bg-gray-300' }">
+                                <td class="text-center py-3 border-2 border-gray-400">${countFree}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">${data.name}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">${data.ic_number}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">${data.kumpulan_isi_rumah}</td>
@@ -202,16 +204,22 @@
                             </tr>
                             `;
                     } else {
+                        countPaid++;
+                        totalYuran = totalYuran + data.program.fee;
+                        if(data.bayaran_yuran.length > 0) {
+                            totalYuranDiterima = totalYuranDiterima + data.program.fee;
+                        }
                         html2 +=  `
-                            <tr class="${ count % 2 ? 'bg-none' : 'bg-gray-300' }">
-                                <td class="text-center py-3 border-2 border-gray-400">${count}</td>
+                            <tr class="${ countPaid % 2 ? 'bg-none' : 'bg-gray-300' }">
+                                <td class="text-center py-3 border-2 border-gray-400">${countPaid}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">${data.name}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">${data.ic_number}</td>
-                                <td class="text-center py-3 border-2 border-gray-400">${(new Date(data.program.tarikh_mula).toLocaleDateString())}</td>
+                                <td class="text-center py-3 border-2 border-gray-400">${(data.bayaran_yuran.length > 0) && data.bayaran_yuran[0].tarikh_bayaran?(new Date(data.bayaran_yuran[0].tarikh_bayaran).toLocaleDateString('fr')):''}</td>
                                 <td class="text-center py-3 border-2 border-gray-400">
-                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="" readonly>
+                                    <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="${data.bayaran_yuran.length > 0?data.bayaran_yuran[0].no_resit:''}" readonly>
                                 </td>
-                                <td class="text-center py-3 border-2 border-gray-400 program-fee">RM30</td>
+                                <td class="text-center py-3 border-2 border-gray-400 program-fee">${data.kumpulan_isi_rumah}</td>
+                                <td class="text-center py-3 border-2 border-gray-400 program-fee">RM${data.program.fee}</td>
                             </tr>
                             `;
                     }
@@ -223,6 +231,16 @@
                 }
                 document.getElementById('report-div').classList.remove('hidden');
                 document.getElementById('freeTableBody').innerHTML = html1;
+                html2 +=  `
+                            <tr class="${ (countPaid+1) % 2 ? 'bg-none' : 'bg-gray-300' }">
+                                <td colspan="6" class="text-right py-3 px-2 border-2 border-gray-400">Jumlah</td>
+                                <td colspan="6" class="text-center py-3 border-2 border-gray-400">RM${totalYuran}</td>
+                            </tr>
+                            <tr class="${ (countPaid+2) % 2 ? 'bg-none' : 'bg-gray-300' }">
+                                <td colspan="6" class="text-right py-3 px-2 border-2 border-gray-400">Jumlah Diterima</td>
+                                <td colspan="6" class="text-center py-3 border-2 border-gray-400">RM${totalYuranDiterima}</td>
+                            </tr>
+                            `;
                 document.getElementById('paidTableBody').innerHTML = html2;
 
             });

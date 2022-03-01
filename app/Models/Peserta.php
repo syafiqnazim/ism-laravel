@@ -44,4 +44,8 @@ class Peserta extends Model
     public function program() {
         return $this->belongsTo(Kursus::class, 'nama_kursus', 'nama_kursus');
     }
+
+    public function bayaranYuran() {
+        return $this->hasMany(KutipanYuran::class);
+    }
 }

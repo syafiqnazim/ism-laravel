@@ -41,7 +41,7 @@
 	<select id="nama_kursus" class="w-full form-select box border-gray-300 mt-3" required name="nama_kursus" onchange="document.getElementById('peserta-form').submit()">
 		<option value="">Nama Kursus</option>
 		@foreach ($kursuses as $kursus)
-		<option value="{{ $kursus['nama_kursus'] }}" {{-- ( $kursus['nama_kursus'] == $nama_kursus) ? 'selected' : '' --}}>{{ $kursus['nama_kursus'] }}</option>
+		<option value="{{ $kursus['nama_kursus'] }}"  @if($nama_kursus == $kursus['nama_kursus']) selected @endif {{-- ( $kursus['nama_kursus'] == $nama_kursus) ? 'selected' : '' --}}>{{ $kursus['nama_kursus'] }}</option>
 		@endforeach
 	</select>
 	@endif

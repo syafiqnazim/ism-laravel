@@ -21,16 +21,29 @@ class Kursus extends Model
         "bil_keperluan_asrama",
     ];
 
-    protected $dateFormat = 'd/m/Y';
+    protected $appends = [
+        'totalParticipants',
+        'totalPenceramah'
+    ];
+
+    // protected $dateFormat = 'd/m/Y';
 
     public function getStartDateAttribute($date)
     {
-        return Carbon::parse($this->attributes['tarikh_mula'])->format($this->dateFormat);
+        return Carbon::parse($this->attributes['tarikh_mula'])->format('d/m/Y');
     }
 
     public function getEndDateAttribute($date)
     {
-        return Carbon::parse($this->attributes['tarikh_akhir'])->format($this->dateFormat);
+        return Carbon::parse($this->attributes['tarikh_akhir'])->format('d/m/Y');
+    }
+
+    public function getTotalParticipantsAttribute() {
+        return $this->participants()->count();
+    }
+
+    public function getTotalPenceramahAttribute() {
+        return $this->penceramahs()->count();
     }
 
     public function kursusKluster()
@@ -59,5 +72,13 @@ class Kursus extends Model
     public function objektifs()
     {
         return $this->hasMany(ObjektifKursus::class);
+    }
+
+    public function participants() {
+        return $this->hasMany(Peserta::class, 'nama_kursus', 'nama_kursus');
+    }
+
+    public function bayaranYuran() {
+        return $this->hasMany(KutipanYuran::class);
     }
 }

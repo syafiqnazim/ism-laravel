@@ -32,3 +32,4 @@ mix.js("resources/js/app.js", "public/dist/js")
         proxy: "icewall-laravel.test",
         files: ["resources/**/*.*"],
     });
+mix.disableSuccessNotifications();

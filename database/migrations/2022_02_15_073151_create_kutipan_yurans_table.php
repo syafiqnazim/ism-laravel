@@ -16,8 +16,9 @@ class CreateKutipanYuransTable extends Migration
         Schema::create('kutipan_yurans', function (Blueprint $table) {
             $table->id();
             $table->integer('peserta_id');
-            $table->integer('kursus_id');
-            $table->string('no_resit');
+            $table->integer('kursus_id')->nullable();
+            $table->string('no_resit')->nullable();
+            $table->date('tarikh_bayaran');
             $table->timestamps();
         });
     }
