@@ -36,6 +36,7 @@
                 </label>
                 <select id="" name="yuran_program" class="w-full form-select box border-gray-300" data-pristine-required="">
                     <option value="-1">Pilih Satu</option>
+                    <option {{$kursus->fee == '100' ? 'selected' : '' }} value="100">RM100</option>
                     <option {{$kursus->fee == '50' ? 'selected' : '' }} value="50">RM50</option>
                     <option {{$kursus->fee == '30' ? 'selected' : '' }} value="30">RM30</option>
                     <option {{$kursus->fee == 'PERCUMA' ? 'selected' : '' }} value="PERCUMA">PERCUMA</option>
@@ -126,6 +127,6 @@
 
 @section('script')
 <script>
-    
+
 </script>
 @endsection

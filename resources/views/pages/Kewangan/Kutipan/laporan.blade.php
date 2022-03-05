@@ -55,7 +55,9 @@
                 <label for="" class="form-label w-full flex flex-col sm:flex-row">
                     Nama Program
                 </label>
-                <select id="program" name="program" class="w-full form-select box border-gray-300" data-pristine-required=""></select>
+                <select id="program" name="program" class="w-full form-select box border-gray-300" data-pristine-required="">
+                    <option value="">Pilih Kluster</option>
+                </select>
             </div>
 
             <div class="hidden" id="report-div">
@@ -188,7 +190,7 @@
                 var html1 = '', html2 = '';
                 var countPaid = 0, countFree = 0, totalYuran = 0, totalYuranDiterima = 0;
                 response.data.forEach(data => {
-                    
+
                     document.getElementById('reportHeader').innerHTML = data.nama_kursus.toUpperCase();;
                     document.getElementById('klusterName').innerHTML = data.program.kursus_kluster.name.toUpperCase();
                     document.getElementById('tarikhProgramSpan').innerHTML = new Date(data.program.tarikh_mula).toLocaleDateString();
@@ -219,7 +221,7 @@
                                     <input type="text" class="form-control py-1 px-2 border-gray-300 block" placeholder="No Resit" value="${data.bayaran_yuran.length > 0?data.bayaran_yuran[0].no_resit:''}" readonly>
                                 </td>
                                 <td class="text-center py-3 border-2 border-gray-400 program-fee">${data.kumpulan_isi_rumah}</td>
-                                <td class="text-center py-3 border-2 border-gray-400 program-fee">RM${data.program.fee}</td>
+                                <td class="text-center py-3 border-2 border-gray-400 program-fee">RM${data.program.fee?data.program.fee:'0'}</td>
                             </tr>
                             `;
                     }

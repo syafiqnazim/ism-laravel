@@ -7,6 +7,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PenyelenggaraanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TempahanController;
+use App\Http\Controllers\KutipanYuranController;
 use App\Http\Controllers\KewanganController;
 use App\Http\Controllers\AduanController;
 use App\Http\Controllers\ObjektifKursusController;
@@ -98,12 +99,18 @@ Route::middleware('auth')->group(function () {
     Route::get('tempahan-peralatan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('tempahan-peralatan-ict');
     Route::get('tempahan-makan-minum', [TempahanController::class, 'tempahanMakanMinum'])->name('tempahan-makan-minum');
 
+    // kutipanYuranController
+    Route::group([
+        'prefix' => 'kutipan-yuran'
+    ], function() {
+        Route::get('/', [KutipanYuranController::class, 'index'])->name('kutipan-yuran');
+        Route::get('kemas-kini/{id}', [KutipanYuranController::class, 'edit'])->name('kutipan-yuran.edit');
+        Route::get('cetak/{id}', [KutipanYuranController::class, 'cetak'])->name('kutipan-yuran.cetak');
+        Route::put('update/{id}', [kutipanYuranController::class, 'update'])->name('kutipan-yuran.update');
+    });
+
     // KewanganController
     Route::resource('kewangan', KewanganController::class, ['only' => ['store', 'update', 'destroy']]);
-    Route::get('kutipan-yuran', [KewanganController::class, 'kutipanYuran'])->name('kutipan-yuran');
-    Route::get('kutipan-yuran/kemas-kini/{id}', [KewanganController::class, 'editKutipanYuran'])->name('kutipan-yuran.edit');
-    Route::get('kutipan-yuran/cetak/{id}', [KewanganController::class, 'cetakKutipanYuran'])->name('kutipan-yuran.cetak');
-    Route::put('kutipan-yuran/update/{id}', [KewanganController::class, 'updateKutipanYuran'])->name('kutipan-yuran.update');
     Route::get('laporan-program', [KewanganController::class, 'laporanProgram'])->name('laporan-program');
     Route::get('laporan-program/cetak/{tarikh_mula}/{tarikh_akhir}/{id}', [KewanganController::class, 'cetakLaporanProgram'])->name('laporan-program.cetak');
     Route::get('laporan-penceramah', [KewanganController::class, 'laporanPenceramah'])->name('laporan-penceramah');
