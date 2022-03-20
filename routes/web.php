@@ -99,7 +99,7 @@ Route::middleware('auth')->group(function () {
     Route::get('tempahan-peralatan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('tempahan-peralatan-ict');
     Route::get('tempahan-makan-minum', [TempahanController::class, 'tempahanMakanMinum'])->name('tempahan-makan-minum');
 
-    // kutipanYuranController
+    // KutipanYuranController
     Route::group([
         'prefix' => 'kutipan-yuran'
     ], function() {

@@ -95,6 +95,8 @@ class KewanganController extends Controller
     }
 
     public function cetakLaporanProgram($tarikh_mula, $tarikh_akhir, $id) {
+
+        ini_set('memory_limit','256M');
         $compactValues = [];
         $compactValues[] = 'tarikh_mula';
         $compactValues[] = 'tarikh_akhir';
