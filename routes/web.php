@@ -97,7 +97,11 @@ Route::middleware('auth')->group(function () {
     Route::post('tempahan-asrama', [TempahanController::class, 'tempahanAsrama'])->name('tempahan-asram');
     Route::get('tempahan-asrama-destroy/{id}', [TempahanController::class, 'tempahanAsramaDestroy'])->name('tempahan-asrama-destroy');
     Route::get('tempahan-peralatan-ict', [PengurusanIctController::class, 'pengurusanIct'])->name('tempahan-peralatan-ict');
-    Route::get('tempahan-makan-minum', [TempahanController::class, 'tempahanMakanMinum'])->name('tempahan-makan-minum');
+    Route::get('tempahan-makan-minum', [TempahanController::class, 'tempahanMakanMinum'])->name('tempahan-makan-minum.index');
+
+    //tempahan makanan dan minuman
+    Route::post('tempahan-makan-minum', [TempahanController::class, 'tempahanMakanMinum'])->name('tempahan-makan-minum.store');
+    Route::get('tempahan-makan-minum/{id}/kursus', [TempahanController::class, 'getKursusTempahanMakanMinum'])->name('tempahan-makan-minum.kursus');
 
     // KutipanYuranController
     Route::group([

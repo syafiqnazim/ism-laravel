@@ -129,7 +129,7 @@ class SideMenu
                 ],
                 'tempahan-makan-minum' => [
                     'icon' => 'coffee',
-                    'route_name' => 'tempahan-makan-minum',
+                    'route_name' => 'tempahan-makan-minum.index',
                     'title' => 'Tempahan Makanan & Minuman',
                 ],
                 [

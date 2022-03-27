@@ -48,3 +48,4 @@ import "./peralatanICT";
 import "./submodulKursus";
 import "./objektifKursus";
 import "./kewangan";
+import "./tempahan";

@@ -13,6 +13,7 @@ use App\Models\Role;
 use App\Models\SenaraiKenderaan;
 use App\Models\SenaraiPemandu;
 use App\Models\Peserta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TempahanController extends Controller
@@ -197,7 +198,7 @@ class TempahanController extends Controller
 
             try {
 
-               
+
                 $checkExist = TempahanAsrama::where('asrama_id',$id_asrama)
                 ->where('tarikh_masuk', '>=', $tarikh_masuk)
                 ->where('tarikh_masuk', '<=', $tarikh_keluar)
@@ -208,12 +209,12 @@ class TempahanController extends Controller
                 if($checkExist >0){
                     $step=1;
                 }
-                 
-                $tempahanAsrama = new TempahanAsrama(); 
-                $tempahanAsrama->tarikh_masuk = $tarikh_masuk;  
-                $tempahanAsrama->tarikh_keluar = $tarikh_keluar;  
-                $tempahanAsrama->asrama_id = $id_asrama;  
-                $tempahanAsrama->kursus_id = $kursus_id;  
+
+                $tempahanAsrama = new TempahanAsrama();
+                $tempahanAsrama->tarikh_masuk = $tarikh_masuk;
+                $tempahanAsrama->tarikh_keluar = $tarikh_keluar;
+                $tempahanAsrama->asrama_id = $id_asrama;
+                $tempahanAsrama->kursus_id = $kursus_id;
                 $tempahanAsrama->save();
 
                 $insertedId = $tempahanAsrama->id;
@@ -222,16 +223,16 @@ class TempahanController extends Controller
                     echo $a;
                     TempahanPesertaAsrama::create([
                         "tempahan_asrama_id" => $insertedId,
-                        "peserta_id" => $a, 
+                        "peserta_id" => $a,
                     ]);
                 }
-    
+
                 return back();
             } catch (\Throwable $th) {
                 dd($th);
             }
 
-            
+
             /*
             foreach ($ary as $b){
                 echo $b;
@@ -256,7 +257,7 @@ class TempahanController extends Controller
             /*
 
             $checkExist = TempahanAsrama::where('asrama_id',$id_asrama)
-            ->where('tarikh_masuk', '>=', $tarikh_masuk) 
+            ->where('tarikh_masuk', '>=', $tarikh_masuk)
             ->where('tarikh_keluar', '<=', $tarikh_keluar)
             //->where('tarikh_masuk', '>=', $tarikh_masuk)
             //->where('tarikh_masuk', '<=', $tarikh_keluar)
@@ -279,12 +280,12 @@ class TempahanController extends Controller
 
             if($checkExist > 0){
                 $step=1;
-                \Session::flash('msg_error', 'Tempahan bilik pada tarikh tersebut telah wujud.'); 
+                \Session::flash('msg_error', 'Tempahan bilik pada tarikh tersebut telah wujud.');
             }
 
            //dd($checkExist);
           // return back()->with('msg_error','New product included, go to next step.');
-          
+
 
         }else if (isset($request->tarikh_masuk) && isset($request->tarikh_keluar)) {
             $tarikh_masuk = $request->tarikh_masuk;
@@ -308,7 +309,7 @@ class TempahanController extends Controller
             ->count();
 
             //dd($checkExist);
-            
+
         }else{
             $tarikh_masuk = '';
             $tarikh_keluar ='';
@@ -318,25 +319,25 @@ class TempahanController extends Controller
             $asramas = Asrama::where('status','available')->get();
             $pesertas = Peserta::get();
             $step=1;
-            
+
         }
         //dd($kapasiti_asrama->kapasiti);
         //dd($pesertas);
 
         return view('pages/tempahan/tempahan-asrama')->with(
         [
-            'roles' => Role::all(), 
-            'kursuses' => $kursuses, 
-            'tarikh_masuk' => $tarikh_masuk, 
-            'tarikh_keluar' => $tarikh_keluar, 
-            'asramas' => $asramas, 
-            'pesertas' => $pesertas, 
-            'id_asrama' => $id_asrama, 
-            'kapasiti_asrama' => $kapasiti_asrama, 
-            'step' => $step, 
+            'roles' => Role::all(),
+            'kursuses' => $kursuses,
+            'tarikh_masuk' => $tarikh_masuk,
+            'tarikh_keluar' => $tarikh_keluar,
+            'asramas' => $asramas,
+            'pesertas' => $pesertas,
+            'id_asrama' => $id_asrama,
+            'kapasiti_asrama' => $kapasiti_asrama,
+            'step' => $step,
             'query' => $query,
             'tempahanAsramas' => $tempahanAsramas,
-        
+
         ]);
     }
 
@@ -364,5 +365,15 @@ class TempahanController extends Controller
         $klusters = Kluster::all();
         $kursuses = Kursus::all();
         return view('pages.Tempahan.Makan-minum.index', compact('klusters', 'kursuses'));
+    }
+
+    public function getKursusTempahanMakanMinum($kursus_id)
+    {
+        $kursus = Kursus::find($kursus_id);
+        $tarikhMula = Carbon::parse($kursus->tarikh_mula);
+        $tarikhAkhir = Carbon::parse($kursus->tarikh_akhir);
+        $kursusDays = $tarikhMula->diffInDays($tarikhAkhir) + 1;
+
+        return view('pages.Tempahan.Makan-minum.partials.tempahan-makan-minum-kursus', compact('kursusDays', 'tarikhMula'));
     }
 }
