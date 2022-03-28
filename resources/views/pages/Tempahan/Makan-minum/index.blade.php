@@ -22,7 +22,7 @@
                     <label for="" class="form-label w-full flex flex-col sm:flex-row">
                         Nama Kluster
                     </label>
-                    <select id="" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required="">
+                    <select id="klusterTempahanMakanMinum" name="kluster" class="w-full form-select box border-gray-300" data-pristine-required="">
                         <option value="">Pilih Satu</option>
                         @foreach ($klusters as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -35,14 +35,9 @@
                         Nama Program
                     </label>
                     <select id="programTempahanMakanMinum" name="program" class="w-full form-select box border-gray-300" data-pristine-required="">
-                        <option value="">Pilih Satu</option>
-                        <option value="all">Semua</option>
-                        @foreach ($kursuses as $item)
-                            <option value="{{ $item->id }}">{{ $item->nama_kursus }}</option>
-                        @endforeach
                     </select>
                 </div>
-                <form action="{{ route('tempahan-makan-minum.store') }}">
+                <form action="{{ route('tempahan-makan-minum.store') }}" method="post">
                     @csrf
                     <div class="" id="report-div">
                     </div>

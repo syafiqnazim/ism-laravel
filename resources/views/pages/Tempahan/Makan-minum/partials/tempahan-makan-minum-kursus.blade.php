@@ -1,16 +1,16 @@
-<input type="hidden" name="kursus_id" value="">
+<input type="hidden" name="kursus_id" value="{{ $kursus->id }}">
 <div class="input-form mb-6 p-2">
     <label for="" class="form-label w-full flex flex-col sm:flex-row">
         Lokasi Program
     </label>
-    <input type="text" class="form-control py-1 px-2 border-gray-300 block" value="">
+    <input type="text" name="lokasi" class="form-control py-1 px-2 border-gray-300 block" value="">
 </div>
 
 <div class="input-form mb-6 p-2">
     <label for="" class="form-label w-full flex flex-col sm:flex-row">
         Nama Urusetia
     </label>
-    <input type="text" class="form-control py-1 px-2 border-gray-300 block" value="">
+    <input type="text" name="urusetia" class="form-control py-1 px-2 border-gray-300 block" value="">
 </div>
 
 <div class="flex flex row">
@@ -19,7 +19,7 @@
             Jumlah PAX
         </label>
         <div class="flex flex-row items-center">
-            <input type="text" class="form-control py-1 px-2 border-gray-300 block" style="max-width: 100px" value="">
+            <input type="number" name="pax" class="form-control py-1 px-2 border-gray-300 block" style="max-width: 100px" value="">
             <p class="px-2">Orang</p>
         </div>
     </div>
@@ -29,7 +29,7 @@
             Vegetarian
         </label>
         <div class="flex flex-row items-center">
-            <input type="text" class="form-control py-1 px-2 border-gray-300 block" style="max-width: 100px" value="">
+            <input type="number" name="vegetarian" class="form-control py-1 px-2 border-gray-300 block" style="max-width: 100px" value="">
             <p class="px-2">Orang</p>
         </div>
     </div>
@@ -39,7 +39,7 @@
             VIP
         </label>
         <div class="flex flex-row items-center">
-            <input type="text" class="form-control py-1 px-2 border-gray-300 block" style="max-width: 100px" value="">
+            <input type="number" name="vip" id="vip" class="form-control py-1 px-2 border-gray-300 block" style="max-width: 100px" value="">
             <p class="px-2">Orang</p>
         </div>
     </div>
@@ -67,62 +67,71 @@
             @for ($i = 0; $i < $kursusDays; $i++)
                 <tr class="{{ $i % 2 ? 'bg-gray-300' : 'bg-none' }}">
                     <td class="text-center py-3 border-2 border-gray-400">{{ $i + 1 }}</td>
-                    <td class="text-center py-3 border-2 border-gray-400">{{ $tarikhMula->addDays($i)->format('d/m/Y') }}</td>
+                    <td class="text-center py-3 border-2 border-gray-400">{{ $tarikhMula->copy()->addDays($i)->format('d/m/Y') }}</td>
                     <td class="text-center py-3 border-2 border-gray-400">
-                        <select id="" name="" class="w-full form-select box border-gray-300" data-pristine-required="">
-                            <option value="">Pilih Satu</option>
-                            <option value="" selected>Hidang</option>
-                            <option value="">Buffet</option>
-                            <option value="">Packed Food</option>
-                            <option value="">Tiada</option>
+                        <select id="" name="dayslot-makanpagi-{{$i + 1}}" class="w-full form-select box border-gray-300" data-pristine-required="">
+                            <option value="-1">Pilih Satu</option>
+                            <option value="1">Hidang</option>
+                            <option value="2">Buffet</option>
+                            <option value="3">Packed Food</option>
+                            <option value="4">Tiada</option>
                         </select>
                     </td>
-                    <td class="text-center py-3 border-2 border-gray-400"><select id="" name=""
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        <select id="" name="dayslot-{{ $i + 1 }}-minumpagi"
                             class="w-full form-select box border-gray-300" data-pristine-required="">
-                            <option value="">Pilih Satu</option>
-                            <option value="" selected>Hidang</option>
-                            <option value="">Buffet</option>
-                            <option value="">Packed Food</option>
-                            <option value="">Tiada</option>
-                        </select></td>
-                    <td class="text-center py-3 border-2 border-gray-400"><select id="" name=""
+                            <option value="-1">Pilih Satu</option>
+                            <option value="1">Hidang</option>
+                            <option value="2">Buffet</option>
+                            <option value="3">Packed Food</option>
+                            <option value="4">Tiada</option>
+                        </select>
+                    </td>
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        <select id="" name="dayslot-{{ $i + 1 }}-mkntghhari"
                             class="w-full form-select box border-gray-300" data-pristine-required="">
-                            <option value="">Pilih Satu</option>
-                            <option value="" selected>Hidang</option>
-                            <option value="">Buffet</option>
-                            <option value="">Packed Food</option>
-                            <option value="">Tiada</option>
-                        </select></td>
-                    <td class="text-center py-3 border-2 border-gray-400"><select id="" name=""
+                            <option value="-1">Pilih Satu</option>
+                            <option value="1">Hidang</option>
+                            <option value="2">Buffet</option>
+                            <option value="3">Packed Food</option>
+                            <option value="4">Tiada</option>
+                        </select>
+                    </td>
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        <select id="" name="dayslot-{{ $i + 1 }}-minumptg"
                             class="w-full form-select box border-gray-300" data-pristine-required="">
-                            <option value="">Pilih Satu</option>
-                            <option value="" selected>Hidang</option>
-                            <option value="">Buffet</option>
-                            <option value="">Packed Food</option>
-                            <option value="">Tiada</option>
+                            <option value="-1">Pilih Satu</option>
+                            <option value="1">Hidang</option>
+                            <option value="2">Buffet</option>
+                            <option value="3">Packed Food</option>
+                            <option value="4">Tiada</option>
                         </select></td>
-                    <td class="text-center py-3 border-2 border-gray-400"><select id="" name=""
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        <select id="" name="dayslot-{{ $i + 1 }}-mknmlm"
                             class="w-full form-select box border-gray-300" data-pristine-required="">
-                            <option value="">Pilih Satu</option>
-                            <option value="">Hidang</option>
-                            <option value="">Buffet</option>
-                            <option value="">Packed Food</option>
-                            <option value="" selected>Tiada</option>
-                        </select></td>
-                    <td class="text-center py-3 border-2 border-gray-400"><select id="" name=""
+                            <option value="-1">Pilih Satu</option>
+                            <option value="1">Hidang</option>
+                            <option value="2">Buffet</option>
+                            <option value="3">Packed Food</option>
+                            <option value="4">Tiada</option>
+                        </select>
+                    </td>
+                    <td class="text-center py-3 border-2 border-gray-400">
+                        <select id="" name="dayslot-{{ $i + 1 }}-minummlm"
                             class="w-full form-select box border-gray-300" data-pristine-required="">
-                            <option value="">Pilih Satu</option>
-                            <option value="">Hidang</option>
-                            <option value="">Buffet</option>
-                            <option value="">Packed Food</option>
-                            <option value="" selected>Tiada</option>
-                        </select></td>
+                            <option value="-1">Pilih Satu</option>
+                            <option value="1">Hidang</option>
+                            <option value="2">Buffet</option>
+                            <option value="3">Packed Food</option>
+                            <option value="4">Tiada</option>
+                        </select>
+                    </td>
                 </tr>
             @endfor
         </tbody>
     </table>
     <div class="flex flex-row justify-center py-2">
-        <a href="#" class="btn btn-primary"><i data-feather="save"></i>&nbsp;&nbsp;Simpan</a>
+        <button type="submit" class="btn btn-primary"><i data-feather="save"></i>&nbsp;&nbsp;Simpan</button>
         <button type="button" class="btn"><i data-feather="printer"></i>&nbsp;&nbsp;Cetak</button>
     </div>
 </div>

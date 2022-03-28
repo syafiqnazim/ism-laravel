@@ -367,6 +367,10 @@ class TempahanController extends Controller
         return view('pages.Tempahan.Makan-minum.index', compact('klusters', 'kursuses'));
     }
 
+    public function tempahanMakanMinumStore(Request $request) {
+        dd($request->all());
+    }
+
     public function getKursusTempahanMakanMinum($kursus_id)
     {
         $kursus = Kursus::find($kursus_id);
@@ -374,6 +378,6 @@ class TempahanController extends Controller
         $tarikhAkhir = Carbon::parse($kursus->tarikh_akhir);
         $kursusDays = $tarikhMula->diffInDays($tarikhAkhir) + 1;
 
-        return view('pages.Tempahan.Makan-minum.partials.tempahan-makan-minum-kursus', compact('kursusDays', 'tarikhMula'));
+        return view('pages.Tempahan.Makan-minum.partials.tempahan-makan-minum-kursus', compact('kursus', 'kursusDays', 'tarikhMula'));
     }
 }
