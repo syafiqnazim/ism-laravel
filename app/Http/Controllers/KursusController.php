@@ -185,6 +185,6 @@ class KursusController extends Controller
 
     public function kursusById($id)
     {
-        return Kursus::find($id)->first();
+        return Kursus::find($id);
     }
 }
